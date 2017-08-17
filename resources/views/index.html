@@ -1,0 +1,90 @@
+<html>
+	<head>
+
+		<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+  		<script src="http://materializecss.com/bin/materialize.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
+        <script src="https://cdn.rawgit.com/peachananr/onepage-scroll/master/jquery.onepage-scroll.min.js"></script>  
+		<link rel="stylesheet" href="https://cdn.rawgit.com/peachananr/onepage-scroll/master/onepage-scroll.css">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+        <style>
+			html{
+				text-align: center;
+                margin-top: 0px;
+                font-family: "Montserrat";
+			}
+            #welcome{
+            	padding-top: 5%;
+                padding-bottom: 4%;
+        		background: red; /* For browsers that do not support gradients */
+        		background: linear-gradient(#ffffff, #00ffff); /* Standard syntax */
+    		}
+            #info{
+            	background: linear-gradient(#00ffff, #ffa100);
+            }
+            #apps{
+            	background: linear-gradient(#ffa100, #FF69B4);
+            }
+            .buttons{
+            	border-radius: 20%;
+                background-color: red;
+            }
+			.collapsible-header{
+				background-color: 
+			}
+
+		</style>
+	</head>
+    <div class="main">
+    	<section id="welcome">
+		<h1 style="margin-top: 0px; padding-bottom: 2%;">WELCOME TO INFINIA PRESS</h1>
+        <h5 style="margin-top: 0px; padding-bottom: 4%;"><i>Simplicity is power</i></h4>
+        <img width=66% src="https://raw.githubusercontent.com/InfiniaPress/InfiniaHome/master/assets/imgres/infinia-logo.png">
+        <br>
+        <table>
+        	<tr id="buttons">
+        	<td style="text-align:center;"><button class="waves-effect waves-light btn">Sign up</button></td>
+        	<td style="text-align:center;"><button class="waves-effect waves-light btn">Log in</button></td>
+            </tr>
+        </table>
+        </section>
+        <section id="info">
+    		<h1>Why Infinia?<h1>
+        </section>
+        <section id="apps">
+        	<h1>Our Apps</h1>
+            <ul class="collapsible" data-collapsible="accordion">
+    			<li>
+      				<div class="collapsible-header">Passenger Pigeon</div>
+      				<div class="collapsible-body"><span>Realtime collaboration for professionals.</span></div>
+    			</li>
+    			<li>
+      				<div class="collapsible-header">Hansom</div>
+      				<div class="collapsible-body"><span>Simplified note-taking for everyday use.</span></div>
+    			</li>
+    			<li>
+      				<div class="collapsible-header">Cicada</div>
+      				<div class="collapsible-body"><span>Power planning for the efficient individual.</span></div>
+    			</li>
+  			</ul>
+        </section>
+    </div>
+	<script>
+    	$(".main").onepage_scroll({
+   			sectionContainer: "section",     // sectionContainer accepts any kind of selector in case you don't want to use section
+   			easing: "ease",                  // Easing options accepts the CSS3 easing animation such "ease", "linear", "ease-in",
+                                    // "ease-out", "ease-in-out", or even cubic bezier value such as "cubic-bezier(0.175, 0.885, 0.420, 1.310)"
+   			animationTime: 750,             // AnimationTime let you define how long each section takes to animate
+   			pagination: true,                // You can either show or hide the pagination. Toggle true for show, false for hide.
+   			updateURL: false,                // Toggle this true if you want the URL to be updated automatically when the user scroll to each page.
+   			beforeMove: function(index) {},  // This option accepts a callback function. The function will be called before the page moves.
+   			afterMove: function(index) {},   // This option accepts a callback function. The function will be called after the page moves.
+   			loop: false,                     // You can have the page loop back to the top/bottom when the user navigates at up/down on the first/last page.
+   			keyboard: true,                  // You can activate the keyboard controls
+   			responsiveFallback: false,        // You can fallback to normal page scroll by defining the width of the browser in which
+                                    // you want the responsive fallback to be triggered. For example, set this to 600 and whenever
+                                    // the browser's width is less than 600, the fallback will kick in.
+   			direction: "vertical"            // You can now define the direction of the One Page Scroll animation. Options available are "vertical" and "horizontal". The default value is "vertical".  
+		});
+    </script>
+</html>
