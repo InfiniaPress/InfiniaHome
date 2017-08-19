@@ -38,7 +38,7 @@
 		$("#save").click(function(){
 			$.ajax({
 				type: "POST",
-				url: "https://infinia.press/sso/login.php",
+				url: "https://admin.infinia.press/appconfig",
 				data: {appName:$("#appName").val(), appUrl:$("#appUrl").val()},
 				success: function(){
 					alert("Saved!");
