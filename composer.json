@@ -1,5 +1,45 @@
 {
+    "name": "infiniapress/infiniahome",
+
+    "description":  "InfiniaHome Frontend and authentication for InfiniaPress Apps",
+
+    "type": "project",
+
+    "homepage": "oss.infinia.press/infiniahome",
+
+    "license": "MIT",
+
+    "authors": [
+        {
+            "name": "Robert Xiu",
+            "email": "xiurobert@gmail.com",
+            "homepage": "http://derpz.infinia.press",
+            "role": "Developer"
+        },
+        {
+            "name": "Keane Wong",
+            "email": "keanewong@gmail.com",
+            "homepage": "http://hundotte.infinia.press",
+            "role": "Developer"
+        }
+    ],
+
+    "support": {
+        "email": "support@infinia.press",
+        "irc": "irc://irc.infinia.press/infiniahome",
+        "forum": "https://forums.infinia.press",
+        "source": "https://github.com/InfiniaPress/InfiniaHome"
+    },
+
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:propelorm/Propel3.git"
+        }
+    ],
     "require": {
-        "phpmailer/phpmailer": "^5.2"
+        "phpmailer/phpmailer": "^5.2",
+        "propel/propel3": "dev-master",
+        "gossi/php-code-generator": "dev-master"
     }
 }
