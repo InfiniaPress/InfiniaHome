@@ -5,7 +5,7 @@
 
     "type": "project",
 
-    "homepage": "oss.infinia.press/infiniahome",
+    "homepage": "http://oss.infinia.press/infiniahome",
 
     "license": "MIT",
 
@@ -31,15 +31,9 @@
         "source": "https://github.com/InfiniaPress/InfiniaHome"
     },
 
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "git@github.com:propelorm/Propel3.git"
-        }
-    ],
+
     "require": {
         "phpmailer/phpmailer": "^5.2",
-        "propel/propel3": "dev-master",
-        "gossi/php-code-generator": "dev-master"
+        "propel/propel": "~2.0@dev"
     }
 }

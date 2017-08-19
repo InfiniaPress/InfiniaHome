@@ -12,7 +12,7 @@ propel:
         schemaDir: C:\Users\Robert\Documents\GitHub\InfiniaHome-Laravel
 
         # The directory where Propel should output generated object model classes.
-        phpDir: C:\Users\Robert\Documents\GitHub\InfiniaHome-Laravel\infiniahome\models\propel-gen
+        phpDir: C:\Users\Robert\Documents\GitHub\InfiniaHome-Laravel\infiniahome\models\propelgen
 
 #   database:
 #       connections:

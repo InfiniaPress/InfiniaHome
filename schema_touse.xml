@@ -23,7 +23,7 @@
           xsi:noNamespaceSchemaLocation="http://xsd.propelorm.org/1.6/database.xsd"
           namespace="InfiniaHome\DB\"
           tablePrefix="infinia"
->
+        >
     <!-- Within the <database> tag, Propel expects one <table> tag for each table -->
 
 
