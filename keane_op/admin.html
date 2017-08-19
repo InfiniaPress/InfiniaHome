@@ -36,13 +36,14 @@
 	
 	<script>
 		$("#save").click(function(){
-			alert("Saved!");
 			$.ajax({
 				type: "POST",
-				url: url,
-				data: data,
-				success: success,
-				dataType: dataType
+				url: "https://infinia.press/sso/login.php",
+				data: {appName:$("#appName").val(), appUrl:$("#appUrl").val()},
+				success: function(){
+					alert("Saved!");
+				},
+				dataType: "application/json"
 			});
 		});
 
