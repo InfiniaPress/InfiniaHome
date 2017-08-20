@@ -10,6 +10,7 @@ use InfiniaHome\DB\Map\InfiniaUserTableMap;
 use Propel\Runtime\Propel;
 use Propel\Runtime\ActiveQuery\Criteria;
 use Propel\Runtime\ActiveQuery\ModelCriteria;
+use Propel\Runtime\ActiveQuery\ModelJoin;
 use Propel\Runtime\Collection\ObjectCollection;
 use Propel\Runtime\Connection\ConnectionInterface;
 use Propel\Runtime\Exception\PropelException;
@@ -44,6 +45,18 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildInfiniaUserQuery leftJoinWith($relation) Adds a LEFT JOIN clause and with to the query
  * @method     ChildInfiniaUserQuery rightJoinWith($relation) Adds a RIGHT JOIN clause and with to the query
  * @method     ChildInfiniaUserQuery innerJoinWith($relation) Adds a INNER JOIN clause and with to the query
+ *
+ * @method     ChildInfiniaUserQuery leftJoinuserStatus($relationAlias = null) Adds a LEFT JOIN clause to the query using the userStatus relation
+ * @method     ChildInfiniaUserQuery rightJoinuserStatus($relationAlias = null) Adds a RIGHT JOIN clause to the query using the userStatus relation
+ * @method     ChildInfiniaUserQuery innerJoinuserStatus($relationAlias = null) Adds a INNER JOIN clause to the query using the userStatus relation
+ *
+ * @method     ChildInfiniaUserQuery joinWithuserStatus($joinType = Criteria::INNER_JOIN) Adds a join clause and with to the query using the userStatus relation
+ *
+ * @method     ChildInfiniaUserQuery leftJoinWithuserStatus() Adds a LEFT JOIN clause and with to the query using the userStatus relation
+ * @method     ChildInfiniaUserQuery rightJoinWithuserStatus() Adds a RIGHT JOIN clause and with to the query using the userStatus relation
+ * @method     ChildInfiniaUserQuery innerJoinWithuserStatus() Adds a INNER JOIN clause and with to the query using the userStatus relation
+ *
+ * @method     \InfiniaHome\DB\UserStatusQuery endUse() Finalizes a secondary criteria and merges it with its primary Criteria
  *
  * @method     ChildInfiniaUser findOne(ConnectionInterface $con = null) Return the first ChildInfiniaUser matching the query
  * @method     ChildInfiniaUser findOneOrCreate(ConnectionInterface $con = null) Return the first ChildInfiniaUser matching the query, or a new ChildInfiniaUser object populated from the query conditions when no match is found
@@ -276,6 +289,8 @@ abstract class InfiniaUserQuery extends ModelCriteria
      * $query->filterByUserId(array('min' => 12)); // WHERE user_id > 12
      * </code>
      *
+     * @see       filterByuserStatus()
+     *
      * @param     mixed $userId The value to use as filter.
      *              Use scalar values for equality.
      *              Use array values for in_array() equivalent.
@@ -490,6 +505,83 @@ abstract class InfiniaUserQuery extends ModelCriteria
         }
 
         return $this->addUsingAlias(InfiniaUserTableMap::COL_USER_RANK, $userRank, $comparison);
+    }
+
+    /**
+     * Filter the query by a related \InfiniaHome\DB\UserStatus object
+     *
+     * @param \InfiniaHome\DB\UserStatus|ObjectCollection $userStatus The related object(s) to use as filter
+     * @param string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @throws \Propel\Runtime\Exception\PropelException
+     *
+     * @return ChildInfiniaUserQuery The current query, for fluid interface
+     */
+    public function filterByuserStatus($userStatus, $comparison = null)
+    {
+        if ($userStatus instanceof \InfiniaHome\DB\UserStatus) {
+            return $this
+                ->addUsingAlias(InfiniaUserTableMap::COL_USER_ID, $userStatus->getUserid(), $comparison);
+        } elseif ($userStatus instanceof ObjectCollection) {
+            if (null === $comparison) {
+                $comparison = Criteria::IN;
+            }
+
+            return $this
+                ->addUsingAlias(InfiniaUserTableMap::COL_USER_ID, $userStatus->toKeyValue('PrimaryKey', 'Userid'), $comparison);
+        } else {
+            throw new PropelException('filterByuserStatus() only accepts arguments of type \InfiniaHome\DB\UserStatus or Collection');
+        }
+    }
+
+    /**
+     * Adds a JOIN clause to the query using the userStatus relation
+     *
+     * @param     string $relationAlias optional alias for the relation
+     * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+     *
+     * @return $this|ChildInfiniaUserQuery The current query, for fluid interface
+     */
+    public function joinuserStatus($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+    {
+        $tableMap = $this->getTableMap();
+        $relationMap = $tableMap->getRelation('userStatus');
+
+        // create a ModelJoin object for this join
+        $join = new ModelJoin();
+        $join->setJoinType($joinType);
+        $join->setRelationMap($relationMap, $this->useAliasInSQL ? $this->getModelAlias() : null, $relationAlias);
+        if ($previousJoin = $this->getPreviousJoin()) {
+            $join->setPreviousJoin($previousJoin);
+        }
+
+        // add the ModelJoin to the current object
+        if ($relationAlias) {
+            $this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
+            $this->addJoinObject($join, $relationAlias);
+        } else {
+            $this->addJoinObject($join, 'userStatus');
+        }
+
+        return $this;
+    }
+
+    /**
+     * Use the userStatus relation UserStatus object
+     *
+     * @see useQuery()
+     *
+     * @param     string $relationAlias optional alias for the relation,
+     *                                   to be used as main alias in the secondary query
+     * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+     *
+     * @return \InfiniaHome\DB\UserStatusQuery A secondary query class using the current class as primary query
+     */
+    public function useuserStatusQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+    {
+        return $this
+            ->joinuserStatus($relationAlias, $joinType)
+            ->useQuery($relationAlias ? $relationAlias : 'userStatus', '\InfiniaHome\DB\UserStatusQuery');
     }
 
     /**

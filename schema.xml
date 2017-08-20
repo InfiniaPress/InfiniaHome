@@ -65,26 +65,29 @@
         <column name="user_rank" type="enum"
                 valueSet="Normal, InfiniaBronze, InfiniaSilver, InfiniaGold, InfiniaPlatinium, InfiniaDiamond, Admin"
                 required="true" />
-
-
-
-        <!--
-            A foreign key represents a relationship. Just like a table or a column, a relationship has a `phpName`.
-            By default, Propel uses the `phpName` of the foreign table as the `phpName` of the relation.
-
-            The `refPhpName` defines the name of the relation as seen from the foreign table.
-        -->
+        <foreign-key foreignTable="user_status" phpName="userStatus">
+            <reference local="user_id" foreign="userid" />
+        </foreign-key>
 
     </table>
 
+    <table name="applications" phpName="InfiniaLinkedApp">
+        <column name="app_id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
+        <column name="app_name" type="varchar" size="255" required="true" />
+        <column name="app_url" type="varchar" size="255" required="true" />
+        <column name="app_publickey" type="varchar" size="255" required="true" phpName="appPublicKey"/>
+        <column name="app_privatekey" type="varchar" size="255" required="true" phpName="appPrivateKey"/>
+        <column name="app_registerer" type="varchar" size="255" required="true" phpName="appCreator"/>
+    </table>
 
-    <!--
-        When you're done with editing, open a terminal and run
-            `$ cd C:\Users\Robert\Documents\GitHub\InfiniaHome-Laravel`
-            `$ vendor/bin/propel build`
-        to generate the model classes.
+    <table name="user_status">
+        <column name="userid" required="true" type="integer" primaryKey="true" autoIncrement="true" />
+        <column name="status" required="true" type="enum" valueSet="Normal, Muted, Banned"/>
+        <column name="mutedtime" required="false" type="timestamp" />
+        <column name="muted_forever" type="boolean"  defaultValue="false" />
+        <column name="bannedtime" required="false" type="timestamp" />
+        <column name="banned_forever" type="boolean" defaultValue="false" />
+    </table>
 
-        You should now be able to perform basic crud operations with your models. To learn how to use these models
-        please look into our documentation: http://propelorm.org/documentation/03-basic-crud.html
-    -->
+
 </database>

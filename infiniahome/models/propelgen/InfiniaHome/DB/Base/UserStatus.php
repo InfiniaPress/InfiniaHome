@@ -2,12 +2,13 @@
 
 namespace InfiniaHome\DB\Base;
 
+use \DateTime;
 use \Exception;
 use \PDO;
+use InfiniaHome\DB\InfiniaUser as ChildInfiniaUser;
 use InfiniaHome\DB\InfiniaUserQuery as ChildInfiniaUserQuery;
-use InfiniaHome\DB\UserStatus as ChildUserStatus;
 use InfiniaHome\DB\UserStatusQuery as ChildUserStatusQuery;
-use InfiniaHome\DB\Map\InfiniaUserTableMap;
+use InfiniaHome\DB\Map\UserStatusTableMap;
 use Propel\Runtime\Propel;
 use Propel\Runtime\ActiveQuery\Criteria;
 use Propel\Runtime\ActiveQuery\ModelCriteria;
@@ -19,20 +20,21 @@ use Propel\Runtime\Exception\LogicException;
 use Propel\Runtime\Exception\PropelException;
 use Propel\Runtime\Map\TableMap;
 use Propel\Runtime\Parser\AbstractParser;
+use Propel\Runtime\Util\PropelDateTime;
 
 /**
- * Base class that represents a row from the 'infiniausers' table.
+ * Base class that represents a row from the 'infiniauser_status' table.
  *
  *
  *
  * @package    propel.generator.InfiniaHome.DB.Base
  */
-abstract class InfiniaUser implements ActiveRecordInterface
+abstract class UserStatus implements ActiveRecordInterface
 {
     /**
      * TableMap class name
      */
-    const TABLE_MAP = '\\InfiniaHome\\DB\\Map\\InfiniaUserTableMap';
+    const TABLE_MAP = '\\InfiniaHome\\DB\\Map\\UserStatusTableMap';
 
 
     /**
@@ -62,66 +64,60 @@ abstract class InfiniaUser implements ActiveRecordInterface
     protected $virtualColumns = array();
 
     /**
-     * The value for the user_id field.
+     * The value for the userid field.
      *
      * @var        int
      */
-    protected $user_id;
+    protected $userid;
 
     /**
-     * The value for the user_name field.
+     * The value for the username field.
      *
      * @var        string
      */
-    protected $user_name;
+    protected $username;
 
     /**
-     * The value for the user_realname field.
+     * The value for the status field.
      *
-     * @var        string
+     * @var        int
      */
-    protected $user_realname;
+    protected $status;
 
     /**
-     * The value for the user_code field.
+     * The value for the mutedtime field.
      *
-     * @var        string
+     * @var        DateTime
      */
-    protected $user_code;
+    protected $mutedtime;
 
     /**
-     * The value for the user_email field.
-     *
-     * @var        string
-     */
-    protected $user_email;
-
-    /**
-     * The value for the user_password field.
-     *
-     * @var        string
-     */
-    protected $user_password;
-
-    /**
-     * The value for the user_isverified field.
+     * The value for the muted_forever field.
      *
      * Note: this column has a database default value of: false
      * @var        boolean
      */
-    protected $user_isverified;
+    protected $muted_forever;
 
     /**
-     * The value for the user_rank field.
+     * The value for the bannedtime field.
      *
-     * @var        int
+     * @var        DateTime
      */
-    protected $user_rank;
+    protected $bannedtime;
 
     /**
-     * @var        ChildUserStatus
+     * The value for the banned_forever field.
+     *
+     * Note: this column has a database default value of: false
+     * @var        boolean
      */
-    protected $auserStatus;
+    protected $banned_forever;
+
+    /**
+     * @var        ChildInfiniaUser one-to-one related ChildInfiniaUser object
+     */
+    protected $singleInfiniaUser;
 
     /**
      * Flag to prevent endless save loop, if this object is referenced
@@ -139,11 +135,12 @@ abstract class InfiniaUser implements ActiveRecordInterface
      */
     public function applyDefaultValues()
     {
-        $this->user_isverified = false;
+        $this->muted_forever = false;
+        $this->banned_forever = false;
     }
 
     /**
-     * Initializes internal state of InfiniaHome\DB\Base\InfiniaUser object.
+     * Initializes internal state of InfiniaHome\DB\Base\UserStatus object.
      * @see applyDefaults()
      */
     public function __construct()
@@ -240,9 +237,9 @@ abstract class InfiniaUser implements ActiveRecordInterface
     }
 
     /**
-     * Compares this with another <code>InfiniaUser</code> instance.  If
-     * <code>obj</code> is an instance of <code>InfiniaUser</code>, delegates to
-     * <code>equals(InfiniaUser)</code>.  Otherwise, returns <code>false</code>.
+     * Compares this with another <code>UserStatus</code> instance.  If
+     * <code>obj</code> is an instance of <code>UserStatus</code>, delegates to
+     * <code>equals(UserStatus)</code>.  Otherwise, returns <code>false</code>.
      *
      * @param  mixed   $obj The object to compare to.
      * @return boolean Whether equal to the object specified.
@@ -308,7 +305,7 @@ abstract class InfiniaUser implements ActiveRecordInterface
      * @param string $name  The virtual column name
      * @param mixed  $value The value to give to the virtual column
      *
-     * @return $this|InfiniaUser The current object, for fluid interface
+     * @return $this|UserStatus The current object, for fluid interface
      */
     public function setVirtualColumn($name, $value)
     {
@@ -370,239 +367,220 @@ abstract class InfiniaUser implements ActiveRecordInterface
     }
 
     /**
-     * Get the [user_id] column value.
+     * Get the [userid] column value.
      *
      * @return int
      */
-    public function getUserId()
+    public function getUserid()
     {
-        return $this->user_id;
+        return $this->userid;
     }
 
     /**
-     * Get the [user_name] column value.
+     * Get the [username] column value.
      *
      * @return string
      */
-    public function getUserName()
+    public function getUsername()
     {
-        return $this->user_name;
+        return $this->username;
     }
 
     /**
-     * Get the [user_realname] column value.
-     *
-     * @return string
-     */
-    public function getUserRealname()
-    {
-        return $this->user_realname;
-    }
-
-    /**
-     * Get the [user_code] column value.
-     *
-     * @return string
-     */
-    public function getUserCode()
-    {
-        return $this->user_code;
-    }
-
-    /**
-     * Get the [user_email] column value.
-     *
-     * @return string
-     */
-    public function getUserEmail()
-    {
-        return $this->user_email;
-    }
-
-    /**
-     * Get the [user_password] column value.
-     *
-     * @return string
-     */
-    public function getUserPassword()
-    {
-        return $this->user_password;
-    }
-
-    /**
-     * Get the [user_isverified] column value.
-     *
-     * @return boolean
-     */
-    public function getUserIsverified()
-    {
-        return $this->user_isverified;
-    }
-
-    /**
-     * Get the [user_isverified] column value.
-     *
-     * @return boolean
-     */
-    public function isUserIsverified()
-    {
-        return $this->getUserIsverified();
-    }
-
-    /**
-     * Get the [user_rank] column value.
+     * Get the [status] column value.
      *
      * @return string
      * @throws \Propel\Runtime\Exception\PropelException
      */
-    public function getUserRank()
+    public function getStatus()
     {
-        if (null === $this->user_rank) {
+        if (null === $this->status) {
             return null;
         }
-        $valueSet = InfiniaUserTableMap::getValueSet(InfiniaUserTableMap::COL_USER_RANK);
-        if (!isset($valueSet[$this->user_rank])) {
-            throw new PropelException('Unknown stored enum key: ' . $this->user_rank);
+        $valueSet = UserStatusTableMap::getValueSet(UserStatusTableMap::COL_STATUS);
+        if (!isset($valueSet[$this->status])) {
+            throw new PropelException('Unknown stored enum key: ' . $this->status);
         }
 
-        return $valueSet[$this->user_rank];
+        return $valueSet[$this->status];
     }
 
     /**
-     * Set the value of [user_id] column.
+     * Get the [optionally formatted] temporal [mutedtime] column value.
+     *
+     *
+     * @param      string $format The date/time format string (either date()-style or strftime()-style).
+     *                            If format is NULL, then the raw DateTime object will be returned.
+     *
+     * @return string|DateTime Formatted date/time value as string or DateTime object (if format is NULL), NULL if column is NULL, and 0 if column value is 0000-00-00 00:00:00
+     *
+     * @throws PropelException - if unable to parse/validate the date/time value.
+     */
+    public function getMutedtime($format = NULL)
+    {
+        if ($format === null) {
+            return $this->mutedtime;
+        } else {
+            return $this->mutedtime instanceof \DateTimeInterface ? $this->mutedtime->format($format) : null;
+        }
+    }
+
+    /**
+     * Get the [muted_forever] column value.
+     *
+     * @return boolean
+     */
+    public function getMutedForever()
+    {
+        return $this->muted_forever;
+    }
+
+    /**
+     * Get the [muted_forever] column value.
+     *
+     * @return boolean
+     */
+    public function isMutedForever()
+    {
+        return $this->getMutedForever();
+    }
+
+    /**
+     * Get the [optionally formatted] temporal [bannedtime] column value.
+     *
+     *
+     * @param      string $format The date/time format string (either date()-style or strftime()-style).
+     *                            If format is NULL, then the raw DateTime object will be returned.
+     *
+     * @return string|DateTime Formatted date/time value as string or DateTime object (if format is NULL), NULL if column is NULL, and 0 if column value is 0000-00-00 00:00:00
+     *
+     * @throws PropelException - if unable to parse/validate the date/time value.
+     */
+    public function getBannedtime($format = NULL)
+    {
+        if ($format === null) {
+            return $this->bannedtime;
+        } else {
+            return $this->bannedtime instanceof \DateTimeInterface ? $this->bannedtime->format($format) : null;
+        }
+    }
+
+    /**
+     * Get the [banned_forever] column value.
+     *
+     * @return boolean
+     */
+    public function getBannedForever()
+    {
+        return $this->banned_forever;
+    }
+
+    /**
+     * Get the [banned_forever] column value.
+     *
+     * @return boolean
+     */
+    public function isBannedForever()
+    {
+        return $this->getBannedForever();
+    }
+
+    /**
+     * Set the value of [userid] column.
      *
      * @param int $v new value
-     * @return $this|\InfiniaHome\DB\InfiniaUser The current object (for fluent API support)
+     * @return $this|\InfiniaHome\DB\UserStatus The current object (for fluent API support)
      */
-    public function setUserId($v)
+    public function setUserid($v)
     {
         if ($v !== null) {
             $v = (int) $v;
         }
 
-        if ($this->user_id !== $v) {
-            $this->user_id = $v;
-            $this->modifiedColumns[InfiniaUserTableMap::COL_USER_ID] = true;
-        }
-
-        if ($this->auserStatus !== null && $this->auserStatus->getUserid() !== $v) {
-            $this->auserStatus = null;
+        if ($this->userid !== $v) {
+            $this->userid = $v;
+            $this->modifiedColumns[UserStatusTableMap::COL_USERID] = true;
         }
 
         return $this;
-    } // setUserId()
+    } // setUserid()
 
     /**
-     * Set the value of [user_name] column.
+     * Set the value of [username] column.
      *
      * @param string $v new value
-     * @return $this|\InfiniaHome\DB\InfiniaUser The current object (for fluent API support)
+     * @return $this|\InfiniaHome\DB\UserStatus The current object (for fluent API support)
      */
-    public function setUserName($v)
+    public function setUsername($v)
     {
         if ($v !== null) {
             $v = (string) $v;
         }
 
-        if ($this->user_name !== $v) {
-            $this->user_name = $v;
-            $this->modifiedColumns[InfiniaUserTableMap::COL_USER_NAME] = true;
+        if ($this->username !== $v) {
+            $this->username = $v;
+            $this->modifiedColumns[UserStatusTableMap::COL_USERNAME] = true;
         }
 
         return $this;
-    } // setUserName()
+    } // setUsername()
 
     /**
-     * Set the value of [user_realname] column.
+     * Set the value of [status] column.
      *
-     * @param string $v new value
-     * @return $this|\InfiniaHome\DB\InfiniaUser The current object (for fluent API support)
+     * @param  string $v new value
+     * @return $this|\InfiniaHome\DB\UserStatus The current object (for fluent API support)
+     * @throws \Propel\Runtime\Exception\PropelException
      */
-    public function setUserRealname($v)
+    public function setStatus($v)
     {
         if ($v !== null) {
-            $v = (string) $v;
+            $valueSet = UserStatusTableMap::getValueSet(UserStatusTableMap::COL_STATUS);
+            if (!in_array($v, $valueSet)) {
+                throw new PropelException(sprintf('Value "%s" is not accepted in this enumerated column', $v));
+            }
+            $v = array_search($v, $valueSet);
         }
 
-        if ($this->user_realname !== $v) {
-            $this->user_realname = $v;
-            $this->modifiedColumns[InfiniaUserTableMap::COL_USER_REALNAME] = true;
+        if ($this->status !== $v) {
+            $this->status = $v;
+            $this->modifiedColumns[UserStatusTableMap::COL_STATUS] = true;
         }
 
         return $this;
-    } // setUserRealname()
+    } // setStatus()
 
     /**
-     * Set the value of [user_code] column.
+     * Sets the value of [mutedtime] column to a normalized version of the date/time value specified.
      *
-     * @param string $v new value
-     * @return $this|\InfiniaHome\DB\InfiniaUser The current object (for fluent API support)
+     * @param  mixed $v string, integer (timestamp), or \DateTimeInterface value.
+     *               Empty strings are treated as NULL.
+     * @return $this|\InfiniaHome\DB\UserStatus The current object (for fluent API support)
      */
-    public function setUserCode($v)
+    public function setMutedtime($v)
     {
-        if ($v !== null) {
-            $v = (string) $v;
-        }
-
-        if ($this->user_code !== $v) {
-            $this->user_code = $v;
-            $this->modifiedColumns[InfiniaUserTableMap::COL_USER_CODE] = true;
-        }
+        $dt = PropelDateTime::newInstance($v, null, 'DateTime');
+        if ($this->mutedtime !== null || $dt !== null) {
+            if ($this->mutedtime === null || $dt === null || $dt->format("Y-m-d H:i:s.u") !== $this->mutedtime->format("Y-m-d H:i:s.u")) {
+                $this->mutedtime = $dt === null ? null : clone $dt;
+                $this->modifiedColumns[UserStatusTableMap::COL_MUTEDTIME] = true;
+            }
+        } // if either are not null
 
         return $this;
-    } // setUserCode()
+    } // setMutedtime()
 
     /**
-     * Set the value of [user_email] column.
-     *
-     * @param string $v new value
-     * @return $this|\InfiniaHome\DB\InfiniaUser The current object (for fluent API support)
-     */
-    public function setUserEmail($v)
-    {
-        if ($v !== null) {
-            $v = (string) $v;
-        }
-
-        if ($this->user_email !== $v) {
-            $this->user_email = $v;
-            $this->modifiedColumns[InfiniaUserTableMap::COL_USER_EMAIL] = true;
-        }
-
-        return $this;
-    } // setUserEmail()
-
-    /**
-     * Set the value of [user_password] column.
-     *
-     * @param string $v new value
-     * @return $this|\InfiniaHome\DB\InfiniaUser The current object (for fluent API support)
-     */
-    public function setUserPassword($v)
-    {
-        if ($v !== null) {
-            $v = (string) $v;
-        }
-
-        if ($this->user_password !== $v) {
-            $this->user_password = $v;
-            $this->modifiedColumns[InfiniaUserTableMap::COL_USER_PASSWORD] = true;
-        }
-
-        return $this;
-    } // setUserPassword()
-
-    /**
-     * Sets the value of the [user_isverified] column.
+     * Sets the value of the [muted_forever] column.
      * Non-boolean arguments are converted using the following rules:
      *   * 1, '1', 'true',  'on',  and 'yes' are converted to boolean true
      *   * 0, '0', 'false', 'off', and 'no'  are converted to boolean false
      * Check on string values is case insensitive (so 'FaLsE' is seen as 'false').
      *
      * @param  boolean|integer|string $v The new value
-     * @return $this|\InfiniaHome\DB\InfiniaUser The current object (for fluent API support)
+     * @return $this|\InfiniaHome\DB\UserStatus The current object (for fluent API support)
      */
-    public function setUserIsverified($v)
+    public function setMutedForever($v)
     {
         if ($v !== null) {
             if (is_string($v)) {
@@ -612,38 +590,61 @@ abstract class InfiniaUser implements ActiveRecordInterface
             }
         }
 
-        if ($this->user_isverified !== $v) {
-            $this->user_isverified = $v;
-            $this->modifiedColumns[InfiniaUserTableMap::COL_USER_ISVERIFIED] = true;
+        if ($this->muted_forever !== $v) {
+            $this->muted_forever = $v;
+            $this->modifiedColumns[UserStatusTableMap::COL_MUTED_FOREVER] = true;
         }
 
         return $this;
-    } // setUserIsverified()
+    } // setMutedForever()
 
     /**
-     * Set the value of [user_rank] column.
+     * Sets the value of [bannedtime] column to a normalized version of the date/time value specified.
      *
-     * @param  string $v new value
-     * @return $this|\InfiniaHome\DB\InfiniaUser The current object (for fluent API support)
-     * @throws \Propel\Runtime\Exception\PropelException
+     * @param  mixed $v string, integer (timestamp), or \DateTimeInterface value.
+     *               Empty strings are treated as NULL.
+     * @return $this|\InfiniaHome\DB\UserStatus The current object (for fluent API support)
      */
-    public function setUserRank($v)
+    public function setBannedtime($v)
+    {
+        $dt = PropelDateTime::newInstance($v, null, 'DateTime');
+        if ($this->bannedtime !== null || $dt !== null) {
+            if ($this->bannedtime === null || $dt === null || $dt->format("Y-m-d H:i:s.u") !== $this->bannedtime->format("Y-m-d H:i:s.u")) {
+                $this->bannedtime = $dt === null ? null : clone $dt;
+                $this->modifiedColumns[UserStatusTableMap::COL_BANNEDTIME] = true;
+            }
+        } // if either are not null
+
+        return $this;
+    } // setBannedtime()
+
+    /**
+     * Sets the value of the [banned_forever] column.
+     * Non-boolean arguments are converted using the following rules:
+     *   * 1, '1', 'true',  'on',  and 'yes' are converted to boolean true
+     *   * 0, '0', 'false', 'off', and 'no'  are converted to boolean false
+     * Check on string values is case insensitive (so 'FaLsE' is seen as 'false').
+     *
+     * @param  boolean|integer|string $v The new value
+     * @return $this|\InfiniaHome\DB\UserStatus The current object (for fluent API support)
+     */
+    public function setBannedForever($v)
     {
         if ($v !== null) {
-            $valueSet = InfiniaUserTableMap::getValueSet(InfiniaUserTableMap::COL_USER_RANK);
-            if (!in_array($v, $valueSet)) {
-                throw new PropelException(sprintf('Value "%s" is not accepted in this enumerated column', $v));
+            if (is_string($v)) {
+                $v = in_array(strtolower($v), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
+            } else {
+                $v = (boolean) $v;
             }
-            $v = array_search($v, $valueSet);
         }
 
-        if ($this->user_rank !== $v) {
-            $this->user_rank = $v;
-            $this->modifiedColumns[InfiniaUserTableMap::COL_USER_RANK] = true;
+        if ($this->banned_forever !== $v) {
+            $this->banned_forever = $v;
+            $this->modifiedColumns[UserStatusTableMap::COL_BANNED_FOREVER] = true;
         }
 
         return $this;
-    } // setUserRank()
+    } // setBannedForever()
 
     /**
      * Indicates whether the columns in this object are only set to default values.
@@ -655,7 +656,11 @@ abstract class InfiniaUser implements ActiveRecordInterface
      */
     public function hasOnlyDefaultValues()
     {
-            if ($this->user_isverified !== false) {
+            if ($this->muted_forever !== false) {
+                return false;
+            }
+
+            if ($this->banned_forever !== false) {
                 return false;
             }
 
@@ -685,29 +690,32 @@ abstract class InfiniaUser implements ActiveRecordInterface
     {
         try {
 
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 0 + $startcol : InfiniaUserTableMap::translateFieldName('UserId', TableMap::TYPE_PHPNAME, $indexType)];
-            $this->user_id = (null !== $col) ? (int) $col : null;
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 0 + $startcol : UserStatusTableMap::translateFieldName('Userid', TableMap::TYPE_PHPNAME, $indexType)];
+            $this->userid = (null !== $col) ? (int) $col : null;
 
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 1 + $startcol : InfiniaUserTableMap::translateFieldName('UserName', TableMap::TYPE_PHPNAME, $indexType)];
-            $this->user_name = (null !== $col) ? (string) $col : null;
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 1 + $startcol : UserStatusTableMap::translateFieldName('Username', TableMap::TYPE_PHPNAME, $indexType)];
+            $this->username = (null !== $col) ? (string) $col : null;
 
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 2 + $startcol : InfiniaUserTableMap::translateFieldName('UserRealname', TableMap::TYPE_PHPNAME, $indexType)];
-            $this->user_realname = (null !== $col) ? (string) $col : null;
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 2 + $startcol : UserStatusTableMap::translateFieldName('Status', TableMap::TYPE_PHPNAME, $indexType)];
+            $this->status = (null !== $col) ? (int) $col : null;
 
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 3 + $startcol : InfiniaUserTableMap::translateFieldName('UserCode', TableMap::TYPE_PHPNAME, $indexType)];
-            $this->user_code = (null !== $col) ? (string) $col : null;
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 3 + $startcol : UserStatusTableMap::translateFieldName('Mutedtime', TableMap::TYPE_PHPNAME, $indexType)];
+            if ($col === '0000-00-00 00:00:00') {
+                $col = null;
+            }
+            $this->mutedtime = (null !== $col) ? PropelDateTime::newInstance($col, null, 'DateTime') : null;
 
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 4 + $startcol : InfiniaUserTableMap::translateFieldName('UserEmail', TableMap::TYPE_PHPNAME, $indexType)];
-            $this->user_email = (null !== $col) ? (string) $col : null;
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 4 + $startcol : UserStatusTableMap::translateFieldName('MutedForever', TableMap::TYPE_PHPNAME, $indexType)];
+            $this->muted_forever = (null !== $col) ? (boolean) $col : null;
 
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 5 + $startcol : InfiniaUserTableMap::translateFieldName('UserPassword', TableMap::TYPE_PHPNAME, $indexType)];
-            $this->user_password = (null !== $col) ? (string) $col : null;
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 5 + $startcol : UserStatusTableMap::translateFieldName('Bannedtime', TableMap::TYPE_PHPNAME, $indexType)];
+            if ($col === '0000-00-00 00:00:00') {
+                $col = null;
+            }
+            $this->bannedtime = (null !== $col) ? PropelDateTime::newInstance($col, null, 'DateTime') : null;
 
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 6 + $startcol : InfiniaUserTableMap::translateFieldName('UserIsverified', TableMap::TYPE_PHPNAME, $indexType)];
-            $this->user_isverified = (null !== $col) ? (boolean) $col : null;
-
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 7 + $startcol : InfiniaUserTableMap::translateFieldName('UserRank', TableMap::TYPE_PHPNAME, $indexType)];
-            $this->user_rank = (null !== $col) ? (int) $col : null;
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 6 + $startcol : UserStatusTableMap::translateFieldName('BannedForever', TableMap::TYPE_PHPNAME, $indexType)];
+            $this->banned_forever = (null !== $col) ? (boolean) $col : null;
             $this->resetModified();
 
             $this->setNew(false);
@@ -716,10 +724,10 @@ abstract class InfiniaUser implements ActiveRecordInterface
                 $this->ensureConsistency();
             }
 
-            return $startcol + 8; // 8 = InfiniaUserTableMap::NUM_HYDRATE_COLUMNS.
+            return $startcol + 7; // 7 = UserStatusTableMap::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
-            throw new PropelException(sprintf('Error populating %s object', '\\InfiniaHome\\DB\\InfiniaUser'), 0, $e);
+            throw new PropelException(sprintf('Error populating %s object', '\\InfiniaHome\\DB\\UserStatus'), 0, $e);
         }
     }
 
@@ -738,9 +746,6 @@ abstract class InfiniaUser implements ActiveRecordInterface
      */
     public function ensureConsistency()
     {
-        if ($this->auserStatus !== null && $this->user_id !== $this->auserStatus->getUserid()) {
-            $this->auserStatus = null;
-        }
     } // ensureConsistency
 
     /**
@@ -764,13 +769,13 @@ abstract class InfiniaUser implements ActiveRecordInterface
         }
 
         if ($con === null) {
-            $con = Propel::getServiceContainer()->getReadConnection(InfiniaUserTableMap::DATABASE_NAME);
+            $con = Propel::getServiceContainer()->getReadConnection(UserStatusTableMap::DATABASE_NAME);
         }
 
         // We don't need to alter the object instance pool; we're just modifying this instance
         // already in the pool.
 
-        $dataFetcher = ChildInfiniaUserQuery::create(null, $this->buildPkeyCriteria())->setFormatter(ModelCriteria::FORMAT_STATEMENT)->find($con);
+        $dataFetcher = ChildUserStatusQuery::create(null, $this->buildPkeyCriteria())->setFormatter(ModelCriteria::FORMAT_STATEMENT)->find($con);
         $row = $dataFetcher->fetch();
         $dataFetcher->close();
         if (!$row) {
@@ -780,7 +785,8 @@ abstract class InfiniaUser implements ActiveRecordInterface
 
         if ($deep) {  // also de-associate any related objects?
 
-            $this->auserStatus = null;
+            $this->singleInfiniaUser = null;
+
         } // if (deep)
     }
 
@@ -790,8 +796,8 @@ abstract class InfiniaUser implements ActiveRecordInterface
      * @param      ConnectionInterface $con
      * @return void
      * @throws PropelException
-     * @see InfiniaUser::setDeleted()
-     * @see InfiniaUser::isDeleted()
+     * @see UserStatus::setDeleted()
+     * @see UserStatus::isDeleted()
      */
     public function delete(ConnectionInterface $con = null)
     {
@@ -800,11 +806,11 @@ abstract class InfiniaUser implements ActiveRecordInterface
         }
 
         if ($con === null) {
-            $con = Propel::getServiceContainer()->getWriteConnection(InfiniaUserTableMap::DATABASE_NAME);
+            $con = Propel::getServiceContainer()->getWriteConnection(UserStatusTableMap::DATABASE_NAME);
         }
 
         $con->transaction(function () use ($con) {
-            $deleteQuery = ChildInfiniaUserQuery::create()
+            $deleteQuery = ChildUserStatusQuery::create()
                 ->filterByPrimaryKey($this->getPrimaryKey());
             $ret = $this->preDelete($con);
             if ($ret) {
@@ -839,7 +845,7 @@ abstract class InfiniaUser implements ActiveRecordInterface
         }
 
         if ($con === null) {
-            $con = Propel::getServiceContainer()->getWriteConnection(InfiniaUserTableMap::DATABASE_NAME);
+            $con = Propel::getServiceContainer()->getWriteConnection(UserStatusTableMap::DATABASE_NAME);
         }
 
         return $con->transaction(function () use ($con) {
@@ -858,7 +864,7 @@ abstract class InfiniaUser implements ActiveRecordInterface
                     $this->postUpdate($con);
                 }
                 $this->postSave($con);
-                InfiniaUserTableMap::addInstanceToPool($this);
+                UserStatusTableMap::addInstanceToPool($this);
             } else {
                 $affectedRows = 0;
             }
@@ -884,18 +890,6 @@ abstract class InfiniaUser implements ActiveRecordInterface
         if (!$this->alreadyInSave) {
             $this->alreadyInSave = true;
 
-            // We call the save method on the following object(s) if they
-            // were passed to this object by their corresponding set
-            // method.  This object relates to these object(s) by a
-            // foreign key reference.
-
-            if ($this->auserStatus !== null) {
-                if ($this->auserStatus->isModified() || $this->auserStatus->isNew()) {
-                    $affectedRows += $this->auserStatus->save($con);
-                }
-                $this->setuserStatus($this->auserStatus);
-            }
-
             if ($this->isNew() || $this->isModified()) {
                 // persist changes
                 if ($this->isNew()) {
@@ -905,6 +899,12 @@ abstract class InfiniaUser implements ActiveRecordInterface
                     $affectedRows += $this->doUpdate($con);
                 }
                 $this->resetModified();
+            }
+
+            if ($this->singleInfiniaUser !== null) {
+                if (!$this->singleInfiniaUser->isDeleted() && ($this->singleInfiniaUser->isNew() || $this->singleInfiniaUser->isModified())) {
+                    $affectedRows += $this->singleInfiniaUser->save($con);
+                }
             }
 
             $this->alreadyInSave = false;
@@ -927,39 +927,36 @@ abstract class InfiniaUser implements ActiveRecordInterface
         $modifiedColumns = array();
         $index = 0;
 
-        $this->modifiedColumns[InfiniaUserTableMap::COL_USER_ID] = true;
-        if (null !== $this->user_id) {
-            throw new PropelException('Cannot insert a value for auto-increment primary key (' . InfiniaUserTableMap::COL_USER_ID . ')');
+        $this->modifiedColumns[UserStatusTableMap::COL_USERID] = true;
+        if (null !== $this->userid) {
+            throw new PropelException('Cannot insert a value for auto-increment primary key (' . UserStatusTableMap::COL_USERID . ')');
         }
 
          // check the columns in natural order for more readable SQL queries
-        if ($this->isColumnModified(InfiniaUserTableMap::COL_USER_ID)) {
-            $modifiedColumns[':p' . $index++]  = 'user_id';
+        if ($this->isColumnModified(UserStatusTableMap::COL_USERID)) {
+            $modifiedColumns[':p' . $index++]  = 'userid';
         }
-        if ($this->isColumnModified(InfiniaUserTableMap::COL_USER_NAME)) {
-            $modifiedColumns[':p' . $index++]  = 'user_name';
+        if ($this->isColumnModified(UserStatusTableMap::COL_USERNAME)) {
+            $modifiedColumns[':p' . $index++]  = 'username';
         }
-        if ($this->isColumnModified(InfiniaUserTableMap::COL_USER_REALNAME)) {
-            $modifiedColumns[':p' . $index++]  = 'user_realname';
+        if ($this->isColumnModified(UserStatusTableMap::COL_STATUS)) {
+            $modifiedColumns[':p' . $index++]  = 'status';
         }
-        if ($this->isColumnModified(InfiniaUserTableMap::COL_USER_CODE)) {
-            $modifiedColumns[':p' . $index++]  = 'user_code';
+        if ($this->isColumnModified(UserStatusTableMap::COL_MUTEDTIME)) {
+            $modifiedColumns[':p' . $index++]  = 'mutedtime';
         }
-        if ($this->isColumnModified(InfiniaUserTableMap::COL_USER_EMAIL)) {
-            $modifiedColumns[':p' . $index++]  = 'user_email';
+        if ($this->isColumnModified(UserStatusTableMap::COL_MUTED_FOREVER)) {
+            $modifiedColumns[':p' . $index++]  = 'muted_forever';
         }
-        if ($this->isColumnModified(InfiniaUserTableMap::COL_USER_PASSWORD)) {
-            $modifiedColumns[':p' . $index++]  = 'user_password';
+        if ($this->isColumnModified(UserStatusTableMap::COL_BANNEDTIME)) {
+            $modifiedColumns[':p' . $index++]  = 'bannedtime';
         }
-        if ($this->isColumnModified(InfiniaUserTableMap::COL_USER_ISVERIFIED)) {
-            $modifiedColumns[':p' . $index++]  = 'user_isverified';
-        }
-        if ($this->isColumnModified(InfiniaUserTableMap::COL_USER_RANK)) {
-            $modifiedColumns[':p' . $index++]  = 'user_rank';
+        if ($this->isColumnModified(UserStatusTableMap::COL_BANNED_FOREVER)) {
+            $modifiedColumns[':p' . $index++]  = 'banned_forever';
         }
 
         $sql = sprintf(
-            'INSERT INTO infiniausers (%s) VALUES (%s)',
+            'INSERT INTO infiniauser_status (%s) VALUES (%s)',
             implode(', ', $modifiedColumns),
             implode(', ', array_keys($modifiedColumns))
         );
@@ -968,29 +965,26 @@ abstract class InfiniaUser implements ActiveRecordInterface
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case 'user_id':
-                        $stmt->bindValue($identifier, $this->user_id, PDO::PARAM_INT);
+                    case 'userid':
+                        $stmt->bindValue($identifier, $this->userid, PDO::PARAM_INT);
                         break;
-                    case 'user_name':
-                        $stmt->bindValue($identifier, $this->user_name, PDO::PARAM_STR);
+                    case 'username':
+                        $stmt->bindValue($identifier, $this->username, PDO::PARAM_STR);
                         break;
-                    case 'user_realname':
-                        $stmt->bindValue($identifier, $this->user_realname, PDO::PARAM_STR);
+                    case 'status':
+                        $stmt->bindValue($identifier, $this->status, PDO::PARAM_INT);
                         break;
-                    case 'user_code':
-                        $stmt->bindValue($identifier, $this->user_code, PDO::PARAM_STR);
+                    case 'mutedtime':
+                        $stmt->bindValue($identifier, $this->mutedtime ? $this->mutedtime->format("Y-m-d H:i:s.u") : null, PDO::PARAM_STR);
                         break;
-                    case 'user_email':
-                        $stmt->bindValue($identifier, $this->user_email, PDO::PARAM_STR);
+                    case 'muted_forever':
+                        $stmt->bindValue($identifier, (int) $this->muted_forever, PDO::PARAM_INT);
                         break;
-                    case 'user_password':
-                        $stmt->bindValue($identifier, $this->user_password, PDO::PARAM_STR);
+                    case 'bannedtime':
+                        $stmt->bindValue($identifier, $this->bannedtime ? $this->bannedtime->format("Y-m-d H:i:s.u") : null, PDO::PARAM_STR);
                         break;
-                    case 'user_isverified':
-                        $stmt->bindValue($identifier, (int) $this->user_isverified, PDO::PARAM_INT);
-                        break;
-                    case 'user_rank':
-                        $stmt->bindValue($identifier, $this->user_rank, PDO::PARAM_INT);
+                    case 'banned_forever':
+                        $stmt->bindValue($identifier, (int) $this->banned_forever, PDO::PARAM_INT);
                         break;
                 }
             }
@@ -1005,7 +999,7 @@ abstract class InfiniaUser implements ActiveRecordInterface
         } catch (Exception $e) {
             throw new PropelException('Unable to get autoincrement id.', 0, $e);
         }
-        $this->setUserId($pk);
+        $this->setUserid($pk);
 
         $this->setNew(false);
     }
@@ -1038,7 +1032,7 @@ abstract class InfiniaUser implements ActiveRecordInterface
      */
     public function getByName($name, $type = TableMap::TYPE_PHPNAME)
     {
-        $pos = InfiniaUserTableMap::translateFieldName($name, $type, TableMap::TYPE_NUM);
+        $pos = UserStatusTableMap::translateFieldName($name, $type, TableMap::TYPE_NUM);
         $field = $this->getByPosition($pos);
 
         return $field;
@@ -1055,28 +1049,25 @@ abstract class InfiniaUser implements ActiveRecordInterface
     {
         switch ($pos) {
             case 0:
-                return $this->getUserId();
+                return $this->getUserid();
                 break;
             case 1:
-                return $this->getUserName();
+                return $this->getUsername();
                 break;
             case 2:
-                return $this->getUserRealname();
+                return $this->getStatus();
                 break;
             case 3:
-                return $this->getUserCode();
+                return $this->getMutedtime();
                 break;
             case 4:
-                return $this->getUserEmail();
+                return $this->getMutedForever();
                 break;
             case 5:
-                return $this->getUserPassword();
+                return $this->getBannedtime();
                 break;
             case 6:
-                return $this->getUserIsverified();
-                break;
-            case 7:
-                return $this->getUserRank();
+                return $this->getBannedForever();
                 break;
             default:
                 return null;
@@ -1102,41 +1093,48 @@ abstract class InfiniaUser implements ActiveRecordInterface
     public function toArray($keyType = TableMap::TYPE_PHPNAME, $includeLazyLoadColumns = true, $alreadyDumpedObjects = array(), $includeForeignObjects = false)
     {
 
-        if (isset($alreadyDumpedObjects['InfiniaUser'][$this->hashCode()])) {
+        if (isset($alreadyDumpedObjects['UserStatus'][$this->hashCode()])) {
             return '*RECURSION*';
         }
-        $alreadyDumpedObjects['InfiniaUser'][$this->hashCode()] = true;
-        $keys = InfiniaUserTableMap::getFieldNames($keyType);
+        $alreadyDumpedObjects['UserStatus'][$this->hashCode()] = true;
+        $keys = UserStatusTableMap::getFieldNames($keyType);
         $result = array(
-            $keys[0] => $this->getUserId(),
-            $keys[1] => $this->getUserName(),
-            $keys[2] => $this->getUserRealname(),
-            $keys[3] => $this->getUserCode(),
-            $keys[4] => $this->getUserEmail(),
-            $keys[5] => $this->getUserPassword(),
-            $keys[6] => $this->getUserIsverified(),
-            $keys[7] => $this->getUserRank(),
+            $keys[0] => $this->getUserid(),
+            $keys[1] => $this->getUsername(),
+            $keys[2] => $this->getStatus(),
+            $keys[3] => $this->getMutedtime(),
+            $keys[4] => $this->getMutedForever(),
+            $keys[5] => $this->getBannedtime(),
+            $keys[6] => $this->getBannedForever(),
         );
+        if ($result[$keys[3]] instanceof \DateTimeInterface) {
+            $result[$keys[3]] = $result[$keys[3]]->format('c');
+        }
+
+        if ($result[$keys[5]] instanceof \DateTimeInterface) {
+            $result[$keys[5]] = $result[$keys[5]]->format('c');
+        }
+
         $virtualColumns = $this->virtualColumns;
         foreach ($virtualColumns as $key => $virtualColumn) {
             $result[$key] = $virtualColumn;
         }
 
         if ($includeForeignObjects) {
-            if (null !== $this->auserStatus) {
+            if (null !== $this->singleInfiniaUser) {
 
                 switch ($keyType) {
                     case TableMap::TYPE_CAMELNAME:
-                        $key = 'userStatus';
+                        $key = 'infiniaUser';
                         break;
                     case TableMap::TYPE_FIELDNAME:
-                        $key = 'infiniauser_status';
+                        $key = 'infiniausers';
                         break;
                     default:
-                        $key = 'userStatus';
+                        $key = 'InfiniaUser';
                 }
 
-                $result[$key] = $this->auserStatus->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
+                $result[$key] = $this->singleInfiniaUser->toArray($keyType, $includeLazyLoadColumns, $alreadyDumpedObjects, true);
             }
         }
 
@@ -1152,11 +1150,11 @@ abstract class InfiniaUser implements ActiveRecordInterface
      *                one of the class type constants TableMap::TYPE_PHPNAME, TableMap::TYPE_CAMELNAME
      *                TableMap::TYPE_COLNAME, TableMap::TYPE_FIELDNAME, TableMap::TYPE_NUM.
      *                Defaults to TableMap::TYPE_PHPNAME.
-     * @return $this|\InfiniaHome\DB\InfiniaUser
+     * @return $this|\InfiniaHome\DB\UserStatus
      */
     public function setByName($name, $value, $type = TableMap::TYPE_PHPNAME)
     {
-        $pos = InfiniaUserTableMap::translateFieldName($name, $type, TableMap::TYPE_NUM);
+        $pos = UserStatusTableMap::translateFieldName($name, $type, TableMap::TYPE_NUM);
 
         return $this->setByPosition($pos, $value);
     }
@@ -1167,38 +1165,35 @@ abstract class InfiniaUser implements ActiveRecordInterface
      *
      * @param  int $pos position in xml schema
      * @param  mixed $value field value
-     * @return $this|\InfiniaHome\DB\InfiniaUser
+     * @return $this|\InfiniaHome\DB\UserStatus
      */
     public function setByPosition($pos, $value)
     {
         switch ($pos) {
             case 0:
-                $this->setUserId($value);
+                $this->setUserid($value);
                 break;
             case 1:
-                $this->setUserName($value);
+                $this->setUsername($value);
                 break;
             case 2:
-                $this->setUserRealname($value);
-                break;
-            case 3:
-                $this->setUserCode($value);
-                break;
-            case 4:
-                $this->setUserEmail($value);
-                break;
-            case 5:
-                $this->setUserPassword($value);
-                break;
-            case 6:
-                $this->setUserIsverified($value);
-                break;
-            case 7:
-                $valueSet = InfiniaUserTableMap::getValueSet(InfiniaUserTableMap::COL_USER_RANK);
+                $valueSet = UserStatusTableMap::getValueSet(UserStatusTableMap::COL_STATUS);
                 if (isset($valueSet[$value])) {
                     $value = $valueSet[$value];
                 }
-                $this->setUserRank($value);
+                $this->setStatus($value);
+                break;
+            case 3:
+                $this->setMutedtime($value);
+                break;
+            case 4:
+                $this->setMutedForever($value);
+                break;
+            case 5:
+                $this->setBannedtime($value);
+                break;
+            case 6:
+                $this->setBannedForever($value);
                 break;
         } // switch()
 
@@ -1224,31 +1219,28 @@ abstract class InfiniaUser implements ActiveRecordInterface
      */
     public function fromArray($arr, $keyType = TableMap::TYPE_PHPNAME)
     {
-        $keys = InfiniaUserTableMap::getFieldNames($keyType);
+        $keys = UserStatusTableMap::getFieldNames($keyType);
 
         if (array_key_exists($keys[0], $arr)) {
-            $this->setUserId($arr[$keys[0]]);
+            $this->setUserid($arr[$keys[0]]);
         }
         if (array_key_exists($keys[1], $arr)) {
-            $this->setUserName($arr[$keys[1]]);
+            $this->setUsername($arr[$keys[1]]);
         }
         if (array_key_exists($keys[2], $arr)) {
-            $this->setUserRealname($arr[$keys[2]]);
+            $this->setStatus($arr[$keys[2]]);
         }
         if (array_key_exists($keys[3], $arr)) {
-            $this->setUserCode($arr[$keys[3]]);
+            $this->setMutedtime($arr[$keys[3]]);
         }
         if (array_key_exists($keys[4], $arr)) {
-            $this->setUserEmail($arr[$keys[4]]);
+            $this->setMutedForever($arr[$keys[4]]);
         }
         if (array_key_exists($keys[5], $arr)) {
-            $this->setUserPassword($arr[$keys[5]]);
+            $this->setBannedtime($arr[$keys[5]]);
         }
         if (array_key_exists($keys[6], $arr)) {
-            $this->setUserIsverified($arr[$keys[6]]);
-        }
-        if (array_key_exists($keys[7], $arr)) {
-            $this->setUserRank($arr[$keys[7]]);
+            $this->setBannedForever($arr[$keys[6]]);
         }
     }
 
@@ -1269,7 +1261,7 @@ abstract class InfiniaUser implements ActiveRecordInterface
      * @param string $data The source data to import from
      * @param string $keyType The type of keys the array uses.
      *
-     * @return $this|\InfiniaHome\DB\InfiniaUser The current object, for fluid interface
+     * @return $this|\InfiniaHome\DB\UserStatus The current object, for fluid interface
      */
     public function importFrom($parser, $data, $keyType = TableMap::TYPE_PHPNAME)
     {
@@ -1289,31 +1281,28 @@ abstract class InfiniaUser implements ActiveRecordInterface
      */
     public function buildCriteria()
     {
-        $criteria = new Criteria(InfiniaUserTableMap::DATABASE_NAME);
+        $criteria = new Criteria(UserStatusTableMap::DATABASE_NAME);
 
-        if ($this->isColumnModified(InfiniaUserTableMap::COL_USER_ID)) {
-            $criteria->add(InfiniaUserTableMap::COL_USER_ID, $this->user_id);
+        if ($this->isColumnModified(UserStatusTableMap::COL_USERID)) {
+            $criteria->add(UserStatusTableMap::COL_USERID, $this->userid);
         }
-        if ($this->isColumnModified(InfiniaUserTableMap::COL_USER_NAME)) {
-            $criteria->add(InfiniaUserTableMap::COL_USER_NAME, $this->user_name);
+        if ($this->isColumnModified(UserStatusTableMap::COL_USERNAME)) {
+            $criteria->add(UserStatusTableMap::COL_USERNAME, $this->username);
         }
-        if ($this->isColumnModified(InfiniaUserTableMap::COL_USER_REALNAME)) {
-            $criteria->add(InfiniaUserTableMap::COL_USER_REALNAME, $this->user_realname);
+        if ($this->isColumnModified(UserStatusTableMap::COL_STATUS)) {
+            $criteria->add(UserStatusTableMap::COL_STATUS, $this->status);
         }
-        if ($this->isColumnModified(InfiniaUserTableMap::COL_USER_CODE)) {
-            $criteria->add(InfiniaUserTableMap::COL_USER_CODE, $this->user_code);
+        if ($this->isColumnModified(UserStatusTableMap::COL_MUTEDTIME)) {
+            $criteria->add(UserStatusTableMap::COL_MUTEDTIME, $this->mutedtime);
         }
-        if ($this->isColumnModified(InfiniaUserTableMap::COL_USER_EMAIL)) {
-            $criteria->add(InfiniaUserTableMap::COL_USER_EMAIL, $this->user_email);
+        if ($this->isColumnModified(UserStatusTableMap::COL_MUTED_FOREVER)) {
+            $criteria->add(UserStatusTableMap::COL_MUTED_FOREVER, $this->muted_forever);
         }
-        if ($this->isColumnModified(InfiniaUserTableMap::COL_USER_PASSWORD)) {
-            $criteria->add(InfiniaUserTableMap::COL_USER_PASSWORD, $this->user_password);
+        if ($this->isColumnModified(UserStatusTableMap::COL_BANNEDTIME)) {
+            $criteria->add(UserStatusTableMap::COL_BANNEDTIME, $this->bannedtime);
         }
-        if ($this->isColumnModified(InfiniaUserTableMap::COL_USER_ISVERIFIED)) {
-            $criteria->add(InfiniaUserTableMap::COL_USER_ISVERIFIED, $this->user_isverified);
-        }
-        if ($this->isColumnModified(InfiniaUserTableMap::COL_USER_RANK)) {
-            $criteria->add(InfiniaUserTableMap::COL_USER_RANK, $this->user_rank);
+        if ($this->isColumnModified(UserStatusTableMap::COL_BANNED_FOREVER)) {
+            $criteria->add(UserStatusTableMap::COL_BANNED_FOREVER, $this->banned_forever);
         }
 
         return $criteria;
@@ -1331,8 +1320,8 @@ abstract class InfiniaUser implements ActiveRecordInterface
      */
     public function buildPkeyCriteria()
     {
-        $criteria = ChildInfiniaUserQuery::create();
-        $criteria->add(InfiniaUserTableMap::COL_USER_ID, $this->user_id);
+        $criteria = ChildUserStatusQuery::create();
+        $criteria->add(UserStatusTableMap::COL_USERID, $this->userid);
 
         return $criteria;
     }
@@ -1345,17 +1334,10 @@ abstract class InfiniaUser implements ActiveRecordInterface
      */
     public function hashCode()
     {
-        $validPk = null !== $this->getUserId();
+        $validPk = null !== $this->getUserid();
 
-        $validPrimaryKeyFKs = 1;
+        $validPrimaryKeyFKs = 0;
         $primaryKeyFKs = [];
-
-        //relation infiniausers_fk_2986c1 to table infiniauser_status
-        if ($this->auserStatus && $hash = spl_object_hash($this->auserStatus)) {
-            $primaryKeyFKs[] = $hash;
-        } else {
-            $validPrimaryKeyFKs = false;
-        }
 
         if ($validPk) {
             return crc32(json_encode($this->getPrimaryKey(), JSON_UNESCAPED_UNICODE));
@@ -1372,18 +1354,18 @@ abstract class InfiniaUser implements ActiveRecordInterface
      */
     public function getPrimaryKey()
     {
-        return $this->getUserId();
+        return $this->getUserid();
     }
 
     /**
-     * Generic method to set the primary key (user_id column).
+     * Generic method to set the primary key (userid column).
      *
      * @param       int $key Primary key.
      * @return void
      */
     public function setPrimaryKey($key)
     {
-        $this->setUserId($key);
+        $this->setUserid($key);
     }
 
     /**
@@ -1392,7 +1374,7 @@ abstract class InfiniaUser implements ActiveRecordInterface
      */
     public function isPrimaryKeyNull()
     {
-        return null === $this->getUserId();
+        return null === $this->getUserid();
     }
 
     /**
@@ -1401,23 +1383,35 @@ abstract class InfiniaUser implements ActiveRecordInterface
      * If desired, this method can also make copies of all associated (fkey referrers)
      * objects.
      *
-     * @param      object $copyObj An object of \InfiniaHome\DB\InfiniaUser (or compatible) type.
+     * @param      object $copyObj An object of \InfiniaHome\DB\UserStatus (or compatible) type.
      * @param      boolean $deepCopy Whether to also copy all rows that refer (by fkey) to the current row.
      * @param      boolean $makeNew Whether to reset autoincrement PKs and make the object new.
      * @throws PropelException
      */
     public function copyInto($copyObj, $deepCopy = false, $makeNew = true)
     {
-        $copyObj->setUserName($this->getUserName());
-        $copyObj->setUserRealname($this->getUserRealname());
-        $copyObj->setUserCode($this->getUserCode());
-        $copyObj->setUserEmail($this->getUserEmail());
-        $copyObj->setUserPassword($this->getUserPassword());
-        $copyObj->setUserIsverified($this->getUserIsverified());
-        $copyObj->setUserRank($this->getUserRank());
+        $copyObj->setUsername($this->getUsername());
+        $copyObj->setStatus($this->getStatus());
+        $copyObj->setMutedtime($this->getMutedtime());
+        $copyObj->setMutedForever($this->getMutedForever());
+        $copyObj->setBannedtime($this->getBannedtime());
+        $copyObj->setBannedForever($this->getBannedForever());
+
+        if ($deepCopy) {
+            // important: temporarily setNew(false) because this affects the behavior of
+            // the getter/setter methods for fkey referrer objects.
+            $copyObj->setNew(false);
+
+            $relObj = $this->getInfiniaUser();
+            if ($relObj) {
+                $copyObj->setInfiniaUser($relObj->copy($deepCopy));
+            }
+
+        } // if ($deepCopy)
+
         if ($makeNew) {
             $copyObj->setNew(true);
-            $copyObj->setUserId(NULL); // this is a auto-increment column, so set to default value
+            $copyObj->setUserid(NULL); // this is a auto-increment column, so set to default value
         }
     }
 
@@ -1430,7 +1424,7 @@ abstract class InfiniaUser implements ActiveRecordInterface
      * objects.
      *
      * @param  boolean $deepCopy Whether to also copy all rows that refer (by fkey) to the current row.
-     * @return \InfiniaHome\DB\InfiniaUser Clone of current object.
+     * @return \InfiniaHome\DB\UserStatus Clone of current object.
      * @throws PropelException
      */
     public function copy($deepCopy = false)
@@ -1443,49 +1437,53 @@ abstract class InfiniaUser implements ActiveRecordInterface
         return $copyObj;
     }
 
+
     /**
-     * Declares an association between this object and a ChildUserStatus object.
+     * Initializes a collection based on the name of a relation.
+     * Avoids crafting an 'init[$relationName]s' method name
+     * that wouldn't work when StandardEnglishPluralizer is used.
      *
-     * @param  ChildUserStatus $v
-     * @return $this|\InfiniaHome\DB\InfiniaUser The current object (for fluent API support)
-     * @throws PropelException
+     * @param      string $relationName The name of the relation to initialize
+     * @return void
      */
-    public function setuserStatus(ChildUserStatus $v = null)
+    public function initRelation($relationName)
     {
-        if ($v === null) {
-            $this->setUserId(NULL);
-        } else {
-            $this->setUserId($v->getUserid());
-        }
-
-        $this->auserStatus = $v;
-
-        // Add binding for other direction of this 1:1 relationship.
-        if ($v !== null) {
-            $v->setInfiniaUser($this);
-        }
-
-
-        return $this;
     }
 
-
     /**
-     * Get the associated ChildUserStatus object
+     * Gets a single ChildInfiniaUser object, which is related to this object by a one-to-one relationship.
      *
-     * @param  ConnectionInterface $con Optional Connection object.
-     * @return ChildUserStatus The associated ChildUserStatus object.
+     * @param  ConnectionInterface $con optional connection object
+     * @return ChildInfiniaUser
      * @throws PropelException
      */
-    public function getuserStatus(ConnectionInterface $con = null)
+    public function getInfiniaUser(ConnectionInterface $con = null)
     {
-        if ($this->auserStatus === null && ($this->user_id != 0)) {
-            $this->auserStatus = ChildUserStatusQuery::create()->findPk($this->user_id, $con);
-            // Because this foreign key represents a one-to-one relationship, we will create a bi-directional association.
-            $this->auserStatus->setInfiniaUser($this);
+
+        if ($this->singleInfiniaUser === null && !$this->isNew()) {
+            $this->singleInfiniaUser = ChildInfiniaUserQuery::create()->findPk($this->getPrimaryKey(), $con);
         }
 
-        return $this->auserStatus;
+        return $this->singleInfiniaUser;
+    }
+
+    /**
+     * Sets a single ChildInfiniaUser object as related to this object by a one-to-one relationship.
+     *
+     * @param  ChildInfiniaUser $v ChildInfiniaUser
+     * @return $this|\InfiniaHome\DB\UserStatus The current object (for fluent API support)
+     * @throws PropelException
+     */
+    public function setInfiniaUser(ChildInfiniaUser $v = null)
+    {
+        $this->singleInfiniaUser = $v;
+
+        // Make sure that that the passed-in ChildInfiniaUser isn't already associated with this object
+        if ($v !== null && $v->getuserStatus(null, false) === null) {
+            $v->setuserStatus($this);
+        }
+
+        return $this;
     }
 
     /**
@@ -1495,17 +1493,13 @@ abstract class InfiniaUser implements ActiveRecordInterface
      */
     public function clear()
     {
-        if (null !== $this->auserStatus) {
-            $this->auserStatus->removeInfiniaUser($this);
-        }
-        $this->user_id = null;
-        $this->user_name = null;
-        $this->user_realname = null;
-        $this->user_code = null;
-        $this->user_email = null;
-        $this->user_password = null;
-        $this->user_isverified = null;
-        $this->user_rank = null;
+        $this->userid = null;
+        $this->username = null;
+        $this->status = null;
+        $this->mutedtime = null;
+        $this->muted_forever = null;
+        $this->bannedtime = null;
+        $this->banned_forever = null;
         $this->alreadyInSave = false;
         $this->clearAllReferences();
         $this->applyDefaultValues();
@@ -1525,9 +1519,12 @@ abstract class InfiniaUser implements ActiveRecordInterface
     public function clearAllReferences($deep = false)
     {
         if ($deep) {
+            if ($this->singleInfiniaUser) {
+                $this->singleInfiniaUser->clearAllReferences($deep);
+            }
         } // if ($deep)
 
-        $this->auserStatus = null;
+        $this->singleInfiniaUser = null;
     }
 
     /**
@@ -1537,7 +1534,7 @@ abstract class InfiniaUser implements ActiveRecordInterface
      */
     public function __toString()
     {
-        return (string) $this->exportTo(InfiniaUserTableMap::DEFAULT_STRING_FORMAT);
+        return (string) $this->exportTo(UserStatusTableMap::DEFAULT_STRING_FORMAT);
     }
 
     /**

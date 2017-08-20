@@ -2,8 +2,8 @@
 
 namespace InfiniaHome\DB\Map;
 
-use InfiniaHome\DB\InfiniaUser;
-use InfiniaHome\DB\InfiniaUserQuery;
+use InfiniaHome\DB\UserStatus;
+use InfiniaHome\DB\UserStatusQuery;
 use Propel\Runtime\Propel;
 use Propel\Runtime\ActiveQuery\Criteria;
 use Propel\Runtime\ActiveQuery\InstancePoolTrait;
@@ -16,7 +16,7 @@ use Propel\Runtime\Map\TableMapTrait;
 
 
 /**
- * This class defines the structure of the 'infiniausers' table.
+ * This class defines the structure of the 'infiniauser_status' table.
  *
  *
  *
@@ -26,7 +26,7 @@ use Propel\Runtime\Map\TableMapTrait;
  * (i.e. if it's a text column type).
  *
  */
-class InfiniaUserTableMap extends TableMap
+class UserStatusTableMap extends TableMap
 {
     use InstancePoolTrait;
     use TableMapTrait;
@@ -34,7 +34,7 @@ class InfiniaUserTableMap extends TableMap
     /**
      * The (dot-path) name of this class
      */
-    const CLASS_NAME = 'InfiniaHome.DB.Map.InfiniaUserTableMap';
+    const CLASS_NAME = 'InfiniaHome.DB.Map.UserStatusTableMap';
 
     /**
      * The default database name for this class
@@ -44,22 +44,22 @@ class InfiniaUserTableMap extends TableMap
     /**
      * The table name for this class
      */
-    const TABLE_NAME = 'infiniausers';
+    const TABLE_NAME = 'infiniauser_status';
 
     /**
      * The related Propel class for this table
      */
-    const OM_CLASS = '\\InfiniaHome\\DB\\InfiniaUser';
+    const OM_CLASS = '\\InfiniaHome\\DB\\UserStatus';
 
     /**
      * A class that can be returned by this tableMap
      */
-    const CLASS_DEFAULT = 'InfiniaHome.DB.InfiniaUser';
+    const CLASS_DEFAULT = 'InfiniaHome.DB.UserStatus';
 
     /**
      * The total number of columns
      */
-    const NUM_COLUMNS = 8;
+    const NUM_COLUMNS = 7;
 
     /**
      * The number of lazy-loaded columns
@@ -69,61 +69,52 @@ class InfiniaUserTableMap extends TableMap
     /**
      * The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS)
      */
-    const NUM_HYDRATE_COLUMNS = 8;
+    const NUM_HYDRATE_COLUMNS = 7;
 
     /**
-     * the column name for the user_id field
+     * the column name for the userid field
      */
-    const COL_USER_ID = 'infiniausers.user_id';
+    const COL_USERID = 'infiniauser_status.userid';
 
     /**
-     * the column name for the user_name field
+     * the column name for the username field
      */
-    const COL_USER_NAME = 'infiniausers.user_name';
+    const COL_USERNAME = 'infiniauser_status.username';
 
     /**
-     * the column name for the user_realname field
+     * the column name for the status field
      */
-    const COL_USER_REALNAME = 'infiniausers.user_realname';
+    const COL_STATUS = 'infiniauser_status.status';
 
     /**
-     * the column name for the user_code field
+     * the column name for the mutedtime field
      */
-    const COL_USER_CODE = 'infiniausers.user_code';
+    const COL_MUTEDTIME = 'infiniauser_status.mutedtime';
 
     /**
-     * the column name for the user_email field
+     * the column name for the muted_forever field
      */
-    const COL_USER_EMAIL = 'infiniausers.user_email';
+    const COL_MUTED_FOREVER = 'infiniauser_status.muted_forever';
 
     /**
-     * the column name for the user_password field
+     * the column name for the bannedtime field
      */
-    const COL_USER_PASSWORD = 'infiniausers.user_password';
+    const COL_BANNEDTIME = 'infiniauser_status.bannedtime';
 
     /**
-     * the column name for the user_isverified field
+     * the column name for the banned_forever field
      */
-    const COL_USER_ISVERIFIED = 'infiniausers.user_isverified';
-
-    /**
-     * the column name for the user_rank field
-     */
-    const COL_USER_RANK = 'infiniausers.user_rank';
+    const COL_BANNED_FOREVER = 'infiniauser_status.banned_forever';
 
     /**
      * The default string format for model objects of the related table
      */
     const DEFAULT_STRING_FORMAT = 'YAML';
 
-    /** The enumerated values for the user_rank field */
-    const COL_USER_RANK_NORMAL = 'Normal';
-    const COL_USER_RANK_INFINIABRONZE = 'InfiniaBronze';
-    const COL_USER_RANK_INFINIASILVER = 'InfiniaSilver';
-    const COL_USER_RANK_INFINIAGOLD = 'InfiniaGold';
-    const COL_USER_RANK_INFINIAPLATINIUM = 'InfiniaPlatinium';
-    const COL_USER_RANK_INFINIADIAMOND = 'InfiniaDiamond';
-    const COL_USER_RANK_ADMIN = 'Admin';
+    /** The enumerated values for the status field */
+    const COL_STATUS_NORMAL = 'Normal';
+    const COL_STATUS_MUTED = 'Muted';
+    const COL_STATUS_BANNED = 'Banned';
 
     /**
      * holds an array of fieldnames
@@ -132,11 +123,11 @@ class InfiniaUserTableMap extends TableMap
      * e.g. self::$fieldNames[self::TYPE_PHPNAME][0] = 'Id'
      */
     protected static $fieldNames = array (
-        self::TYPE_PHPNAME       => array('UserId', 'UserName', 'UserRealname', 'UserCode', 'UserEmail', 'UserPassword', 'UserIsverified', 'UserRank', ),
-        self::TYPE_CAMELNAME     => array('userId', 'userName', 'userRealname', 'userCode', 'userEmail', 'userPassword', 'userIsverified', 'userRank', ),
-        self::TYPE_COLNAME       => array(InfiniaUserTableMap::COL_USER_ID, InfiniaUserTableMap::COL_USER_NAME, InfiniaUserTableMap::COL_USER_REALNAME, InfiniaUserTableMap::COL_USER_CODE, InfiniaUserTableMap::COL_USER_EMAIL, InfiniaUserTableMap::COL_USER_PASSWORD, InfiniaUserTableMap::COL_USER_ISVERIFIED, InfiniaUserTableMap::COL_USER_RANK, ),
-        self::TYPE_FIELDNAME     => array('user_id', 'user_name', 'user_realname', 'user_code', 'user_email', 'user_password', 'user_isverified', 'user_rank', ),
-        self::TYPE_NUM           => array(0, 1, 2, 3, 4, 5, 6, 7, )
+        self::TYPE_PHPNAME       => array('Userid', 'Username', 'Status', 'Mutedtime', 'MutedForever', 'Bannedtime', 'BannedForever', ),
+        self::TYPE_CAMELNAME     => array('userid', 'username', 'status', 'mutedtime', 'mutedForever', 'bannedtime', 'bannedForever', ),
+        self::TYPE_COLNAME       => array(UserStatusTableMap::COL_USERID, UserStatusTableMap::COL_USERNAME, UserStatusTableMap::COL_STATUS, UserStatusTableMap::COL_MUTEDTIME, UserStatusTableMap::COL_MUTED_FOREVER, UserStatusTableMap::COL_BANNEDTIME, UserStatusTableMap::COL_BANNED_FOREVER, ),
+        self::TYPE_FIELDNAME     => array('userid', 'username', 'status', 'mutedtime', 'muted_forever', 'bannedtime', 'banned_forever', ),
+        self::TYPE_NUM           => array(0, 1, 2, 3, 4, 5, 6, )
     );
 
     /**
@@ -146,23 +137,19 @@ class InfiniaUserTableMap extends TableMap
      * e.g. self::$fieldKeys[self::TYPE_PHPNAME]['Id'] = 0
      */
     protected static $fieldKeys = array (
-        self::TYPE_PHPNAME       => array('UserId' => 0, 'UserName' => 1, 'UserRealname' => 2, 'UserCode' => 3, 'UserEmail' => 4, 'UserPassword' => 5, 'UserIsverified' => 6, 'UserRank' => 7, ),
-        self::TYPE_CAMELNAME     => array('userId' => 0, 'userName' => 1, 'userRealname' => 2, 'userCode' => 3, 'userEmail' => 4, 'userPassword' => 5, 'userIsverified' => 6, 'userRank' => 7, ),
-        self::TYPE_COLNAME       => array(InfiniaUserTableMap::COL_USER_ID => 0, InfiniaUserTableMap::COL_USER_NAME => 1, InfiniaUserTableMap::COL_USER_REALNAME => 2, InfiniaUserTableMap::COL_USER_CODE => 3, InfiniaUserTableMap::COL_USER_EMAIL => 4, InfiniaUserTableMap::COL_USER_PASSWORD => 5, InfiniaUserTableMap::COL_USER_ISVERIFIED => 6, InfiniaUserTableMap::COL_USER_RANK => 7, ),
-        self::TYPE_FIELDNAME     => array('user_id' => 0, 'user_name' => 1, 'user_realname' => 2, 'user_code' => 3, 'user_email' => 4, 'user_password' => 5, 'user_isverified' => 6, 'user_rank' => 7, ),
-        self::TYPE_NUM           => array(0, 1, 2, 3, 4, 5, 6, 7, )
+        self::TYPE_PHPNAME       => array('Userid' => 0, 'Username' => 1, 'Status' => 2, 'Mutedtime' => 3, 'MutedForever' => 4, 'Bannedtime' => 5, 'BannedForever' => 6, ),
+        self::TYPE_CAMELNAME     => array('userid' => 0, 'username' => 1, 'status' => 2, 'mutedtime' => 3, 'mutedForever' => 4, 'bannedtime' => 5, 'bannedForever' => 6, ),
+        self::TYPE_COLNAME       => array(UserStatusTableMap::COL_USERID => 0, UserStatusTableMap::COL_USERNAME => 1, UserStatusTableMap::COL_STATUS => 2, UserStatusTableMap::COL_MUTEDTIME => 3, UserStatusTableMap::COL_MUTED_FOREVER => 4, UserStatusTableMap::COL_BANNEDTIME => 5, UserStatusTableMap::COL_BANNED_FOREVER => 6, ),
+        self::TYPE_FIELDNAME     => array('userid' => 0, 'username' => 1, 'status' => 2, 'mutedtime' => 3, 'muted_forever' => 4, 'bannedtime' => 5, 'banned_forever' => 6, ),
+        self::TYPE_NUM           => array(0, 1, 2, 3, 4, 5, 6, )
     );
 
     /** The enumerated values for this table */
     protected static $enumValueSets = array(
-                InfiniaUserTableMap::COL_USER_RANK => array(
-                            self::COL_USER_RANK_NORMAL,
-            self::COL_USER_RANK_INFINIABRONZE,
-            self::COL_USER_RANK_INFINIASILVER,
-            self::COL_USER_RANK_INFINIAGOLD,
-            self::COL_USER_RANK_INFINIAPLATINIUM,
-            self::COL_USER_RANK_INFINIADIAMOND,
-            self::COL_USER_RANK_ADMIN,
+                UserStatusTableMap::COL_STATUS => array(
+                            self::COL_STATUS_NORMAL,
+            self::COL_STATUS_MUTED,
+            self::COL_STATUS_BANNED,
         ),
     );
 
@@ -197,30 +184,25 @@ class InfiniaUserTableMap extends TableMap
     public function initialize()
     {
         // attributes
-        $this->setName('infiniausers');
-        $this->setPhpName('InfiniaUser');
+        $this->setName('infiniauser_status');
+        $this->setPhpName('UserStatus');
         $this->setIdentifierQuoting(false);
-        $this->setClassName('\\InfiniaHome\\DB\\InfiniaUser');
+        $this->setClassName('\\InfiniaHome\\DB\\UserStatus');
         $this->setPackage('InfiniaHome.DB');
         $this->setUseIdGenerator(true);
         // columns
-        $this->addForeignPrimaryKey('user_id', 'UserId', 'INTEGER' , 'infiniauser_status', 'userid', true, null, null);
-        $this->addColumn('user_name', 'UserName', 'VARCHAR', true, 255, null);
-        $this->addColumn('user_realname', 'UserRealname', 'VARCHAR', true, 255, null);
-        $this->addColumn('user_code', 'UserCode', 'VARCHAR', true, 255, null);
-        $this->addColumn('user_email', 'UserEmail', 'VARCHAR', true, 255, null);
-        $this->addColumn('user_password', 'UserPassword', 'VARCHAR', true, 255, null);
-        $this->addColumn('user_isverified', 'UserIsverified', 'BOOLEAN', true, 1, false);
-        $this->addColumn('user_rank', 'UserRank', 'ENUM', true, null, null);
-        $this->getColumn('user_rank')->setValueSet(array (
+        $this->addPrimaryKey('userid', 'Userid', 'INTEGER', true, null, null);
+        $this->addColumn('username', 'Username', 'VARCHAR', true, 255, null);
+        $this->addColumn('status', 'Status', 'ENUM', true, null, null);
+        $this->getColumn('status')->setValueSet(array (
   0 => 'Normal',
-  1 => 'InfiniaBronze',
-  2 => 'InfiniaSilver',
-  3 => 'InfiniaGold',
-  4 => 'InfiniaPlatinium',
-  5 => 'InfiniaDiamond',
-  6 => 'Admin',
+  1 => 'Muted',
+  2 => 'Banned',
 ));
+        $this->addColumn('mutedtime', 'Mutedtime', 'TIMESTAMP', false, null, null);
+        $this->addColumn('muted_forever', 'MutedForever', 'BOOLEAN', false, 1, false);
+        $this->addColumn('bannedtime', 'Bannedtime', 'TIMESTAMP', false, null, null);
+        $this->addColumn('banned_forever', 'BannedForever', 'BOOLEAN', false, 1, false);
     } // initialize()
 
     /**
@@ -228,7 +210,7 @@ class InfiniaUserTableMap extends TableMap
      */
     public function buildRelations()
     {
-        $this->addRelation('userStatus', '\\InfiniaHome\\DB\\UserStatus', RelationMap::MANY_TO_ONE, array (
+        $this->addRelation('InfiniaUser', '\\InfiniaHome\\DB\\InfiniaUser', RelationMap::ONE_TO_ONE, array (
   0 =>
   array (
     0 => ':user_id',
@@ -253,11 +235,11 @@ class InfiniaUserTableMap extends TableMap
     public static function getPrimaryKeyHashFromRow($row, $offset = 0, $indexType = TableMap::TYPE_NUM)
     {
         // If the PK cannot be derived from the row, return NULL.
-        if ($row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('UserId', TableMap::TYPE_PHPNAME, $indexType)] === null) {
+        if ($row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('Userid', TableMap::TYPE_PHPNAME, $indexType)] === null) {
             return null;
         }
 
-        return null === $row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('UserId', TableMap::TYPE_PHPNAME, $indexType)] || is_scalar($row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('UserId', TableMap::TYPE_PHPNAME, $indexType)]) || is_callable([$row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('UserId', TableMap::TYPE_PHPNAME, $indexType)], '__toString']) ? (string) $row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('UserId', TableMap::TYPE_PHPNAME, $indexType)] : $row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('UserId', TableMap::TYPE_PHPNAME, $indexType)];
+        return null === $row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('Userid', TableMap::TYPE_PHPNAME, $indexType)] || is_scalar($row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('Userid', TableMap::TYPE_PHPNAME, $indexType)]) || is_callable([$row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('Userid', TableMap::TYPE_PHPNAME, $indexType)], '__toString']) ? (string) $row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('Userid', TableMap::TYPE_PHPNAME, $indexType)] : $row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('Userid', TableMap::TYPE_PHPNAME, $indexType)];
     }
 
     /**
@@ -277,7 +259,7 @@ class InfiniaUserTableMap extends TableMap
         return (int) $row[
             $indexType == TableMap::TYPE_NUM
                 ? 0 + $offset
-                : self::translateFieldName('UserId', TableMap::TYPE_PHPNAME, $indexType)
+                : self::translateFieldName('Userid', TableMap::TYPE_PHPNAME, $indexType)
         ];
     }
 
@@ -294,7 +276,7 @@ class InfiniaUserTableMap extends TableMap
      */
     public static function getOMClass($withPrefix = true)
     {
-        return $withPrefix ? InfiniaUserTableMap::CLASS_DEFAULT : InfiniaUserTableMap::OM_CLASS;
+        return $withPrefix ? UserStatusTableMap::CLASS_DEFAULT : UserStatusTableMap::OM_CLASS;
     }
 
     /**
@@ -308,22 +290,22 @@ class InfiniaUserTableMap extends TableMap
      *
      * @throws PropelException Any exceptions caught during processing will be
      *                         rethrown wrapped into a PropelException.
-     * @return array           (InfiniaUser object, last column rank)
+     * @return array           (UserStatus object, last column rank)
      */
     public static function populateObject($row, $offset = 0, $indexType = TableMap::TYPE_NUM)
     {
-        $key = InfiniaUserTableMap::getPrimaryKeyHashFromRow($row, $offset, $indexType);
-        if (null !== ($obj = InfiniaUserTableMap::getInstanceFromPool($key))) {
+        $key = UserStatusTableMap::getPrimaryKeyHashFromRow($row, $offset, $indexType);
+        if (null !== ($obj = UserStatusTableMap::getInstanceFromPool($key))) {
             // We no longer rehydrate the object, since this can cause data loss.
             // See http://www.propelorm.org/ticket/509
             // $obj->hydrate($row, $offset, true); // rehydrate
-            $col = $offset + InfiniaUserTableMap::NUM_HYDRATE_COLUMNS;
+            $col = $offset + UserStatusTableMap::NUM_HYDRATE_COLUMNS;
         } else {
-            $cls = InfiniaUserTableMap::OM_CLASS;
-            /** @var InfiniaUser $obj */
+            $cls = UserStatusTableMap::OM_CLASS;
+            /** @var UserStatus $obj */
             $obj = new $cls();
             $col = $obj->hydrate($row, $offset, false, $indexType);
-            InfiniaUserTableMap::addInstanceToPool($obj, $key);
+            UserStatusTableMap::addInstanceToPool($obj, $key);
         }
 
         return array($obj, $col);
@@ -346,18 +328,18 @@ class InfiniaUserTableMap extends TableMap
         $cls = static::getOMClass(false);
         // populate the object(s)
         while ($row = $dataFetcher->fetch()) {
-            $key = InfiniaUserTableMap::getPrimaryKeyHashFromRow($row, 0, $dataFetcher->getIndexType());
-            if (null !== ($obj = InfiniaUserTableMap::getInstanceFromPool($key))) {
+            $key = UserStatusTableMap::getPrimaryKeyHashFromRow($row, 0, $dataFetcher->getIndexType());
+            if (null !== ($obj = UserStatusTableMap::getInstanceFromPool($key))) {
                 // We no longer rehydrate the object, since this can cause data loss.
                 // See http://www.propelorm.org/ticket/509
                 // $obj->hydrate($row, 0, true); // rehydrate
                 $results[] = $obj;
             } else {
-                /** @var InfiniaUser $obj */
+                /** @var UserStatus $obj */
                 $obj = new $cls();
                 $obj->hydrate($row);
                 $results[] = $obj;
-                InfiniaUserTableMap::addInstanceToPool($obj, $key);
+                UserStatusTableMap::addInstanceToPool($obj, $key);
             } // if key exists
         }
 
@@ -378,23 +360,21 @@ class InfiniaUserTableMap extends TableMap
     public static function addSelectColumns(Criteria $criteria, $alias = null)
     {
         if (null === $alias) {
-            $criteria->addSelectColumn(InfiniaUserTableMap::COL_USER_ID);
-            $criteria->addSelectColumn(InfiniaUserTableMap::COL_USER_NAME);
-            $criteria->addSelectColumn(InfiniaUserTableMap::COL_USER_REALNAME);
-            $criteria->addSelectColumn(InfiniaUserTableMap::COL_USER_CODE);
-            $criteria->addSelectColumn(InfiniaUserTableMap::COL_USER_EMAIL);
-            $criteria->addSelectColumn(InfiniaUserTableMap::COL_USER_PASSWORD);
-            $criteria->addSelectColumn(InfiniaUserTableMap::COL_USER_ISVERIFIED);
-            $criteria->addSelectColumn(InfiniaUserTableMap::COL_USER_RANK);
+            $criteria->addSelectColumn(UserStatusTableMap::COL_USERID);
+            $criteria->addSelectColumn(UserStatusTableMap::COL_USERNAME);
+            $criteria->addSelectColumn(UserStatusTableMap::COL_STATUS);
+            $criteria->addSelectColumn(UserStatusTableMap::COL_MUTEDTIME);
+            $criteria->addSelectColumn(UserStatusTableMap::COL_MUTED_FOREVER);
+            $criteria->addSelectColumn(UserStatusTableMap::COL_BANNEDTIME);
+            $criteria->addSelectColumn(UserStatusTableMap::COL_BANNED_FOREVER);
         } else {
-            $criteria->addSelectColumn($alias . '.user_id');
-            $criteria->addSelectColumn($alias . '.user_name');
-            $criteria->addSelectColumn($alias . '.user_realname');
-            $criteria->addSelectColumn($alias . '.user_code');
-            $criteria->addSelectColumn($alias . '.user_email');
-            $criteria->addSelectColumn($alias . '.user_password');
-            $criteria->addSelectColumn($alias . '.user_isverified');
-            $criteria->addSelectColumn($alias . '.user_rank');
+            $criteria->addSelectColumn($alias . '.userid');
+            $criteria->addSelectColumn($alias . '.username');
+            $criteria->addSelectColumn($alias . '.status');
+            $criteria->addSelectColumn($alias . '.mutedtime');
+            $criteria->addSelectColumn($alias . '.muted_forever');
+            $criteria->addSelectColumn($alias . '.bannedtime');
+            $criteria->addSelectColumn($alias . '.banned_forever');
         }
     }
 
@@ -407,7 +387,7 @@ class InfiniaUserTableMap extends TableMap
      */
     public static function getTableMap()
     {
-        return Propel::getServiceContainer()->getDatabaseMap(InfiniaUserTableMap::DATABASE_NAME)->getTable(InfiniaUserTableMap::TABLE_NAME);
+        return Propel::getServiceContainer()->getDatabaseMap(UserStatusTableMap::DATABASE_NAME)->getTable(UserStatusTableMap::TABLE_NAME);
     }
 
     /**
@@ -415,16 +395,16 @@ class InfiniaUserTableMap extends TableMap
      */
     public static function buildTableMap()
     {
-        $dbMap = Propel::getServiceContainer()->getDatabaseMap(InfiniaUserTableMap::DATABASE_NAME);
-        if (!$dbMap->hasTable(InfiniaUserTableMap::TABLE_NAME)) {
-            $dbMap->addTableObject(new InfiniaUserTableMap());
+        $dbMap = Propel::getServiceContainer()->getDatabaseMap(UserStatusTableMap::DATABASE_NAME);
+        if (!$dbMap->hasTable(UserStatusTableMap::TABLE_NAME)) {
+            $dbMap->addTableObject(new UserStatusTableMap());
         }
     }
 
     /**
-     * Performs a DELETE on the database, given a InfiniaUser or Criteria object OR a primary key value.
+     * Performs a DELETE on the database, given a UserStatus or Criteria object OR a primary key value.
      *
-     * @param mixed               $values Criteria or InfiniaUser object or primary key or array of primary keys
+     * @param mixed               $values Criteria or UserStatus object or primary key or array of primary keys
      *              which is used to create the DELETE statement
      * @param  ConnectionInterface $con the connection to use
      * @return int             The number of affected rows (if supported by underlying database driver).  This includes CASCADE-related rows
@@ -435,27 +415,27 @@ class InfiniaUserTableMap extends TableMap
      public static function doDelete($values, ConnectionInterface $con = null)
      {
         if (null === $con) {
-            $con = Propel::getServiceContainer()->getWriteConnection(InfiniaUserTableMap::DATABASE_NAME);
+            $con = Propel::getServiceContainer()->getWriteConnection(UserStatusTableMap::DATABASE_NAME);
         }
 
         if ($values instanceof Criteria) {
             // rename for clarity
             $criteria = $values;
-        } elseif ($values instanceof \InfiniaHome\DB\InfiniaUser) { // it's a model object
+        } elseif ($values instanceof \InfiniaHome\DB\UserStatus) { // it's a model object
             // create criteria based on pk values
             $criteria = $values->buildPkeyCriteria();
         } else { // it's a primary key, or an array of pks
-            $criteria = new Criteria(InfiniaUserTableMap::DATABASE_NAME);
-            $criteria->add(InfiniaUserTableMap::COL_USER_ID, (array) $values, Criteria::IN);
+            $criteria = new Criteria(UserStatusTableMap::DATABASE_NAME);
+            $criteria->add(UserStatusTableMap::COL_USERID, (array) $values, Criteria::IN);
         }
 
-        $query = InfiniaUserQuery::create()->mergeWith($criteria);
+        $query = UserStatusQuery::create()->mergeWith($criteria);
 
         if ($values instanceof Criteria) {
-            InfiniaUserTableMap::clearInstancePool();
+            UserStatusTableMap::clearInstancePool();
         } elseif (!is_object($values)) { // it's a primary key, or an array of pks
             foreach ((array) $values as $singleval) {
-                InfiniaUserTableMap::removeInstanceFromPool($singleval);
+                UserStatusTableMap::removeInstanceFromPool($singleval);
             }
         }
 
@@ -463,20 +443,20 @@ class InfiniaUserTableMap extends TableMap
     }
 
     /**
-     * Deletes all rows from the infiniausers table.
+     * Deletes all rows from the infiniauser_status table.
      *
      * @param ConnectionInterface $con the connection to use
      * @return int The number of affected rows (if supported by underlying database driver).
      */
     public static function doDeleteAll(ConnectionInterface $con = null)
     {
-        return InfiniaUserQuery::create()->doDeleteAll($con);
+        return UserStatusQuery::create()->doDeleteAll($con);
     }
 
     /**
-     * Performs an INSERT on the database, given a InfiniaUser or Criteria object.
+     * Performs an INSERT on the database, given a UserStatus or Criteria object.
      *
-     * @param mixed               $criteria Criteria or InfiniaUser object containing data that is used to create the INSERT statement.
+     * @param mixed               $criteria Criteria or UserStatus object containing data that is used to create the INSERT statement.
      * @param ConnectionInterface $con the ConnectionInterface connection to use
      * @return mixed           The new primary key.
      * @throws PropelException Any exceptions caught during processing will be
@@ -485,22 +465,22 @@ class InfiniaUserTableMap extends TableMap
     public static function doInsert($criteria, ConnectionInterface $con = null)
     {
         if (null === $con) {
-            $con = Propel::getServiceContainer()->getWriteConnection(InfiniaUserTableMap::DATABASE_NAME);
+            $con = Propel::getServiceContainer()->getWriteConnection(UserStatusTableMap::DATABASE_NAME);
         }
 
         if ($criteria instanceof Criteria) {
             $criteria = clone $criteria; // rename for clarity
         } else {
-            $criteria = $criteria->buildCriteria(); // build Criteria from InfiniaUser object
+            $criteria = $criteria->buildCriteria(); // build Criteria from UserStatus object
         }
 
-        if ($criteria->containsKey(InfiniaUserTableMap::COL_USER_ID) && $criteria->keyContainsValue(InfiniaUserTableMap::COL_USER_ID) ) {
-            throw new PropelException('Cannot insert a value for auto-increment primary key ('.InfiniaUserTableMap::COL_USER_ID.')');
+        if ($criteria->containsKey(UserStatusTableMap::COL_USERID) && $criteria->keyContainsValue(UserStatusTableMap::COL_USERID) ) {
+            throw new PropelException('Cannot insert a value for auto-increment primary key ('.UserStatusTableMap::COL_USERID.')');
         }
 
 
         // Set the correct dbName
-        $query = InfiniaUserQuery::create()->mergeWith($criteria);
+        $query = UserStatusQuery::create()->mergeWith($criteria);
 
         // use transaction because $criteria could contain info
         // for more than one table (I guess, conceivably)
@@ -509,7 +489,7 @@ class InfiniaUserTableMap extends TableMap
         });
     }
 
-} // InfiniaUserTableMap
+} // UserStatusTableMap
 // This is the static code needed to register the TableMap for this table with the main Propel class.
 //
-InfiniaUserTableMap::buildTableMap();
+UserStatusTableMap::buildTableMap();
