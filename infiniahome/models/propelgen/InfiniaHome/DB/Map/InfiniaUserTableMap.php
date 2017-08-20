@@ -205,6 +205,7 @@ class InfiniaUserTableMap extends TableMap
         $this->setUseIdGenerator(true);
         // columns
         $this->addForeignPrimaryKey('user_id', 'UserId', 'INTEGER' , 'infiniauser_status', 'userid', true, null, null);
+        $this->addForeignPrimaryKey('user_id', 'UserId', 'INTEGER' , 'infiniasessions', 'userid', true, null, null);
         $this->addColumn('user_name', 'UserName', 'VARCHAR', true, 255, null);
         $this->addColumn('user_realname', 'UserRealname', 'VARCHAR', true, 255, null);
         $this->addColumn('user_code', 'UserCode', 'VARCHAR', true, 255, null);
@@ -229,6 +230,13 @@ class InfiniaUserTableMap extends TableMap
     public function buildRelations()
     {
         $this->addRelation('userStatus', '\\InfiniaHome\\DB\\UserStatus', RelationMap::MANY_TO_ONE, array (
+  0 =>
+  array (
+    0 => ':user_id',
+    1 => ':userid',
+  ),
+), null, null, null, false);
+        $this->addRelation('userSession', '\\InfiniaHome\\DB\\Sessions', RelationMap::MANY_TO_ONE, array (
   0 =>
   array (
     0 => ':user_id',

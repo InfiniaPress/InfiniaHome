@@ -21,18 +21,12 @@ use Propel\Runtime\Exception\PropelException;
  *
  *
  * @method     ChildUserStatusQuery orderByUserid($order = Criteria::ASC) Order by the userid column
- * @method     ChildUserStatusQuery orderByUsername($order = Criteria::ASC) Order by the username column
  * @method     ChildUserStatusQuery orderByStatus($order = Criteria::ASC) Order by the status column
- * @method     ChildUserStatusQuery orderByMutedtime($order = Criteria::ASC) Order by the mutedtime column
- * @method     ChildUserStatusQuery orderByMutedForever($order = Criteria::ASC) Order by the muted_forever column
  * @method     ChildUserStatusQuery orderByBannedtime($order = Criteria::ASC) Order by the bannedtime column
  * @method     ChildUserStatusQuery orderByBannedForever($order = Criteria::ASC) Order by the banned_forever column
  *
  * @method     ChildUserStatusQuery groupByUserid() Group by the userid column
- * @method     ChildUserStatusQuery groupByUsername() Group by the username column
  * @method     ChildUserStatusQuery groupByStatus() Group by the status column
- * @method     ChildUserStatusQuery groupByMutedtime() Group by the mutedtime column
- * @method     ChildUserStatusQuery groupByMutedForever() Group by the muted_forever column
  * @method     ChildUserStatusQuery groupByBannedtime() Group by the bannedtime column
  * @method     ChildUserStatusQuery groupByBannedForever() Group by the banned_forever column
  *
@@ -60,10 +54,7 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildUserStatus findOneOrCreate(ConnectionInterface $con = null) Return the first ChildUserStatus matching the query, or a new ChildUserStatus object populated from the query conditions when no match is found
  *
  * @method     ChildUserStatus findOneByUserid(int $userid) Return the first ChildUserStatus filtered by the userid column
- * @method     ChildUserStatus findOneByUsername(string $username) Return the first ChildUserStatus filtered by the username column
  * @method     ChildUserStatus findOneByStatus(int $status) Return the first ChildUserStatus filtered by the status column
- * @method     ChildUserStatus findOneByMutedtime(string $mutedtime) Return the first ChildUserStatus filtered by the mutedtime column
- * @method     ChildUserStatus findOneByMutedForever(boolean $muted_forever) Return the first ChildUserStatus filtered by the muted_forever column
  * @method     ChildUserStatus findOneByBannedtime(string $bannedtime) Return the first ChildUserStatus filtered by the bannedtime column
  * @method     ChildUserStatus findOneByBannedForever(boolean $banned_forever) Return the first ChildUserStatus filtered by the banned_forever column *
 
@@ -71,19 +62,13 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildUserStatus requireOne(ConnectionInterface $con = null) Return the first ChildUserStatus matching the query and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  *
  * @method     ChildUserStatus requireOneByUserid(int $userid) Return the first ChildUserStatus filtered by the userid column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
- * @method     ChildUserStatus requireOneByUsername(string $username) Return the first ChildUserStatus filtered by the username column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildUserStatus requireOneByStatus(int $status) Return the first ChildUserStatus filtered by the status column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
- * @method     ChildUserStatus requireOneByMutedtime(string $mutedtime) Return the first ChildUserStatus filtered by the mutedtime column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
- * @method     ChildUserStatus requireOneByMutedForever(boolean $muted_forever) Return the first ChildUserStatus filtered by the muted_forever column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildUserStatus requireOneByBannedtime(string $bannedtime) Return the first ChildUserStatus filtered by the bannedtime column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildUserStatus requireOneByBannedForever(boolean $banned_forever) Return the first ChildUserStatus filtered by the banned_forever column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  *
  * @method     ChildUserStatus[]|ObjectCollection find(ConnectionInterface $con = null) Return ChildUserStatus objects based on current ModelCriteria
  * @method     ChildUserStatus[]|ObjectCollection findByUserid(int $userid) Return ChildUserStatus objects filtered by the userid column
- * @method     ChildUserStatus[]|ObjectCollection findByUsername(string $username) Return ChildUserStatus objects filtered by the username column
  * @method     ChildUserStatus[]|ObjectCollection findByStatus(int $status) Return ChildUserStatus objects filtered by the status column
- * @method     ChildUserStatus[]|ObjectCollection findByMutedtime(string $mutedtime) Return ChildUserStatus objects filtered by the mutedtime column
- * @method     ChildUserStatus[]|ObjectCollection findByMutedForever(boolean $muted_forever) Return ChildUserStatus objects filtered by the muted_forever column
  * @method     ChildUserStatus[]|ObjectCollection findByBannedtime(string $bannedtime) Return ChildUserStatus objects filtered by the bannedtime column
  * @method     ChildUserStatus[]|ObjectCollection findByBannedForever(boolean $banned_forever) Return ChildUserStatus objects filtered by the banned_forever column
  * @method     ChildUserStatus[]|\Propel\Runtime\Util\PropelModelPager paginate($page = 1, $maxPerPage = 10, ConnectionInterface $con = null) Issue a SELECT query based on the current ModelCriteria and uses a page and a maximum number of results per page to compute an offset and a limit
@@ -184,7 +169,7 @@ abstract class UserStatusQuery extends ModelCriteria
      */
     protected function findPkSimple($key, ConnectionInterface $con)
     {
-        $sql = 'SELECT userid, username, status, mutedtime, muted_forever, bannedtime, banned_forever FROM infiniauser_status WHERE userid = :p0';
+        $sql = 'SELECT userid, status, bannedtime, banned_forever FROM infiniauser_status WHERE userid = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -316,31 +301,6 @@ abstract class UserStatusQuery extends ModelCriteria
     }
 
     /**
-     * Filter the query on the username column
-     *
-     * Example usage:
-     * <code>
-     * $query->filterByUsername('fooValue');   // WHERE username = 'fooValue'
-     * $query->filterByUsername('%fooValue%', Criteria::LIKE); // WHERE username LIKE '%fooValue%'
-     * </code>
-     *
-     * @param     string $username The value to use as filter.
-     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-     *
-     * @return $this|ChildUserStatusQuery The current query, for fluid interface
-     */
-    public function filterByUsername($username = null, $comparison = null)
-    {
-        if (null === $comparison) {
-            if (is_array($username)) {
-                $comparison = Criteria::IN;
-            }
-        }
-
-        return $this->addUsingAlias(UserStatusTableMap::COL_USERNAME, $username, $comparison);
-    }
-
-    /**
      * Filter the query on the status column
      *
      * @param     mixed $status The value to use as filter
@@ -371,76 +331,6 @@ abstract class UserStatusQuery extends ModelCriteria
         }
 
         return $this->addUsingAlias(UserStatusTableMap::COL_STATUS, $status, $comparison);
-    }
-
-    /**
-     * Filter the query on the mutedtime column
-     *
-     * Example usage:
-     * <code>
-     * $query->filterByMutedtime('2011-03-14'); // WHERE mutedtime = '2011-03-14'
-     * $query->filterByMutedtime('now'); // WHERE mutedtime = '2011-03-14'
-     * $query->filterByMutedtime(array('max' => 'yesterday')); // WHERE mutedtime > '2011-03-13'
-     * </code>
-     *
-     * @param     mixed $mutedtime The value to use as filter.
-     *              Values can be integers (unix timestamps), DateTime objects, or strings.
-     *              Empty strings are treated as NULL.
-     *              Use scalar values for equality.
-     *              Use array values for in_array() equivalent.
-     *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
-     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-     *
-     * @return $this|ChildUserStatusQuery The current query, for fluid interface
-     */
-    public function filterByMutedtime($mutedtime = null, $comparison = null)
-    {
-        if (is_array($mutedtime)) {
-            $useMinMax = false;
-            if (isset($mutedtime['min'])) {
-                $this->addUsingAlias(UserStatusTableMap::COL_MUTEDTIME, $mutedtime['min'], Criteria::GREATER_EQUAL);
-                $useMinMax = true;
-            }
-            if (isset($mutedtime['max'])) {
-                $this->addUsingAlias(UserStatusTableMap::COL_MUTEDTIME, $mutedtime['max'], Criteria::LESS_EQUAL);
-                $useMinMax = true;
-            }
-            if ($useMinMax) {
-                return $this;
-            }
-            if (null === $comparison) {
-                $comparison = Criteria::IN;
-            }
-        }
-
-        return $this->addUsingAlias(UserStatusTableMap::COL_MUTEDTIME, $mutedtime, $comparison);
-    }
-
-    /**
-     * Filter the query on the muted_forever column
-     *
-     * Example usage:
-     * <code>
-     * $query->filterByMutedForever(true); // WHERE muted_forever = true
-     * $query->filterByMutedForever('yes'); // WHERE muted_forever = true
-     * </code>
-     *
-     * @param     boolean|string $mutedForever The value to use as filter.
-     *              Non-boolean arguments are converted using the following rules:
-     *                * 1, '1', 'true',  'on',  and 'yes' are converted to boolean true
-     *                * 0, '0', 'false', 'off', and 'no'  are converted to boolean false
-     *              Check on string values is case insensitive (so 'FaLsE' is seen as 'false').
-     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-     *
-     * @return $this|ChildUserStatusQuery The current query, for fluid interface
-     */
-    public function filterByMutedForever($mutedForever = null, $comparison = null)
-    {
-        if (is_string($mutedForever)) {
-            $mutedForever = in_array(strtolower($mutedForever), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
-        }
-
-        return $this->addUsingAlias(UserStatusTableMap::COL_MUTED_FOREVER, $mutedForever, $comparison);
     }
 
     /**

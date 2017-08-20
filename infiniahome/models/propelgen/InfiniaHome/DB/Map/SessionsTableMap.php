@@ -2,8 +2,8 @@
 
 namespace InfiniaHome\DB\Map;
 
-use InfiniaHome\DB\InfiniaLinkedApp;
-use InfiniaHome\DB\InfiniaLinkedAppQuery;
+use InfiniaHome\DB\Sessions;
+use InfiniaHome\DB\SessionsQuery;
 use Propel\Runtime\Propel;
 use Propel\Runtime\ActiveQuery\Criteria;
 use Propel\Runtime\ActiveQuery\InstancePoolTrait;
@@ -16,7 +16,7 @@ use Propel\Runtime\Map\TableMapTrait;
 
 
 /**
- * This class defines the structure of the 'infiniaapplications' table.
+ * This class defines the structure of the 'infiniasessions' table.
  *
  *
  *
@@ -26,7 +26,7 @@ use Propel\Runtime\Map\TableMapTrait;
  * (i.e. if it's a text column type).
  *
  */
-class InfiniaLinkedAppTableMap extends TableMap
+class SessionsTableMap extends TableMap
 {
     use InstancePoolTrait;
     use TableMapTrait;
@@ -34,7 +34,7 @@ class InfiniaLinkedAppTableMap extends TableMap
     /**
      * The (dot-path) name of this class
      */
-    const CLASS_NAME = 'InfiniaHome.DB.Map.InfiniaLinkedAppTableMap';
+    const CLASS_NAME = 'InfiniaHome.DB.Map.SessionsTableMap';
 
     /**
      * The default database name for this class
@@ -44,22 +44,22 @@ class InfiniaLinkedAppTableMap extends TableMap
     /**
      * The table name for this class
      */
-    const TABLE_NAME = 'infiniaapplications';
+    const TABLE_NAME = 'infiniasessions';
 
     /**
      * The related Propel class for this table
      */
-    const OM_CLASS = '\\InfiniaHome\\DB\\InfiniaLinkedApp';
+    const OM_CLASS = '\\InfiniaHome\\DB\\Sessions';
 
     /**
      * A class that can be returned by this tableMap
      */
-    const CLASS_DEFAULT = 'InfiniaHome.DB.InfiniaLinkedApp';
+    const CLASS_DEFAULT = 'InfiniaHome.DB.Sessions';
 
     /**
      * The total number of columns
      */
-    const NUM_COLUMNS = 6;
+    const NUM_COLUMNS = 2;
 
     /**
      * The number of lazy-loaded columns
@@ -69,37 +69,17 @@ class InfiniaLinkedAppTableMap extends TableMap
     /**
      * The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS)
      */
-    const NUM_HYDRATE_COLUMNS = 6;
+    const NUM_HYDRATE_COLUMNS = 2;
 
     /**
-     * the column name for the app_id field
+     * the column name for the userid field
      */
-    const COL_APP_ID = 'infiniaapplications.app_id';
+    const COL_USERID = 'infiniasessions.userid';
 
     /**
-     * the column name for the app_name field
+     * the column name for the session_token field
      */
-    const COL_APP_NAME = 'infiniaapplications.app_name';
-
-    /**
-     * the column name for the app_url field
-     */
-    const COL_APP_URL = 'infiniaapplications.app_url';
-
-    /**
-     * the column name for the app_publickey field
-     */
-    const COL_APP_PUBLICKEY = 'infiniaapplications.app_publickey';
-
-    /**
-     * the column name for the app_privatekey field
-     */
-    const COL_APP_PRIVATEKEY = 'infiniaapplications.app_privatekey';
-
-    /**
-     * the column name for the app_registerer field
-     */
-    const COL_APP_REGISTERER = 'infiniaapplications.app_registerer';
+    const COL_SESSION_TOKEN = 'infiniasessions.session_token';
 
     /**
      * The default string format for model objects of the related table
@@ -113,11 +93,11 @@ class InfiniaLinkedAppTableMap extends TableMap
      * e.g. self::$fieldNames[self::TYPE_PHPNAME][0] = 'Id'
      */
     protected static $fieldNames = array (
-        self::TYPE_PHPNAME       => array('AppId', 'AppName', 'AppUrl', 'appPublicKey', 'appPrivateKey', 'appCreator', ),
-        self::TYPE_CAMELNAME     => array('appId', 'appName', 'appUrl', 'appPublicKey', 'appPrivateKey', 'appCreator', ),
-        self::TYPE_COLNAME       => array(InfiniaLinkedAppTableMap::COL_APP_ID, InfiniaLinkedAppTableMap::COL_APP_NAME, InfiniaLinkedAppTableMap::COL_APP_URL, InfiniaLinkedAppTableMap::COL_APP_PUBLICKEY, InfiniaLinkedAppTableMap::COL_APP_PRIVATEKEY, InfiniaLinkedAppTableMap::COL_APP_REGISTERER, ),
-        self::TYPE_FIELDNAME     => array('app_id', 'app_name', 'app_url', 'app_publickey', 'app_privatekey', 'app_registerer', ),
-        self::TYPE_NUM           => array(0, 1, 2, 3, 4, 5, )
+        self::TYPE_PHPNAME       => array('Userid', 'SessionToken', ),
+        self::TYPE_CAMELNAME     => array('userid', 'sessionToken', ),
+        self::TYPE_COLNAME       => array(SessionsTableMap::COL_USERID, SessionsTableMap::COL_SESSION_TOKEN, ),
+        self::TYPE_FIELDNAME     => array('userid', 'session_token', ),
+        self::TYPE_NUM           => array(0, 1, )
     );
 
     /**
@@ -127,11 +107,11 @@ class InfiniaLinkedAppTableMap extends TableMap
      * e.g. self::$fieldKeys[self::TYPE_PHPNAME]['Id'] = 0
      */
     protected static $fieldKeys = array (
-        self::TYPE_PHPNAME       => array('AppId' => 0, 'AppName' => 1, 'AppUrl' => 2, 'appPublicKey' => 3, 'appPrivateKey' => 4, 'appCreator' => 5, ),
-        self::TYPE_CAMELNAME     => array('appId' => 0, 'appName' => 1, 'appUrl' => 2, 'appPublicKey' => 3, 'appPrivateKey' => 4, 'appCreator' => 5, ),
-        self::TYPE_COLNAME       => array(InfiniaLinkedAppTableMap::COL_APP_ID => 0, InfiniaLinkedAppTableMap::COL_APP_NAME => 1, InfiniaLinkedAppTableMap::COL_APP_URL => 2, InfiniaLinkedAppTableMap::COL_APP_PUBLICKEY => 3, InfiniaLinkedAppTableMap::COL_APP_PRIVATEKEY => 4, InfiniaLinkedAppTableMap::COL_APP_REGISTERER => 5, ),
-        self::TYPE_FIELDNAME     => array('app_id' => 0, 'app_name' => 1, 'app_url' => 2, 'app_publickey' => 3, 'app_privatekey' => 4, 'app_registerer' => 5, ),
-        self::TYPE_NUM           => array(0, 1, 2, 3, 4, 5, )
+        self::TYPE_PHPNAME       => array('Userid' => 0, 'SessionToken' => 1, ),
+        self::TYPE_CAMELNAME     => array('userid' => 0, 'sessionToken' => 1, ),
+        self::TYPE_COLNAME       => array(SessionsTableMap::COL_USERID => 0, SessionsTableMap::COL_SESSION_TOKEN => 1, ),
+        self::TYPE_FIELDNAME     => array('userid' => 0, 'session_token' => 1, ),
+        self::TYPE_NUM           => array(0, 1, )
     );
 
     /**
@@ -144,19 +124,15 @@ class InfiniaLinkedAppTableMap extends TableMap
     public function initialize()
     {
         // attributes
-        $this->setName('infiniaapplications');
-        $this->setPhpName('InfiniaLinkedApp');
+        $this->setName('infiniasessions');
+        $this->setPhpName('Sessions');
         $this->setIdentifierQuoting(false);
-        $this->setClassName('\\InfiniaHome\\DB\\InfiniaLinkedApp');
+        $this->setClassName('\\InfiniaHome\\DB\\Sessions');
         $this->setPackage('InfiniaHome.DB');
         $this->setUseIdGenerator(true);
         // columns
-        $this->addPrimaryKey('app_id', 'AppId', 'INTEGER', true, null, null);
-        $this->addColumn('app_name', 'AppName', 'VARCHAR', true, 255, null);
-        $this->addColumn('app_url', 'AppUrl', 'LONGVARCHAR', true, null, null);
-        $this->addColumn('app_publickey', 'appPublicKey', 'LONGVARCHAR', true, null, null);
-        $this->addColumn('app_privatekey', 'appPrivateKey', 'LONGVARCHAR', true, null, null);
-        $this->addColumn('app_registerer', 'appCreator', 'VARCHAR', true, 255, null);
+        $this->addPrimaryKey('userid', 'Userid', 'INTEGER', true, null, null);
+        $this->addColumn('session_token', 'SessionToken', 'LONGVARCHAR', false, null, null);
     } // initialize()
 
     /**
@@ -164,6 +140,13 @@ class InfiniaLinkedAppTableMap extends TableMap
      */
     public function buildRelations()
     {
+        $this->addRelation('InfiniaUser', '\\InfiniaHome\\DB\\InfiniaUser', RelationMap::ONE_TO_ONE, array (
+  0 =>
+  array (
+    0 => ':user_id',
+    1 => ':userid',
+  ),
+), null, null, null, false);
     } // buildRelations()
 
     /**
@@ -182,11 +165,11 @@ class InfiniaLinkedAppTableMap extends TableMap
     public static function getPrimaryKeyHashFromRow($row, $offset = 0, $indexType = TableMap::TYPE_NUM)
     {
         // If the PK cannot be derived from the row, return NULL.
-        if ($row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('AppId', TableMap::TYPE_PHPNAME, $indexType)] === null) {
+        if ($row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('Userid', TableMap::TYPE_PHPNAME, $indexType)] === null) {
             return null;
         }
 
-        return null === $row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('AppId', TableMap::TYPE_PHPNAME, $indexType)] || is_scalar($row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('AppId', TableMap::TYPE_PHPNAME, $indexType)]) || is_callable([$row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('AppId', TableMap::TYPE_PHPNAME, $indexType)], '__toString']) ? (string) $row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('AppId', TableMap::TYPE_PHPNAME, $indexType)] : $row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('AppId', TableMap::TYPE_PHPNAME, $indexType)];
+        return null === $row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('Userid', TableMap::TYPE_PHPNAME, $indexType)] || is_scalar($row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('Userid', TableMap::TYPE_PHPNAME, $indexType)]) || is_callable([$row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('Userid', TableMap::TYPE_PHPNAME, $indexType)], '__toString']) ? (string) $row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('Userid', TableMap::TYPE_PHPNAME, $indexType)] : $row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('Userid', TableMap::TYPE_PHPNAME, $indexType)];
     }
 
     /**
@@ -206,7 +189,7 @@ class InfiniaLinkedAppTableMap extends TableMap
         return (int) $row[
             $indexType == TableMap::TYPE_NUM
                 ? 0 + $offset
-                : self::translateFieldName('AppId', TableMap::TYPE_PHPNAME, $indexType)
+                : self::translateFieldName('Userid', TableMap::TYPE_PHPNAME, $indexType)
         ];
     }
 
@@ -223,7 +206,7 @@ class InfiniaLinkedAppTableMap extends TableMap
      */
     public static function getOMClass($withPrefix = true)
     {
-        return $withPrefix ? InfiniaLinkedAppTableMap::CLASS_DEFAULT : InfiniaLinkedAppTableMap::OM_CLASS;
+        return $withPrefix ? SessionsTableMap::CLASS_DEFAULT : SessionsTableMap::OM_CLASS;
     }
 
     /**
@@ -237,22 +220,22 @@ class InfiniaLinkedAppTableMap extends TableMap
      *
      * @throws PropelException Any exceptions caught during processing will be
      *                         rethrown wrapped into a PropelException.
-     * @return array           (InfiniaLinkedApp object, last column rank)
+     * @return array           (Sessions object, last column rank)
      */
     public static function populateObject($row, $offset = 0, $indexType = TableMap::TYPE_NUM)
     {
-        $key = InfiniaLinkedAppTableMap::getPrimaryKeyHashFromRow($row, $offset, $indexType);
-        if (null !== ($obj = InfiniaLinkedAppTableMap::getInstanceFromPool($key))) {
+        $key = SessionsTableMap::getPrimaryKeyHashFromRow($row, $offset, $indexType);
+        if (null !== ($obj = SessionsTableMap::getInstanceFromPool($key))) {
             // We no longer rehydrate the object, since this can cause data loss.
             // See http://www.propelorm.org/ticket/509
             // $obj->hydrate($row, $offset, true); // rehydrate
-            $col = $offset + InfiniaLinkedAppTableMap::NUM_HYDRATE_COLUMNS;
+            $col = $offset + SessionsTableMap::NUM_HYDRATE_COLUMNS;
         } else {
-            $cls = InfiniaLinkedAppTableMap::OM_CLASS;
-            /** @var InfiniaLinkedApp $obj */
+            $cls = SessionsTableMap::OM_CLASS;
+            /** @var Sessions $obj */
             $obj = new $cls();
             $col = $obj->hydrate($row, $offset, false, $indexType);
-            InfiniaLinkedAppTableMap::addInstanceToPool($obj, $key);
+            SessionsTableMap::addInstanceToPool($obj, $key);
         }
 
         return array($obj, $col);
@@ -275,18 +258,18 @@ class InfiniaLinkedAppTableMap extends TableMap
         $cls = static::getOMClass(false);
         // populate the object(s)
         while ($row = $dataFetcher->fetch()) {
-            $key = InfiniaLinkedAppTableMap::getPrimaryKeyHashFromRow($row, 0, $dataFetcher->getIndexType());
-            if (null !== ($obj = InfiniaLinkedAppTableMap::getInstanceFromPool($key))) {
+            $key = SessionsTableMap::getPrimaryKeyHashFromRow($row, 0, $dataFetcher->getIndexType());
+            if (null !== ($obj = SessionsTableMap::getInstanceFromPool($key))) {
                 // We no longer rehydrate the object, since this can cause data loss.
                 // See http://www.propelorm.org/ticket/509
                 // $obj->hydrate($row, 0, true); // rehydrate
                 $results[] = $obj;
             } else {
-                /** @var InfiniaLinkedApp $obj */
+                /** @var Sessions $obj */
                 $obj = new $cls();
                 $obj->hydrate($row);
                 $results[] = $obj;
-                InfiniaLinkedAppTableMap::addInstanceToPool($obj, $key);
+                SessionsTableMap::addInstanceToPool($obj, $key);
             } // if key exists
         }
 
@@ -307,19 +290,11 @@ class InfiniaLinkedAppTableMap extends TableMap
     public static function addSelectColumns(Criteria $criteria, $alias = null)
     {
         if (null === $alias) {
-            $criteria->addSelectColumn(InfiniaLinkedAppTableMap::COL_APP_ID);
-            $criteria->addSelectColumn(InfiniaLinkedAppTableMap::COL_APP_NAME);
-            $criteria->addSelectColumn(InfiniaLinkedAppTableMap::COL_APP_URL);
-            $criteria->addSelectColumn(InfiniaLinkedAppTableMap::COL_APP_PUBLICKEY);
-            $criteria->addSelectColumn(InfiniaLinkedAppTableMap::COL_APP_PRIVATEKEY);
-            $criteria->addSelectColumn(InfiniaLinkedAppTableMap::COL_APP_REGISTERER);
+            $criteria->addSelectColumn(SessionsTableMap::COL_USERID);
+            $criteria->addSelectColumn(SessionsTableMap::COL_SESSION_TOKEN);
         } else {
-            $criteria->addSelectColumn($alias . '.app_id');
-            $criteria->addSelectColumn($alias . '.app_name');
-            $criteria->addSelectColumn($alias . '.app_url');
-            $criteria->addSelectColumn($alias . '.app_publickey');
-            $criteria->addSelectColumn($alias . '.app_privatekey');
-            $criteria->addSelectColumn($alias . '.app_registerer');
+            $criteria->addSelectColumn($alias . '.userid');
+            $criteria->addSelectColumn($alias . '.session_token');
         }
     }
 
@@ -332,7 +307,7 @@ class InfiniaLinkedAppTableMap extends TableMap
      */
     public static function getTableMap()
     {
-        return Propel::getServiceContainer()->getDatabaseMap(InfiniaLinkedAppTableMap::DATABASE_NAME)->getTable(InfiniaLinkedAppTableMap::TABLE_NAME);
+        return Propel::getServiceContainer()->getDatabaseMap(SessionsTableMap::DATABASE_NAME)->getTable(SessionsTableMap::TABLE_NAME);
     }
 
     /**
@@ -340,16 +315,16 @@ class InfiniaLinkedAppTableMap extends TableMap
      */
     public static function buildTableMap()
     {
-        $dbMap = Propel::getServiceContainer()->getDatabaseMap(InfiniaLinkedAppTableMap::DATABASE_NAME);
-        if (!$dbMap->hasTable(InfiniaLinkedAppTableMap::TABLE_NAME)) {
-            $dbMap->addTableObject(new InfiniaLinkedAppTableMap());
+        $dbMap = Propel::getServiceContainer()->getDatabaseMap(SessionsTableMap::DATABASE_NAME);
+        if (!$dbMap->hasTable(SessionsTableMap::TABLE_NAME)) {
+            $dbMap->addTableObject(new SessionsTableMap());
         }
     }
 
     /**
-     * Performs a DELETE on the database, given a InfiniaLinkedApp or Criteria object OR a primary key value.
+     * Performs a DELETE on the database, given a Sessions or Criteria object OR a primary key value.
      *
-     * @param mixed               $values Criteria or InfiniaLinkedApp object or primary key or array of primary keys
+     * @param mixed               $values Criteria or Sessions object or primary key or array of primary keys
      *              which is used to create the DELETE statement
      * @param  ConnectionInterface $con the connection to use
      * @return int             The number of affected rows (if supported by underlying database driver).  This includes CASCADE-related rows
@@ -360,27 +335,27 @@ class InfiniaLinkedAppTableMap extends TableMap
      public static function doDelete($values, ConnectionInterface $con = null)
      {
         if (null === $con) {
-            $con = Propel::getServiceContainer()->getWriteConnection(InfiniaLinkedAppTableMap::DATABASE_NAME);
+            $con = Propel::getServiceContainer()->getWriteConnection(SessionsTableMap::DATABASE_NAME);
         }
 
         if ($values instanceof Criteria) {
             // rename for clarity
             $criteria = $values;
-        } elseif ($values instanceof \InfiniaHome\DB\InfiniaLinkedApp) { // it's a model object
+        } elseif ($values instanceof \InfiniaHome\DB\Sessions) { // it's a model object
             // create criteria based on pk values
             $criteria = $values->buildPkeyCriteria();
         } else { // it's a primary key, or an array of pks
-            $criteria = new Criteria(InfiniaLinkedAppTableMap::DATABASE_NAME);
-            $criteria->add(InfiniaLinkedAppTableMap::COL_APP_ID, (array) $values, Criteria::IN);
+            $criteria = new Criteria(SessionsTableMap::DATABASE_NAME);
+            $criteria->add(SessionsTableMap::COL_USERID, (array) $values, Criteria::IN);
         }
 
-        $query = InfiniaLinkedAppQuery::create()->mergeWith($criteria);
+        $query = SessionsQuery::create()->mergeWith($criteria);
 
         if ($values instanceof Criteria) {
-            InfiniaLinkedAppTableMap::clearInstancePool();
+            SessionsTableMap::clearInstancePool();
         } elseif (!is_object($values)) { // it's a primary key, or an array of pks
             foreach ((array) $values as $singleval) {
-                InfiniaLinkedAppTableMap::removeInstanceFromPool($singleval);
+                SessionsTableMap::removeInstanceFromPool($singleval);
             }
         }
 
@@ -388,20 +363,20 @@ class InfiniaLinkedAppTableMap extends TableMap
     }
 
     /**
-     * Deletes all rows from the infiniaapplications table.
+     * Deletes all rows from the infiniasessions table.
      *
      * @param ConnectionInterface $con the connection to use
      * @return int The number of affected rows (if supported by underlying database driver).
      */
     public static function doDeleteAll(ConnectionInterface $con = null)
     {
-        return InfiniaLinkedAppQuery::create()->doDeleteAll($con);
+        return SessionsQuery::create()->doDeleteAll($con);
     }
 
     /**
-     * Performs an INSERT on the database, given a InfiniaLinkedApp or Criteria object.
+     * Performs an INSERT on the database, given a Sessions or Criteria object.
      *
-     * @param mixed               $criteria Criteria or InfiniaLinkedApp object containing data that is used to create the INSERT statement.
+     * @param mixed               $criteria Criteria or Sessions object containing data that is used to create the INSERT statement.
      * @param ConnectionInterface $con the ConnectionInterface connection to use
      * @return mixed           The new primary key.
      * @throws PropelException Any exceptions caught during processing will be
@@ -410,22 +385,22 @@ class InfiniaLinkedAppTableMap extends TableMap
     public static function doInsert($criteria, ConnectionInterface $con = null)
     {
         if (null === $con) {
-            $con = Propel::getServiceContainer()->getWriteConnection(InfiniaLinkedAppTableMap::DATABASE_NAME);
+            $con = Propel::getServiceContainer()->getWriteConnection(SessionsTableMap::DATABASE_NAME);
         }
 
         if ($criteria instanceof Criteria) {
             $criteria = clone $criteria; // rename for clarity
         } else {
-            $criteria = $criteria->buildCriteria(); // build Criteria from InfiniaLinkedApp object
+            $criteria = $criteria->buildCriteria(); // build Criteria from Sessions object
         }
 
-        if ($criteria->containsKey(InfiniaLinkedAppTableMap::COL_APP_ID) && $criteria->keyContainsValue(InfiniaLinkedAppTableMap::COL_APP_ID) ) {
-            throw new PropelException('Cannot insert a value for auto-increment primary key ('.InfiniaLinkedAppTableMap::COL_APP_ID.')');
+        if ($criteria->containsKey(SessionsTableMap::COL_USERID) && $criteria->keyContainsValue(SessionsTableMap::COL_USERID) ) {
+            throw new PropelException('Cannot insert a value for auto-increment primary key ('.SessionsTableMap::COL_USERID.')');
         }
 
 
         // Set the correct dbName
-        $query = InfiniaLinkedAppQuery::create()->mergeWith($criteria);
+        $query = SessionsQuery::create()->mergeWith($criteria);
 
         // use transaction because $criteria could contain info
         // for more than one table (I guess, conceivably)
@@ -434,7 +409,7 @@ class InfiniaLinkedAppTableMap extends TableMap
         });
     }
 
-} // InfiniaLinkedAppTableMap
+} // SessionsTableMap
 // This is the static code needed to register the TableMap for this table with the main Propel class.
 //
-InfiniaLinkedAppTableMap::buildTableMap();
+SessionsTableMap::buildTableMap();

@@ -2,10 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d3fb66f2-fc98-4463-8091-98471fc8fc6e" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dictionaries/Robert.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/propel.yml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/schema_touse.xml" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/keane_op/403.html" afterPath="$PROJECT_DIR$/infiniahome/views/403.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/keane_op/404.html" afterPath="$PROJECT_DIR$/infiniahome/views/404.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/keane_op/500.html" afterPath="$PROJECT_DIR$/infiniahome/views/500.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/keane_op/admin.html" afterPath="$PROJECT_DIR$/infiniahome/views/admin.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/keane_op/index.html" afterPath="$PROJECT_DIR$/infiniahome/views/index.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/keane_op/login.html" afterPath="$PROJECT_DIR$/infiniahome/views/login.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/keane_op/signUp.html" afterPath="$PROJECT_DIR$/infiniahome/views/signUp.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/infiniahome/models/class.User.php" afterPath="$PROJECT_DIR$/infiniahome/models/class.User.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/infiniahome/models/propelgen/InfiniaHome/DB/Base/InfiniaUser.php" afterPath="$PROJECT_DIR$/infiniahome/models/propelgen/InfiniaHome/DB/Base/InfiniaUser.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/infiniahome/models/propelgen/InfiniaHome/DB/Base/InfiniaUserQuery.php" afterPath="$PROJECT_DIR$/infiniahome/models/propelgen/InfiniaHome/DB/Base/InfiniaUserQuery.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/infiniahome/models/propelgen/InfiniaHome/DB/Base/UserStatus.php" afterPath="$PROJECT_DIR$/infiniahome/models/propelgen/InfiniaHome/DB/Base/UserStatus.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/infiniahome/models/propelgen/InfiniaHome/DB/Base/UserStatusQuery.php" afterPath="$PROJECT_DIR$/infiniahome/models/propelgen/InfiniaHome/DB/Base/UserStatusQuery.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/infiniahome/models/propelgen/InfiniaHome/DB/Map/InfiniaLinkedAppTableMap.php" afterPath="$PROJECT_DIR$/infiniahome/models/propelgen/InfiniaHome/DB/Map/InfiniaLinkedAppTableMap.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/infiniahome/models/propelgen/InfiniaHome/DB/Map/InfiniaUserTableMap.php" afterPath="$PROJECT_DIR$/infiniahome/models/propelgen/InfiniaHome/DB/Map/InfiniaUserTableMap.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/infiniahome/models/propelgen/InfiniaHome/DB/Map/UserStatusTableMap.php" afterPath="$PROJECT_DIR$/infiniahome/models/propelgen/InfiniaHome/DB/Map/UserStatusTableMap.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/schema.xml" afterPath="$PROJECT_DIR$/schema.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -34,10 +49,10 @@
       <file leaf-file-name="class.User.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/infiniahome/models/class.User.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="446">
-              <caret line="140" column="5" lean-forward="true" selection-start-line="140" selection-start-column="5" selection-end-line="140" selection-end-column="5" />
+            <state relative-caret-position="276">
+              <caret line="191" column="30" lean-forward="true" selection-start-line="191" selection-start-column="30" selection-end-line="191" selection-end-column="30" />
               <folding>
-                <element signature="e#120#151#0#PHP" expanded="true" />
+                <element signature="e#120#151#0#PHP" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -46,18 +61,8 @@
       <file leaf-file-name="schema.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/schema.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="344">
-              <caret line="83" column="79" lean-forward="false" selection-start-line="83" selection-start-column="79" selection-end-line="83" selection-end-column="79" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="schema_touse.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/schema_touse.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="646">
-              <caret line="38" column="40" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="90" selection-end-column="0" />
+            <state relative-caret-position="1564">
+              <caret line="92" column="12" lean-forward="true" selection-start-line="92" selection-start-column="12" selection-end-line="92" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -195,7 +200,11 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="keane_op" />
+              <option name="myItemId" value="infiniahome" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -214,84 +223,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="models" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="InfiniaHome-Laravel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="InfiniaHome-Laravel" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="infiniahome" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="models" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="propelgen" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="InfiniaHome" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DB" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="InfiniaHome-Laravel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="InfiniaHome-Laravel" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="infiniahome" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="models" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="propelgen" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="InfiniaHome" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DB" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Base" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="InfiniaHome-Laravel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="InfiniaHome-Laravel" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="generated-sql" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -308,6 +239,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Robert\Documents\GitHub\InfiniaHome-Laravel\infiniahome" />
       <recent name="C:\Users\Robert\Documents\GitHub\InfiniaHome-Laravel\keane_op" />
     </key>
   </component>
@@ -426,17 +358,18 @@
       <workItem from="1503120016647" duration="12447000" />
       <workItem from="1503145195976" duration="6653000" />
       <workItem from="1503202181543" duration="4979000" />
+      <workItem from="1503229545467" duration="7147000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="33578000" />
+    <option name="totallyTimeSpent" value="40725000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27345416" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27665246" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5021322" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -565,14 +498,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/schema_touse.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="38" column="40" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="90" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/infiniahome/models/propelgen/InfiniaHome/DB/Base/InfiniaUser.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-6375">
@@ -624,23 +549,31 @@
         <state relative-caret-position="-2448">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1503216681965" expanded="true" signature="31111:31158" ph="INSERT INTO infiniauser_status... " />
+            <marker date="1503235006679" expanded="true" signature="31111:31158" ph="INSERT INTO infiniauser_status... " />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/schema_touse.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="47" column="24" lean-forward="false" selection-start-line="47" selection-start-column="24" selection-end-line="47" selection-end-column="24" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/schema.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="344">
-          <caret line="83" column="79" lean-forward="false" selection-start-line="83" selection-start-column="79" selection-end-line="83" selection-end-column="79" />
+        <state relative-caret-position="1564">
+          <caret line="92" column="12" lean-forward="true" selection-start-line="92" selection-start-column="12" selection-end-line="92" selection-end-column="12" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/infiniahome/models/class.User.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="446">
-          <caret line="140" column="5" lean-forward="true" selection-start-line="140" selection-start-column="5" selection-end-line="140" selection-end-column="5" />
+        <state relative-caret-position="276">
+          <caret line="191" column="30" lean-forward="true" selection-start-line="191" selection-start-column="30" selection-end-line="191" selection-end-column="30" />
           <folding>
             <element signature="e#120#151#0#PHP" expanded="true" />
           </folding>

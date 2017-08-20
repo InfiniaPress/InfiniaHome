@@ -59,7 +59,7 @@ class UserStatusTableMap extends TableMap
     /**
      * The total number of columns
      */
-    const NUM_COLUMNS = 7;
+    const NUM_COLUMNS = 4;
 
     /**
      * The number of lazy-loaded columns
@@ -69,7 +69,7 @@ class UserStatusTableMap extends TableMap
     /**
      * The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS)
      */
-    const NUM_HYDRATE_COLUMNS = 7;
+    const NUM_HYDRATE_COLUMNS = 4;
 
     /**
      * the column name for the userid field
@@ -77,24 +77,9 @@ class UserStatusTableMap extends TableMap
     const COL_USERID = 'infiniauser_status.userid';
 
     /**
-     * the column name for the username field
-     */
-    const COL_USERNAME = 'infiniauser_status.username';
-
-    /**
      * the column name for the status field
      */
     const COL_STATUS = 'infiniauser_status.status';
-
-    /**
-     * the column name for the mutedtime field
-     */
-    const COL_MUTEDTIME = 'infiniauser_status.mutedtime';
-
-    /**
-     * the column name for the muted_forever field
-     */
-    const COL_MUTED_FOREVER = 'infiniauser_status.muted_forever';
 
     /**
      * the column name for the bannedtime field
@@ -112,8 +97,8 @@ class UserStatusTableMap extends TableMap
     const DEFAULT_STRING_FORMAT = 'YAML';
 
     /** The enumerated values for the status field */
-    const COL_STATUS_NORMAL = 'Normal';
-    const COL_STATUS_MUTED = 'Muted';
+    const COL_STATUS_UNREGISTERED = 'Unregistered';
+    const COL_STATUS_REGISTERED = 'Registered';
     const COL_STATUS_BANNED = 'Banned';
 
     /**
@@ -123,11 +108,11 @@ class UserStatusTableMap extends TableMap
      * e.g. self::$fieldNames[self::TYPE_PHPNAME][0] = 'Id'
      */
     protected static $fieldNames = array (
-        self::TYPE_PHPNAME       => array('Userid', 'Username', 'Status', 'Mutedtime', 'MutedForever', 'Bannedtime', 'BannedForever', ),
-        self::TYPE_CAMELNAME     => array('userid', 'username', 'status', 'mutedtime', 'mutedForever', 'bannedtime', 'bannedForever', ),
-        self::TYPE_COLNAME       => array(UserStatusTableMap::COL_USERID, UserStatusTableMap::COL_USERNAME, UserStatusTableMap::COL_STATUS, UserStatusTableMap::COL_MUTEDTIME, UserStatusTableMap::COL_MUTED_FOREVER, UserStatusTableMap::COL_BANNEDTIME, UserStatusTableMap::COL_BANNED_FOREVER, ),
-        self::TYPE_FIELDNAME     => array('userid', 'username', 'status', 'mutedtime', 'muted_forever', 'bannedtime', 'banned_forever', ),
-        self::TYPE_NUM           => array(0, 1, 2, 3, 4, 5, 6, )
+        self::TYPE_PHPNAME       => array('Userid', 'Status', 'Bannedtime', 'BannedForever', ),
+        self::TYPE_CAMELNAME     => array('userid', 'status', 'bannedtime', 'bannedForever', ),
+        self::TYPE_COLNAME       => array(UserStatusTableMap::COL_USERID, UserStatusTableMap::COL_STATUS, UserStatusTableMap::COL_BANNEDTIME, UserStatusTableMap::COL_BANNED_FOREVER, ),
+        self::TYPE_FIELDNAME     => array('userid', 'status', 'bannedtime', 'banned_forever', ),
+        self::TYPE_NUM           => array(0, 1, 2, 3, )
     );
 
     /**
@@ -137,18 +122,18 @@ class UserStatusTableMap extends TableMap
      * e.g. self::$fieldKeys[self::TYPE_PHPNAME]['Id'] = 0
      */
     protected static $fieldKeys = array (
-        self::TYPE_PHPNAME       => array('Userid' => 0, 'Username' => 1, 'Status' => 2, 'Mutedtime' => 3, 'MutedForever' => 4, 'Bannedtime' => 5, 'BannedForever' => 6, ),
-        self::TYPE_CAMELNAME     => array('userid' => 0, 'username' => 1, 'status' => 2, 'mutedtime' => 3, 'mutedForever' => 4, 'bannedtime' => 5, 'bannedForever' => 6, ),
-        self::TYPE_COLNAME       => array(UserStatusTableMap::COL_USERID => 0, UserStatusTableMap::COL_USERNAME => 1, UserStatusTableMap::COL_STATUS => 2, UserStatusTableMap::COL_MUTEDTIME => 3, UserStatusTableMap::COL_MUTED_FOREVER => 4, UserStatusTableMap::COL_BANNEDTIME => 5, UserStatusTableMap::COL_BANNED_FOREVER => 6, ),
-        self::TYPE_FIELDNAME     => array('userid' => 0, 'username' => 1, 'status' => 2, 'mutedtime' => 3, 'muted_forever' => 4, 'bannedtime' => 5, 'banned_forever' => 6, ),
-        self::TYPE_NUM           => array(0, 1, 2, 3, 4, 5, 6, )
+        self::TYPE_PHPNAME       => array('Userid' => 0, 'Status' => 1, 'Bannedtime' => 2, 'BannedForever' => 3, ),
+        self::TYPE_CAMELNAME     => array('userid' => 0, 'status' => 1, 'bannedtime' => 2, 'bannedForever' => 3, ),
+        self::TYPE_COLNAME       => array(UserStatusTableMap::COL_USERID => 0, UserStatusTableMap::COL_STATUS => 1, UserStatusTableMap::COL_BANNEDTIME => 2, UserStatusTableMap::COL_BANNED_FOREVER => 3, ),
+        self::TYPE_FIELDNAME     => array('userid' => 0, 'status' => 1, 'bannedtime' => 2, 'banned_forever' => 3, ),
+        self::TYPE_NUM           => array(0, 1, 2, 3, )
     );
 
     /** The enumerated values for this table */
     protected static $enumValueSets = array(
                 UserStatusTableMap::COL_STATUS => array(
-                            self::COL_STATUS_NORMAL,
-            self::COL_STATUS_MUTED,
+                            self::COL_STATUS_UNREGISTERED,
+            self::COL_STATUS_REGISTERED,
             self::COL_STATUS_BANNED,
         ),
     );
@@ -192,15 +177,12 @@ class UserStatusTableMap extends TableMap
         $this->setUseIdGenerator(true);
         // columns
         $this->addPrimaryKey('userid', 'Userid', 'INTEGER', true, null, null);
-        $this->addColumn('username', 'Username', 'VARCHAR', true, 255, null);
         $this->addColumn('status', 'Status', 'ENUM', true, null, null);
         $this->getColumn('status')->setValueSet(array (
-  0 => 'Normal',
-  1 => 'Muted',
+  0 => 'Unregistered',
+  1 => 'Registered',
   2 => 'Banned',
 ));
-        $this->addColumn('mutedtime', 'Mutedtime', 'TIMESTAMP', false, null, null);
-        $this->addColumn('muted_forever', 'MutedForever', 'BOOLEAN', false, 1, false);
         $this->addColumn('bannedtime', 'Bannedtime', 'TIMESTAMP', false, null, null);
         $this->addColumn('banned_forever', 'BannedForever', 'BOOLEAN', false, 1, false);
     } // initialize()
@@ -361,18 +343,12 @@ class UserStatusTableMap extends TableMap
     {
         if (null === $alias) {
             $criteria->addSelectColumn(UserStatusTableMap::COL_USERID);
-            $criteria->addSelectColumn(UserStatusTableMap::COL_USERNAME);
             $criteria->addSelectColumn(UserStatusTableMap::COL_STATUS);
-            $criteria->addSelectColumn(UserStatusTableMap::COL_MUTEDTIME);
-            $criteria->addSelectColumn(UserStatusTableMap::COL_MUTED_FOREVER);
             $criteria->addSelectColumn(UserStatusTableMap::COL_BANNEDTIME);
             $criteria->addSelectColumn(UserStatusTableMap::COL_BANNED_FOREVER);
         } else {
             $criteria->addSelectColumn($alias . '.userid');
-            $criteria->addSelectColumn($alias . '.username');
             $criteria->addSelectColumn($alias . '.status');
-            $criteria->addSelectColumn($alias . '.mutedtime');
-            $criteria->addSelectColumn($alias . '.muted_forever');
             $criteria->addSelectColumn($alias . '.bannedtime');
             $criteria->addSelectColumn($alias . '.banned_forever');
         }

@@ -69,24 +69,32 @@
             <reference local="user_id" foreign="userid" />
         </foreign-key>
 
+        <foreign-key foreignTable="sessions" phpName="userSession">
+            <reference local="user_id" foreign="userid" />
+        </foreign-key>
+
+
     </table>
 
     <table name="applications" phpName="InfiniaLinkedApp">
         <column name="app_id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
         <column name="app_name" type="varchar" size="255" required="true" />
-        <column name="app_url" type="varchar" size="255" required="true" />
-        <column name="app_publickey" type="varchar" size="255" required="true" phpName="appPublicKey"/>
-        <column name="app_privatekey" type="varchar" size="255" required="true" phpName="appPrivateKey"/>
+        <column name="app_url" type="longvarchar" required="true" />
+        <column name="app_publickey" type="longvarchar" required="true" phpName="appPublicKey"/>
+        <column name="app_privatekey" type="longvarchar" required="true" phpName="appPrivateKey"/>
         <column name="app_registerer" type="varchar" size="255" required="true" phpName="appCreator"/>
     </table>
 
     <table name="user_status">
         <column name="userid" required="true" type="integer" primaryKey="true" autoIncrement="true" />
-        <column name="status" required="true" type="enum" valueSet="Normal, Muted, Banned"/>
-        <column name="mutedtime" required="false" type="timestamp" />
-        <column name="muted_forever" type="boolean"  defaultValue="false" />
+        <column name="status" required="true" type="enum" valueSet="Unregistered, Registered, Banned"/>
         <column name="bannedtime" required="false" type="timestamp" />
         <column name="banned_forever" type="boolean" defaultValue="false" />
+    </table>
+
+    <table name="sessions">
+        <column name="userid" type="integer" primaryKey="true" autoIncrement="true"/>
+        <column name="session_token" type="longvarchar" />
     </table>
 
 

@@ -56,7 +56,17 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildInfiniaUserQuery rightJoinWithuserStatus() Adds a RIGHT JOIN clause and with to the query using the userStatus relation
  * @method     ChildInfiniaUserQuery innerJoinWithuserStatus() Adds a INNER JOIN clause and with to the query using the userStatus relation
  *
- * @method     \InfiniaHome\DB\UserStatusQuery endUse() Finalizes a secondary criteria and merges it with its primary Criteria
+ * @method     ChildInfiniaUserQuery leftJoinuserSession($relationAlias = null) Adds a LEFT JOIN clause to the query using the userSession relation
+ * @method     ChildInfiniaUserQuery rightJoinuserSession($relationAlias = null) Adds a RIGHT JOIN clause to the query using the userSession relation
+ * @method     ChildInfiniaUserQuery innerJoinuserSession($relationAlias = null) Adds a INNER JOIN clause to the query using the userSession relation
+ *
+ * @method     ChildInfiniaUserQuery joinWithuserSession($joinType = Criteria::INNER_JOIN) Adds a join clause and with to the query using the userSession relation
+ *
+ * @method     ChildInfiniaUserQuery leftJoinWithuserSession() Adds a LEFT JOIN clause and with to the query using the userSession relation
+ * @method     ChildInfiniaUserQuery rightJoinWithuserSession() Adds a RIGHT JOIN clause and with to the query using the userSession relation
+ * @method     ChildInfiniaUserQuery innerJoinWithuserSession() Adds a INNER JOIN clause and with to the query using the userSession relation
+ *
+ * @method     \InfiniaHome\DB\UserStatusQuery|\InfiniaHome\DB\SessionsQuery endUse() Finalizes a secondary criteria and merges it with its primary Criteria
  *
  * @method     ChildInfiniaUser findOne(ConnectionInterface $con = null) Return the first ChildInfiniaUser matching the query
  * @method     ChildInfiniaUser findOneOrCreate(ConnectionInterface $con = null) Return the first ChildInfiniaUser matching the query, or a new ChildInfiniaUser object populated from the query conditions when no match is found
@@ -290,6 +300,8 @@ abstract class InfiniaUserQuery extends ModelCriteria
      * </code>
      *
      * @see       filterByuserStatus()
+     *
+     * @see       filterByuserSession()
      *
      * @param     mixed $userId The value to use as filter.
      *              Use scalar values for equality.
@@ -582,6 +594,83 @@ abstract class InfiniaUserQuery extends ModelCriteria
         return $this
             ->joinuserStatus($relationAlias, $joinType)
             ->useQuery($relationAlias ? $relationAlias : 'userStatus', '\InfiniaHome\DB\UserStatusQuery');
+    }
+
+    /**
+     * Filter the query by a related \InfiniaHome\DB\Sessions object
+     *
+     * @param \InfiniaHome\DB\Sessions|ObjectCollection $sessions The related object(s) to use as filter
+     * @param string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @throws \Propel\Runtime\Exception\PropelException
+     *
+     * @return ChildInfiniaUserQuery The current query, for fluid interface
+     */
+    public function filterByuserSession($sessions, $comparison = null)
+    {
+        if ($sessions instanceof \InfiniaHome\DB\Sessions) {
+            return $this
+                ->addUsingAlias(InfiniaUserTableMap::COL_USER_ID, $sessions->getUserid(), $comparison);
+        } elseif ($sessions instanceof ObjectCollection) {
+            if (null === $comparison) {
+                $comparison = Criteria::IN;
+            }
+
+            return $this
+                ->addUsingAlias(InfiniaUserTableMap::COL_USER_ID, $sessions->toKeyValue('PrimaryKey', 'Userid'), $comparison);
+        } else {
+            throw new PropelException('filterByuserSession() only accepts arguments of type \InfiniaHome\DB\Sessions or Collection');
+        }
+    }
+
+    /**
+     * Adds a JOIN clause to the query using the userSession relation
+     *
+     * @param     string $relationAlias optional alias for the relation
+     * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+     *
+     * @return $this|ChildInfiniaUserQuery The current query, for fluid interface
+     */
+    public function joinuserSession($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+    {
+        $tableMap = $this->getTableMap();
+        $relationMap = $tableMap->getRelation('userSession');
+
+        // create a ModelJoin object for this join
+        $join = new ModelJoin();
+        $join->setJoinType($joinType);
+        $join->setRelationMap($relationMap, $this->useAliasInSQL ? $this->getModelAlias() : null, $relationAlias);
+        if ($previousJoin = $this->getPreviousJoin()) {
+            $join->setPreviousJoin($previousJoin);
+        }
+
+        // add the ModelJoin to the current object
+        if ($relationAlias) {
+            $this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
+            $this->addJoinObject($join, $relationAlias);
+        } else {
+            $this->addJoinObject($join, 'userSession');
+        }
+
+        return $this;
+    }
+
+    /**
+     * Use the userSession relation Sessions object
+     *
+     * @see useQuery()
+     *
+     * @param     string $relationAlias optional alias for the relation,
+     *                                   to be used as main alias in the secondary query
+     * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+     *
+     * @return \InfiniaHome\DB\SessionsQuery A secondary query class using the current class as primary query
+     */
+    public function useuserSessionQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+    {
+        return $this
+            ->joinuserSession($relationAlias, $joinType)
+            ->useQuery($relationAlias ? $relationAlias : 'userSession', '\InfiniaHome\DB\SessionsQuery');
     }
 
     /**

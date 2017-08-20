@@ -10,9 +10,12 @@ namespace InfiniaHome\User;
 
 use InfiniaHome\DB\InfiniaUser;
 use InfiniaHome\DB\InfiniaUserQuery;
+use InfiniaHome\DB\Sessions;
+use InfiniaHome\DB\SessionsQuery;
 use InfiniaHome\DB\UserStatus;
 
 
+use InfiniaHome\DB\UserStatusQuery;
 use Propel\Runtime\Exception\PropelException;
 
 
@@ -33,7 +36,7 @@ class User {
     protected $orm_db;
 
     private $email_regex;
-
+    private $url_regex;
 
     /**
      * User constructor
@@ -52,6 +55,7 @@ class User {
 [0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))(?:\.(?:(?:25[0-5])|(?:2[0-4][0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))){3}))\]))$/iD
 
 INF;
+        $this->url_regex = '/^(?:https?:\/\/)?(?:[^@\/\n]+@)?(?:www\.)?([^:\/\n]+)/';
 
     }
 
@@ -70,6 +74,7 @@ INF;
      * @param $email string Email
      * @param $fullname string Full name
      * @param $code string HMAC SHA256 Hashed code of the parameters passed to this function
+     * @param $rank string User rank.
      * @return boolean
      */
     public function register_user($username, $password, $email, $fullname, $code, $rank = "Normal") {
@@ -82,6 +87,13 @@ INF;
         }
 
         try {
+            if (InfiniaUserQuery::create()->filterByUserName($username)->findOne()) {
+                exit("There is a user by that username. Try again with a different username.");
+
+            } else if (InfiniaUserQuery::create()->filterByUserEmail($email)->findOne()) {
+                exit("There is a user by that email. Try again with a different email.");
+            }
+
             $this->hashed_pw = password_hash($password, PASSWORD_DEFAULT);
             $this->orm_db->setUserName($username);
             $this->orm_db->setUserEmail($email);
@@ -118,15 +130,55 @@ INF;
      * @param $password string Unhashed password
      * @param $hashkey string Hash key for hashing (Secret key for each application)
      */
-    public function login_user($username_email, $password, $hashkey) {
+    public function login_user($username_email, $password, $hashkey, $origin) {
         try {
             $user = InfiniaUserQuery::create()
                 ->filterByUserName($username_email)
                 ->_or()
                 ->filterByUserEmail($username_email)
                 ->findOne();
-            if ($user == null) {
+            if ($user) {
+                $upw = $user->getUserPassword();
+                $uid = $user->getUserId();
+                if (password_verify($password, $upw)) {
+                    $uss = UserStatusQuery::create()->findOneByUserid($uid);
+                    if ($uss->getStatus() == "Registered") {
+                        $usr_sess = new Sessions();
+                        $cmbn = $this->orm_db->getUserRealname().$this->orm_db->getUserName();
+                        $hsh = hash_hmac("sha256", $cmbn, $hashkey);
+                        $usr_sess->setSessionToken($hsh);
+                        $this->orm_db->setuserSession($usr_sess);
+                        $lel = Array();
+                        preg_match($this->url_regex, $origin, $lel);
+                        if ($lel[0] = "infinia.press") {
+                            //TODO: REMOVE HARDCODING AND USE A CONFIG FILE FOR GOD'S SAKE
+                            $this->redirect("https://infinia.press/infinia");
+                        } else {
+                            $getParams = Array(
+                                'username' => $user->getUserName(),
+                                'realName' => $user->getUserRealname(),
+                                'email' => $user->getUserEmail(),
+                                'signature' => $hsh
+                            );
+                            $this->redirect($lel[0]."?".http_build_query($getParams));
+                        }
+                    } else if ($uss->getStatus() == "Unregistered") {
+                        exit("You have not verified your email. Please verify your email and try again! DOH!!!");
+                    } else if ($uss->getStatus() == "Banned"){
 
+                        if($uss->getBannedForever()) {
+                            exit("You are banned from this service forever! 
+                        Please take you and your trolly ways somewhere else.");
+                        } else if (!$uss->getBannedForever()) {
+                            exit("You are banned from this service for: " . $uss->getBannedtime() .
+                               ". Behave yourself better and maybe you'll get unbanned sooner.
+                            Unless your name is Mun Hin, that is.");
+                        }
+
+                    }
+                } else {
+                    exit("The password you entered is incorrect! DOH!!!");
+                }
             }
         } catch (PropelException $pe) {
 
@@ -138,6 +190,14 @@ INF;
      */
     public function getUserId() {
         return $this->user_id;
+    }
+
+    public function isLoggedIn() {
+        if (SessionsQuery::create()->findOneByUserid($this->user_id)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }

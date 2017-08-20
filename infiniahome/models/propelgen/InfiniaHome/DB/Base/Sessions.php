@@ -4,12 +4,10 @@ namespace InfiniaHome\DB\Base;
 
 use \Exception;
 use \PDO;
+use InfiniaHome\DB\InfiniaUser as ChildInfiniaUser;
 use InfiniaHome\DB\InfiniaUserQuery as ChildInfiniaUserQuery;
-use InfiniaHome\DB\Sessions as ChildSessions;
 use InfiniaHome\DB\SessionsQuery as ChildSessionsQuery;
-use InfiniaHome\DB\UserStatus as ChildUserStatus;
-use InfiniaHome\DB\UserStatusQuery as ChildUserStatusQuery;
-use InfiniaHome\DB\Map\InfiniaUserTableMap;
+use InfiniaHome\DB\Map\SessionsTableMap;
 use Propel\Runtime\Propel;
 use Propel\Runtime\ActiveQuery\Criteria;
 use Propel\Runtime\ActiveQuery\ModelCriteria;
@@ -23,18 +21,18 @@ use Propel\Runtime\Map\TableMap;
 use Propel\Runtime\Parser\AbstractParser;
 
 /**
- * Base class that represents a row from the 'infiniausers' table.
+ * Base class that represents a row from the 'infiniasessions' table.
  *
  *
  *
  * @package    propel.generator.InfiniaHome.DB.Base
  */
-abstract class InfiniaUser implements ActiveRecordInterface
+abstract class Sessions implements ActiveRecordInterface
 {
     /**
      * TableMap class name
      */
-    const TABLE_MAP = '\\InfiniaHome\\DB\\Map\\InfiniaUserTableMap';
+    const TABLE_MAP = '\\InfiniaHome\\DB\\Map\\SessionsTableMap';
 
 
     /**
@@ -64,71 +62,23 @@ abstract class InfiniaUser implements ActiveRecordInterface
     protected $virtualColumns = array();
 
     /**
-     * The value for the user_id field.
+     * The value for the userid field.
      *
      * @var        int
      */
-    protected $user_id;
+    protected $userid;
 
     /**
-     * The value for the user_name field.
+     * The value for the session_token field.
      *
      * @var        string
      */
-    protected $user_name;
+    protected $session_token;
 
     /**
-     * The value for the user_realname field.
-     *
-     * @var        string
+     * @var        ChildInfiniaUser one-to-one related ChildInfiniaUser object
      */
-    protected $user_realname;
-
-    /**
-     * The value for the user_code field.
-     *
-     * @var        string
-     */
-    protected $user_code;
-
-    /**
-     * The value for the user_email field.
-     *
-     * @var        string
-     */
-    protected $user_email;
-
-    /**
-     * The value for the user_password field.
-     *
-     * @var        string
-     */
-    protected $user_password;
-
-    /**
-     * The value for the user_isverified field.
-     *
-     * Note: this column has a database default value of: false
-     * @var        boolean
-     */
-    protected $user_isverified;
-
-    /**
-     * The value for the user_rank field.
-     *
-     * @var        int
-     */
-    protected $user_rank;
-
-    /**
-     * @var        ChildUserStatus
-     */
-    protected $auserStatus;
-
-    /**
-     * @var        ChildSessions
-     */
-    protected $auserSession;
+    protected $singleInfiniaUser;
 
     /**
      * Flag to prevent endless save loop, if this object is referenced
@@ -139,23 +89,10 @@ abstract class InfiniaUser implements ActiveRecordInterface
     protected $alreadyInSave = false;
 
     /**
-     * Applies default values to this object.
-     * This method should be called from the object's constructor (or
-     * equivalent initialization method).
-     * @see __construct()
-     */
-    public function applyDefaultValues()
-    {
-        $this->user_isverified = false;
-    }
-
-    /**
-     * Initializes internal state of InfiniaHome\DB\Base\InfiniaUser object.
-     * @see applyDefaults()
+     * Initializes internal state of InfiniaHome\DB\Base\Sessions object.
      */
     public function __construct()
     {
-        $this->applyDefaultValues();
     }
 
     /**
@@ -247,9 +184,9 @@ abstract class InfiniaUser implements ActiveRecordInterface
     }
 
     /**
-     * Compares this with another <code>InfiniaUser</code> instance.  If
-     * <code>obj</code> is an instance of <code>InfiniaUser</code>, delegates to
-     * <code>equals(InfiniaUser)</code>.  Otherwise, returns <code>false</code>.
+     * Compares this with another <code>Sessions</code> instance.  If
+     * <code>obj</code> is an instance of <code>Sessions</code>, delegates to
+     * <code>equals(Sessions)</code>.  Otherwise, returns <code>false</code>.
      *
      * @param  mixed   $obj The object to compare to.
      * @return boolean Whether equal to the object specified.
@@ -315,7 +252,7 @@ abstract class InfiniaUser implements ActiveRecordInterface
      * @param string $name  The virtual column name
      * @param mixed  $value The value to give to the virtual column
      *
-     * @return $this|InfiniaUser The current object, for fluid interface
+     * @return $this|Sessions The current object, for fluid interface
      */
     public function setVirtualColumn($name, $value)
     {
@@ -377,284 +314,64 @@ abstract class InfiniaUser implements ActiveRecordInterface
     }
 
     /**
-     * Get the [user_id] column value.
+     * Get the [userid] column value.
      *
      * @return int
      */
-    public function getUserId()
+    public function getUserid()
     {
-        return $this->user_id;
+        return $this->userid;
     }
 
     /**
-     * Get the [user_name] column value.
+     * Get the [session_token] column value.
      *
      * @return string
      */
-    public function getUserName()
+    public function getSessionToken()
     {
-        return $this->user_name;
+        return $this->session_token;
     }
 
     /**
-     * Get the [user_realname] column value.
-     *
-     * @return string
-     */
-    public function getUserRealname()
-    {
-        return $this->user_realname;
-    }
-
-    /**
-     * Get the [user_code] column value.
-     *
-     * @return string
-     */
-    public function getUserCode()
-    {
-        return $this->user_code;
-    }
-
-    /**
-     * Get the [user_email] column value.
-     *
-     * @return string
-     */
-    public function getUserEmail()
-    {
-        return $this->user_email;
-    }
-
-    /**
-     * Get the [user_password] column value.
-     *
-     * @return string
-     */
-    public function getUserPassword()
-    {
-        return $this->user_password;
-    }
-
-    /**
-     * Get the [user_isverified] column value.
-     *
-     * @return boolean
-     */
-    public function getUserIsverified()
-    {
-        return $this->user_isverified;
-    }
-
-    /**
-     * Get the [user_isverified] column value.
-     *
-     * @return boolean
-     */
-    public function isUserIsverified()
-    {
-        return $this->getUserIsverified();
-    }
-
-    /**
-     * Get the [user_rank] column value.
-     *
-     * @return string
-     * @throws \Propel\Runtime\Exception\PropelException
-     */
-    public function getUserRank()
-    {
-        if (null === $this->user_rank) {
-            return null;
-        }
-        $valueSet = InfiniaUserTableMap::getValueSet(InfiniaUserTableMap::COL_USER_RANK);
-        if (!isset($valueSet[$this->user_rank])) {
-            throw new PropelException('Unknown stored enum key: ' . $this->user_rank);
-        }
-
-        return $valueSet[$this->user_rank];
-    }
-
-    /**
-     * Set the value of [user_id] column.
+     * Set the value of [userid] column.
      *
      * @param int $v new value
-     * @return $this|\InfiniaHome\DB\InfiniaUser The current object (for fluent API support)
+     * @return $this|\InfiniaHome\DB\Sessions The current object (for fluent API support)
      */
-    public function setUserId($v)
+    public function setUserid($v)
     {
         if ($v !== null) {
             $v = (int) $v;
         }
 
-        if ($this->user_id !== $v) {
-            $this->user_id = $v;
-            $this->modifiedColumns[InfiniaUserTableMap::COL_USER_ID] = true;
-        }
-
-        if ($this->auserStatus !== null && $this->auserStatus->getUserid() !== $v) {
-            $this->auserStatus = null;
-        }
-
-        if ($this->auserSession !== null && $this->auserSession->getUserid() !== $v) {
-            $this->auserSession = null;
+        if ($this->userid !== $v) {
+            $this->userid = $v;
+            $this->modifiedColumns[SessionsTableMap::COL_USERID] = true;
         }
 
         return $this;
-    } // setUserId()
+    } // setUserid()
 
     /**
-     * Set the value of [user_name] column.
+     * Set the value of [session_token] column.
      *
      * @param string $v new value
-     * @return $this|\InfiniaHome\DB\InfiniaUser The current object (for fluent API support)
+     * @return $this|\InfiniaHome\DB\Sessions The current object (for fluent API support)
      */
-    public function setUserName($v)
+    public function setSessionToken($v)
     {
         if ($v !== null) {
             $v = (string) $v;
         }
 
-        if ($this->user_name !== $v) {
-            $this->user_name = $v;
-            $this->modifiedColumns[InfiniaUserTableMap::COL_USER_NAME] = true;
+        if ($this->session_token !== $v) {
+            $this->session_token = $v;
+            $this->modifiedColumns[SessionsTableMap::COL_SESSION_TOKEN] = true;
         }
 
         return $this;
-    } // setUserName()
-
-    /**
-     * Set the value of [user_realname] column.
-     *
-     * @param string $v new value
-     * @return $this|\InfiniaHome\DB\InfiniaUser The current object (for fluent API support)
-     */
-    public function setUserRealname($v)
-    {
-        if ($v !== null) {
-            $v = (string) $v;
-        }
-
-        if ($this->user_realname !== $v) {
-            $this->user_realname = $v;
-            $this->modifiedColumns[InfiniaUserTableMap::COL_USER_REALNAME] = true;
-        }
-
-        return $this;
-    } // setUserRealname()
-
-    /**
-     * Set the value of [user_code] column.
-     *
-     * @param string $v new value
-     * @return $this|\InfiniaHome\DB\InfiniaUser The current object (for fluent API support)
-     */
-    public function setUserCode($v)
-    {
-        if ($v !== null) {
-            $v = (string) $v;
-        }
-
-        if ($this->user_code !== $v) {
-            $this->user_code = $v;
-            $this->modifiedColumns[InfiniaUserTableMap::COL_USER_CODE] = true;
-        }
-
-        return $this;
-    } // setUserCode()
-
-    /**
-     * Set the value of [user_email] column.
-     *
-     * @param string $v new value
-     * @return $this|\InfiniaHome\DB\InfiniaUser The current object (for fluent API support)
-     */
-    public function setUserEmail($v)
-    {
-        if ($v !== null) {
-            $v = (string) $v;
-        }
-
-        if ($this->user_email !== $v) {
-            $this->user_email = $v;
-            $this->modifiedColumns[InfiniaUserTableMap::COL_USER_EMAIL] = true;
-        }
-
-        return $this;
-    } // setUserEmail()
-
-    /**
-     * Set the value of [user_password] column.
-     *
-     * @param string $v new value
-     * @return $this|\InfiniaHome\DB\InfiniaUser The current object (for fluent API support)
-     */
-    public function setUserPassword($v)
-    {
-        if ($v !== null) {
-            $v = (string) $v;
-        }
-
-        if ($this->user_password !== $v) {
-            $this->user_password = $v;
-            $this->modifiedColumns[InfiniaUserTableMap::COL_USER_PASSWORD] = true;
-        }
-
-        return $this;
-    } // setUserPassword()
-
-    /**
-     * Sets the value of the [user_isverified] column.
-     * Non-boolean arguments are converted using the following rules:
-     *   * 1, '1', 'true',  'on',  and 'yes' are converted to boolean true
-     *   * 0, '0', 'false', 'off', and 'no'  are converted to boolean false
-     * Check on string values is case insensitive (so 'FaLsE' is seen as 'false').
-     *
-     * @param  boolean|integer|string $v The new value
-     * @return $this|\InfiniaHome\DB\InfiniaUser The current object (for fluent API support)
-     */
-    public function setUserIsverified($v)
-    {
-        if ($v !== null) {
-            if (is_string($v)) {
-                $v = in_array(strtolower($v), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
-            } else {
-                $v = (boolean) $v;
-            }
-        }
-
-        if ($this->user_isverified !== $v) {
-            $this->user_isverified = $v;
-            $this->modifiedColumns[InfiniaUserTableMap::COL_USER_ISVERIFIED] = true;
-        }
-
-        return $this;
-    } // setUserIsverified()
-
-    /**
-     * Set the value of [user_rank] column.
-     *
-     * @param  string $v new value
-     * @return $this|\InfiniaHome\DB\InfiniaUser The current object (for fluent API support)
-     * @throws \Propel\Runtime\Exception\PropelException
-     */
-    public function setUserRank($v)
-    {
-        if ($v !== null) {
-            $valueSet = InfiniaUserTableMap::getValueSet(InfiniaUserTableMap::COL_USER_RANK);
-            if (!in_array($v, $valueSet)) {
-                throw new PropelException(sprintf('Value "%s" is not accepted in this enumerated column', $v));
-            }
-            $v = array_search($v, $valueSet);
-        }
-
-        if ($this->user_rank !== $v) {
-            $this->user_rank = $v;
-            $this->modifiedColumns[InfiniaUserTableMap::COL_USER_RANK] = true;
-        }
-
-        return $this;
-    } // setUserRank()
+    } // setSessionToken()
 
     /**
      * Indicates whether the columns in this object are only set to default values.
@@ -666,10 +383,6 @@ abstract class InfiniaUser implements ActiveRecordInterface
      */
     public function hasOnlyDefaultValues()
     {
-            if ($this->user_isverified !== false) {
-                return false;
-            }
-
         // otherwise, everything was equal, so return TRUE
         return true;
     } // hasOnlyDefaultValues()
@@ -696,29 +409,11 @@ abstract class InfiniaUser implements ActiveRecordInterface
     {
         try {
 
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 0 + $startcol : InfiniaUserTableMap::translateFieldName('UserId', TableMap::TYPE_PHPNAME, $indexType)];
-            $this->user_id = (null !== $col) ? (int) $col : null;
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 0 + $startcol : SessionsTableMap::translateFieldName('Userid', TableMap::TYPE_PHPNAME, $indexType)];
+            $this->userid = (null !== $col) ? (int) $col : null;
 
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 1 + $startcol : InfiniaUserTableMap::translateFieldName('UserName', TableMap::TYPE_PHPNAME, $indexType)];
-            $this->user_name = (null !== $col) ? (string) $col : null;
-
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 2 + $startcol : InfiniaUserTableMap::translateFieldName('UserRealname', TableMap::TYPE_PHPNAME, $indexType)];
-            $this->user_realname = (null !== $col) ? (string) $col : null;
-
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 3 + $startcol : InfiniaUserTableMap::translateFieldName('UserCode', TableMap::TYPE_PHPNAME, $indexType)];
-            $this->user_code = (null !== $col) ? (string) $col : null;
-
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 4 + $startcol : InfiniaUserTableMap::translateFieldName('UserEmail', TableMap::TYPE_PHPNAME, $indexType)];
-            $this->user_email = (null !== $col) ? (string) $col : null;
-
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 5 + $startcol : InfiniaUserTableMap::translateFieldName('UserPassword', TableMap::TYPE_PHPNAME, $indexType)];
-            $this->user_password = (null !== $col) ? (string) $col : null;
-
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 6 + $startcol : InfiniaUserTableMap::translateFieldName('UserIsverified', TableMap::TYPE_PHPNAME, $indexType)];
-            $this->user_isverified = (null !== $col) ? (boolean) $col : null;
-
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 7 + $startcol : InfiniaUserTableMap::translateFieldName('UserRank', TableMap::TYPE_PHPNAME, $indexType)];
-            $this->user_rank = (null !== $col) ? (int) $col : null;
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 1 + $startcol : SessionsTableMap::translateFieldName('SessionToken', TableMap::TYPE_PHPNAME, $indexType)];
+            $this->session_token = (null !== $col) ? (string) $col : null;
             $this->resetModified();
 
             $this->setNew(false);
@@ -727,10 +422,10 @@ abstract class InfiniaUser implements ActiveRecordInterface
                 $this->ensureConsistency();
             }
 
-            return $startcol + 8; // 8 = InfiniaUserTableMap::NUM_HYDRATE_COLUMNS.
+            return $startcol + 2; // 2 = SessionsTableMap::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
-            throw new PropelException(sprintf('Error populating %s object', '\\InfiniaHome\\DB\\InfiniaUser'), 0, $e);
+            throw new PropelException(sprintf('Error populating %s object', '\\InfiniaHome\\DB\\Sessions'), 0, $e);
         }
     }
 
@@ -749,12 +444,6 @@ abstract class InfiniaUser implements ActiveRecordInterface
      */
     public function ensureConsistency()
     {
-        if ($this->auserStatus !== null && $this->user_id !== $this->auserStatus->getUserid()) {
-            $this->auserStatus = null;
-        }
-        if ($this->auserSession !== null && $this->user_id !== $this->auserSession->getUserid()) {
-            $this->auserSession = null;
-        }
     } // ensureConsistency
 
     /**
@@ -778,13 +467,13 @@ abstract class InfiniaUser implements ActiveRecordInterface
         }
 
         if ($con === null) {
-            $con = Propel::getServiceContainer()->getReadConnection(InfiniaUserTableMap::DATABASE_NAME);
+            $con = Propel::getServiceContainer()->getReadConnection(SessionsTableMap::DATABASE_NAME);
         }
 
         // We don't need to alter the object instance pool; we're just modifying this instance
         // already in the pool.
 
-        $dataFetcher = ChildInfiniaUserQuery::create(null, $this->buildPkeyCriteria())->setFormatter(ModelCriteria::FORMAT_STATEMENT)->find($con);
+        $dataFetcher = ChildSessionsQuery::create(null, $this->buildPkeyCriteria())->setFormatter(ModelCriteria::FORMAT_STATEMENT)->find($con);
         $row = $dataFetcher->fetch();
         $dataFetcher->close();
         if (!$row) {
@@ -794,8 +483,8 @@ abstract class InfiniaUser implements ActiveRecordInterface
 
         if ($deep) {  // also de-associate any related objects?
 
-            $this->auserStatus = null;
-            $this->auserSession = null;
+            $this->singleInfiniaUser = null;
+
         } // if (deep)
     }
 
@@ -805,8 +494,8 @@ abstract class InfiniaUser implements ActiveRecordInterface
      * @param      ConnectionInterface $con
      * @return void
      * @throws PropelException
-     * @see InfiniaUser::setDeleted()
-     * @see InfiniaUser::isDeleted()
+     * @see Sessions::setDeleted()
+     * @see Sessions::isDeleted()
      */
     public function delete(ConnectionInterface $con = null)
     {
@@ -815,11 +504,11 @@ abstract class InfiniaUser implements ActiveRecordInterface
         }
 
         if ($con === null) {
-            $con = Propel::getServiceContainer()->getWriteConnection(InfiniaUserTableMap::DATABASE_NAME);
+            $con = Propel::getServiceContainer()->getWriteConnection(SessionsTableMap::DATABASE_NAME);
         }
 
         $con->transaction(function () use ($con) {
-            $deleteQuery = ChildInfiniaUserQuery::create()
+            $deleteQuery = ChildSessionsQuery::create()
                 ->filterByPrimaryKey($this->getPrimaryKey());
             $ret = $this->preDelete($con);
             if ($ret) {
@@ -854,7 +543,7 @@ abstract class InfiniaUser implements ActiveRecordInterface
         }
 
         if ($con === null) {
-            $con = Propel::getServiceContainer()->getWriteConnection(InfiniaUserTableMap::DATABASE_NAME);
+            $con = Propel::getServiceContainer()->getWriteConnection(SessionsTableMap::DATABASE_NAME);
         }
 
         return $con->transaction(function () use ($con) {
@@ -873,7 +562,7 @@ abstract class InfiniaUser implements ActiveRecordInterface
                     $this->postUpdate($con);
                 }
                 $this->postSave($con);
-                InfiniaUserTableMap::addInstanceToPool($this);
+                SessionsTableMap::addInstanceToPool($this);
             } else {
                 $affectedRows = 0;
             }
@@ -899,25 +588,6 @@ abstract class InfiniaUser implements ActiveRecordInterface
         if (!$this->alreadyInSave) {
             $this->alreadyInSave = true;
 
-            // We call the save method on the following object(s) if they
-            // were passed to this object by their corresponding set
-            // method.  This object relates to these object(s) by a
-            // foreign key reference.
-
-            if ($this->auserStatus !== null) {
-                if ($this->auserStatus->isModified() || $this->auserStatus->isNew()) {
-                    $affectedRows += $this->auserStatus->save($con);
-                }
-                $this->setuserStatus($this->auserStatus);
-            }
-
-            if ($this->auserSession !== null) {
-                if ($this->auserSession->isModified() || $this->auserSession->isNew()) {
-                    $affectedRows += $this->auserSession->save($con);
-                }
-                $this->setuserSession($this->auserSession);
-            }
-
             if ($this->isNew() || $this->isModified()) {
                 // persist changes
                 if ($this->isNew()) {
@@ -927,6 +597,12 @@ abstract class InfiniaUser implements ActiveRecordInterface
                     $affectedRows += $this->doUpdate($con);
                 }
                 $this->resetModified();
+            }
+
+            if ($this->singleInfiniaUser !== null) {
+                if (!$this->singleInfiniaUser->isDeleted() && ($this->singleInfiniaUser->isNew() || $this->singleInfiniaUser->isModified())) {
+                    $affectedRows += $this->singleInfiniaUser->save($con);
+                }
             }
 
             $this->alreadyInSave = false;
@@ -949,39 +625,21 @@ abstract class InfiniaUser implements ActiveRecordInterface
         $modifiedColumns = array();
         $index = 0;
 
-        $this->modifiedColumns[InfiniaUserTableMap::COL_USER_ID] = true;
-        if (null !== $this->user_id) {
-            throw new PropelException('Cannot insert a value for auto-increment primary key (' . InfiniaUserTableMap::COL_USER_ID . ')');
+        $this->modifiedColumns[SessionsTableMap::COL_USERID] = true;
+        if (null !== $this->userid) {
+            throw new PropelException('Cannot insert a value for auto-increment primary key (' . SessionsTableMap::COL_USERID . ')');
         }
 
          // check the columns in natural order for more readable SQL queries
-        if ($this->isColumnModified(InfiniaUserTableMap::COL_USER_ID)) {
-            $modifiedColumns[':p' . $index++]  = 'user_id';
+        if ($this->isColumnModified(SessionsTableMap::COL_USERID)) {
+            $modifiedColumns[':p' . $index++]  = 'userid';
         }
-        if ($this->isColumnModified(InfiniaUserTableMap::COL_USER_NAME)) {
-            $modifiedColumns[':p' . $index++]  = 'user_name';
-        }
-        if ($this->isColumnModified(InfiniaUserTableMap::COL_USER_REALNAME)) {
-            $modifiedColumns[':p' . $index++]  = 'user_realname';
-        }
-        if ($this->isColumnModified(InfiniaUserTableMap::COL_USER_CODE)) {
-            $modifiedColumns[':p' . $index++]  = 'user_code';
-        }
-        if ($this->isColumnModified(InfiniaUserTableMap::COL_USER_EMAIL)) {
-            $modifiedColumns[':p' . $index++]  = 'user_email';
-        }
-        if ($this->isColumnModified(InfiniaUserTableMap::COL_USER_PASSWORD)) {
-            $modifiedColumns[':p' . $index++]  = 'user_password';
-        }
-        if ($this->isColumnModified(InfiniaUserTableMap::COL_USER_ISVERIFIED)) {
-            $modifiedColumns[':p' . $index++]  = 'user_isverified';
-        }
-        if ($this->isColumnModified(InfiniaUserTableMap::COL_USER_RANK)) {
-            $modifiedColumns[':p' . $index++]  = 'user_rank';
+        if ($this->isColumnModified(SessionsTableMap::COL_SESSION_TOKEN)) {
+            $modifiedColumns[':p' . $index++]  = 'session_token';
         }
 
         $sql = sprintf(
-            'INSERT INTO infiniausers (%s) VALUES (%s)',
+            'INSERT INTO infiniasessions (%s) VALUES (%s)',
             implode(', ', $modifiedColumns),
             implode(', ', array_keys($modifiedColumns))
         );
@@ -990,29 +648,11 @@ abstract class InfiniaUser implements ActiveRecordInterface
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case 'user_id':
-                        $stmt->bindValue($identifier, $this->user_id, PDO::PARAM_INT);
+                    case 'userid':
+                        $stmt->bindValue($identifier, $this->userid, PDO::PARAM_INT);
                         break;
-                    case 'user_name':
-                        $stmt->bindValue($identifier, $this->user_name, PDO::PARAM_STR);
-                        break;
-                    case 'user_realname':
-                        $stmt->bindValue($identifier, $this->user_realname, PDO::PARAM_STR);
-                        break;
-                    case 'user_code':
-                        $stmt->bindValue($identifier, $this->user_code, PDO::PARAM_STR);
-                        break;
-                    case 'user_email':
-                        $stmt->bindValue($identifier, $this->user_email, PDO::PARAM_STR);
-                        break;
-                    case 'user_password':
-                        $stmt->bindValue($identifier, $this->user_password, PDO::PARAM_STR);
-                        break;
-                    case 'user_isverified':
-                        $stmt->bindValue($identifier, (int) $this->user_isverified, PDO::PARAM_INT);
-                        break;
-                    case 'user_rank':
-                        $stmt->bindValue($identifier, $this->user_rank, PDO::PARAM_INT);
+                    case 'session_token':
+                        $stmt->bindValue($identifier, $this->session_token, PDO::PARAM_STR);
                         break;
                 }
             }
@@ -1027,7 +667,7 @@ abstract class InfiniaUser implements ActiveRecordInterface
         } catch (Exception $e) {
             throw new PropelException('Unable to get autoincrement id.', 0, $e);
         }
-        $this->setUserId($pk);
+        $this->setUserid($pk);
 
         $this->setNew(false);
     }
@@ -1060,7 +700,7 @@ abstract class InfiniaUser implements ActiveRecordInterface
      */
     public function getByName($name, $type = TableMap::TYPE_PHPNAME)
     {
-        $pos = InfiniaUserTableMap::translateFieldName($name, $type, TableMap::TYPE_NUM);
+        $pos = SessionsTableMap::translateFieldName($name, $type, TableMap::TYPE_NUM);
         $field = $this->getByPosition($pos);
 
         return $field;
@@ -1077,28 +717,10 @@ abstract class InfiniaUser implements ActiveRecordInterface
     {
         switch ($pos) {
             case 0:
-                return $this->getUserId();
+                return $this->getUserid();
                 break;
             case 1:
-                return $this->getUserName();
-                break;
-            case 2:
-                return $this->getUserRealname();
-                break;
-            case 3:
-                return $this->getUserCode();
-                break;
-            case 4:
-                return $this->getUserEmail();
-                break;
-            case 5:
-                return $this->getUserPassword();
-                break;
-            case 6:
-                return $this->getUserIsverified();
-                break;
-            case 7:
-                return $this->getUserRank();
+                return $this->getSessionToken();
                 break;
             default:
                 return null;
@@ -1124,20 +746,14 @@ abstract class InfiniaUser implements ActiveRecordInterface
     public function toArray($keyType = TableMap::TYPE_PHPNAME, $includeLazyLoadColumns = true, $alreadyDumpedObjects = array(), $includeForeignObjects = false)
     {
 
-        if (isset($alreadyDumpedObjects['InfiniaUser'][$this->hashCode()])) {
+        if (isset($alreadyDumpedObjects['Sessions'][$this->hashCode()])) {
             return '*RECURSION*';
         }
-        $alreadyDumpedObjects['InfiniaUser'][$this->hashCode()] = true;
-        $keys = InfiniaUserTableMap::getFieldNames($keyType);
+        $alreadyDumpedObjects['Sessions'][$this->hashCode()] = true;
+        $keys = SessionsTableMap::getFieldNames($keyType);
         $result = array(
-            $keys[0] => $this->getUserId(),
-            $keys[1] => $this->getUserName(),
-            $keys[2] => $this->getUserRealname(),
-            $keys[3] => $this->getUserCode(),
-            $keys[4] => $this->getUserEmail(),
-            $keys[5] => $this->getUserPassword(),
-            $keys[6] => $this->getUserIsverified(),
-            $keys[7] => $this->getUserRank(),
+            $keys[0] => $this->getUserid(),
+            $keys[1] => $this->getSessionToken(),
         );
         $virtualColumns = $this->virtualColumns;
         foreach ($virtualColumns as $key => $virtualColumn) {
@@ -1145,35 +761,20 @@ abstract class InfiniaUser implements ActiveRecordInterface
         }
 
         if ($includeForeignObjects) {
-            if (null !== $this->auserStatus) {
+            if (null !== $this->singleInfiniaUser) {
 
                 switch ($keyType) {
                     case TableMap::TYPE_CAMELNAME:
-                        $key = 'userStatus';
+                        $key = 'infiniaUser';
                         break;
                     case TableMap::TYPE_FIELDNAME:
-                        $key = 'infiniauser_status';
+                        $key = 'infiniausers';
                         break;
                     default:
-                        $key = 'userStatus';
+                        $key = 'InfiniaUser';
                 }
 
-                $result[$key] = $this->auserStatus->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
-            }
-            if (null !== $this->auserSession) {
-
-                switch ($keyType) {
-                    case TableMap::TYPE_CAMELNAME:
-                        $key = 'sessions';
-                        break;
-                    case TableMap::TYPE_FIELDNAME:
-                        $key = 'infiniasessions';
-                        break;
-                    default:
-                        $key = 'userSession';
-                }
-
-                $result[$key] = $this->auserSession->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
+                $result[$key] = $this->singleInfiniaUser->toArray($keyType, $includeLazyLoadColumns, $alreadyDumpedObjects, true);
             }
         }
 
@@ -1189,11 +790,11 @@ abstract class InfiniaUser implements ActiveRecordInterface
      *                one of the class type constants TableMap::TYPE_PHPNAME, TableMap::TYPE_CAMELNAME
      *                TableMap::TYPE_COLNAME, TableMap::TYPE_FIELDNAME, TableMap::TYPE_NUM.
      *                Defaults to TableMap::TYPE_PHPNAME.
-     * @return $this|\InfiniaHome\DB\InfiniaUser
+     * @return $this|\InfiniaHome\DB\Sessions
      */
     public function setByName($name, $value, $type = TableMap::TYPE_PHPNAME)
     {
-        $pos = InfiniaUserTableMap::translateFieldName($name, $type, TableMap::TYPE_NUM);
+        $pos = SessionsTableMap::translateFieldName($name, $type, TableMap::TYPE_NUM);
 
         return $this->setByPosition($pos, $value);
     }
@@ -1204,38 +805,16 @@ abstract class InfiniaUser implements ActiveRecordInterface
      *
      * @param  int $pos position in xml schema
      * @param  mixed $value field value
-     * @return $this|\InfiniaHome\DB\InfiniaUser
+     * @return $this|\InfiniaHome\DB\Sessions
      */
     public function setByPosition($pos, $value)
     {
         switch ($pos) {
             case 0:
-                $this->setUserId($value);
+                $this->setUserid($value);
                 break;
             case 1:
-                $this->setUserName($value);
-                break;
-            case 2:
-                $this->setUserRealname($value);
-                break;
-            case 3:
-                $this->setUserCode($value);
-                break;
-            case 4:
-                $this->setUserEmail($value);
-                break;
-            case 5:
-                $this->setUserPassword($value);
-                break;
-            case 6:
-                $this->setUserIsverified($value);
-                break;
-            case 7:
-                $valueSet = InfiniaUserTableMap::getValueSet(InfiniaUserTableMap::COL_USER_RANK);
-                if (isset($valueSet[$value])) {
-                    $value = $valueSet[$value];
-                }
-                $this->setUserRank($value);
+                $this->setSessionToken($value);
                 break;
         } // switch()
 
@@ -1261,31 +840,13 @@ abstract class InfiniaUser implements ActiveRecordInterface
      */
     public function fromArray($arr, $keyType = TableMap::TYPE_PHPNAME)
     {
-        $keys = InfiniaUserTableMap::getFieldNames($keyType);
+        $keys = SessionsTableMap::getFieldNames($keyType);
 
         if (array_key_exists($keys[0], $arr)) {
-            $this->setUserId($arr[$keys[0]]);
+            $this->setUserid($arr[$keys[0]]);
         }
         if (array_key_exists($keys[1], $arr)) {
-            $this->setUserName($arr[$keys[1]]);
-        }
-        if (array_key_exists($keys[2], $arr)) {
-            $this->setUserRealname($arr[$keys[2]]);
-        }
-        if (array_key_exists($keys[3], $arr)) {
-            $this->setUserCode($arr[$keys[3]]);
-        }
-        if (array_key_exists($keys[4], $arr)) {
-            $this->setUserEmail($arr[$keys[4]]);
-        }
-        if (array_key_exists($keys[5], $arr)) {
-            $this->setUserPassword($arr[$keys[5]]);
-        }
-        if (array_key_exists($keys[6], $arr)) {
-            $this->setUserIsverified($arr[$keys[6]]);
-        }
-        if (array_key_exists($keys[7], $arr)) {
-            $this->setUserRank($arr[$keys[7]]);
+            $this->setSessionToken($arr[$keys[1]]);
         }
     }
 
@@ -1306,7 +867,7 @@ abstract class InfiniaUser implements ActiveRecordInterface
      * @param string $data The source data to import from
      * @param string $keyType The type of keys the array uses.
      *
-     * @return $this|\InfiniaHome\DB\InfiniaUser The current object, for fluid interface
+     * @return $this|\InfiniaHome\DB\Sessions The current object, for fluid interface
      */
     public function importFrom($parser, $data, $keyType = TableMap::TYPE_PHPNAME)
     {
@@ -1326,31 +887,13 @@ abstract class InfiniaUser implements ActiveRecordInterface
      */
     public function buildCriteria()
     {
-        $criteria = new Criteria(InfiniaUserTableMap::DATABASE_NAME);
+        $criteria = new Criteria(SessionsTableMap::DATABASE_NAME);
 
-        if ($this->isColumnModified(InfiniaUserTableMap::COL_USER_ID)) {
-            $criteria->add(InfiniaUserTableMap::COL_USER_ID, $this->user_id);
+        if ($this->isColumnModified(SessionsTableMap::COL_USERID)) {
+            $criteria->add(SessionsTableMap::COL_USERID, $this->userid);
         }
-        if ($this->isColumnModified(InfiniaUserTableMap::COL_USER_NAME)) {
-            $criteria->add(InfiniaUserTableMap::COL_USER_NAME, $this->user_name);
-        }
-        if ($this->isColumnModified(InfiniaUserTableMap::COL_USER_REALNAME)) {
-            $criteria->add(InfiniaUserTableMap::COL_USER_REALNAME, $this->user_realname);
-        }
-        if ($this->isColumnModified(InfiniaUserTableMap::COL_USER_CODE)) {
-            $criteria->add(InfiniaUserTableMap::COL_USER_CODE, $this->user_code);
-        }
-        if ($this->isColumnModified(InfiniaUserTableMap::COL_USER_EMAIL)) {
-            $criteria->add(InfiniaUserTableMap::COL_USER_EMAIL, $this->user_email);
-        }
-        if ($this->isColumnModified(InfiniaUserTableMap::COL_USER_PASSWORD)) {
-            $criteria->add(InfiniaUserTableMap::COL_USER_PASSWORD, $this->user_password);
-        }
-        if ($this->isColumnModified(InfiniaUserTableMap::COL_USER_ISVERIFIED)) {
-            $criteria->add(InfiniaUserTableMap::COL_USER_ISVERIFIED, $this->user_isverified);
-        }
-        if ($this->isColumnModified(InfiniaUserTableMap::COL_USER_RANK)) {
-            $criteria->add(InfiniaUserTableMap::COL_USER_RANK, $this->user_rank);
+        if ($this->isColumnModified(SessionsTableMap::COL_SESSION_TOKEN)) {
+            $criteria->add(SessionsTableMap::COL_SESSION_TOKEN, $this->session_token);
         }
 
         return $criteria;
@@ -1368,8 +911,8 @@ abstract class InfiniaUser implements ActiveRecordInterface
      */
     public function buildPkeyCriteria()
     {
-        $criteria = ChildInfiniaUserQuery::create();
-        $criteria->add(InfiniaUserTableMap::COL_USER_ID, $this->user_id);
+        $criteria = ChildSessionsQuery::create();
+        $criteria->add(SessionsTableMap::COL_USERID, $this->userid);
 
         return $criteria;
     }
@@ -1382,24 +925,10 @@ abstract class InfiniaUser implements ActiveRecordInterface
      */
     public function hashCode()
     {
-        $validPk = null !== $this->getUserId();
+        $validPk = null !== $this->getUserid();
 
-        $validPrimaryKeyFKs = 2;
+        $validPrimaryKeyFKs = 0;
         $primaryKeyFKs = [];
-
-        //relation infiniausers_fk_2986c1 to table infiniauser_status
-        if ($this->auserStatus && $hash = spl_object_hash($this->auserStatus)) {
-            $primaryKeyFKs[] = $hash;
-        } else {
-            $validPrimaryKeyFKs = false;
-        }
-
-        //relation infiniausers_fk_67845d to table infiniasessions
-        if ($this->auserSession && $hash = spl_object_hash($this->auserSession)) {
-            $primaryKeyFKs[] = $hash;
-        } else {
-            $validPrimaryKeyFKs = false;
-        }
 
         if ($validPk) {
             return crc32(json_encode($this->getPrimaryKey(), JSON_UNESCAPED_UNICODE));
@@ -1416,18 +945,18 @@ abstract class InfiniaUser implements ActiveRecordInterface
      */
     public function getPrimaryKey()
     {
-        return $this->getUserId();
+        return $this->getUserid();
     }
 
     /**
-     * Generic method to set the primary key (user_id column).
+     * Generic method to set the primary key (userid column).
      *
      * @param       int $key Primary key.
      * @return void
      */
     public function setPrimaryKey($key)
     {
-        $this->setUserId($key);
+        $this->setUserid($key);
     }
 
     /**
@@ -1436,7 +965,7 @@ abstract class InfiniaUser implements ActiveRecordInterface
      */
     public function isPrimaryKeyNull()
     {
-        return null === $this->getUserId();
+        return null === $this->getUserid();
     }
 
     /**
@@ -1445,23 +974,30 @@ abstract class InfiniaUser implements ActiveRecordInterface
      * If desired, this method can also make copies of all associated (fkey referrers)
      * objects.
      *
-     * @param      object $copyObj An object of \InfiniaHome\DB\InfiniaUser (or compatible) type.
+     * @param      object $copyObj An object of \InfiniaHome\DB\Sessions (or compatible) type.
      * @param      boolean $deepCopy Whether to also copy all rows that refer (by fkey) to the current row.
      * @param      boolean $makeNew Whether to reset autoincrement PKs and make the object new.
      * @throws PropelException
      */
     public function copyInto($copyObj, $deepCopy = false, $makeNew = true)
     {
-        $copyObj->setUserName($this->getUserName());
-        $copyObj->setUserRealname($this->getUserRealname());
-        $copyObj->setUserCode($this->getUserCode());
-        $copyObj->setUserEmail($this->getUserEmail());
-        $copyObj->setUserPassword($this->getUserPassword());
-        $copyObj->setUserIsverified($this->getUserIsverified());
-        $copyObj->setUserRank($this->getUserRank());
+        $copyObj->setSessionToken($this->getSessionToken());
+
+        if ($deepCopy) {
+            // important: temporarily setNew(false) because this affects the behavior of
+            // the getter/setter methods for fkey referrer objects.
+            $copyObj->setNew(false);
+
+            $relObj = $this->getInfiniaUser();
+            if ($relObj) {
+                $copyObj->setInfiniaUser($relObj->copy($deepCopy));
+            }
+
+        } // if ($deepCopy)
+
         if ($makeNew) {
             $copyObj->setNew(true);
-            $copyObj->setUserId(NULL); // this is a auto-increment column, so set to default value
+            $copyObj->setUserid(NULL); // this is a auto-increment column, so set to default value
         }
     }
 
@@ -1474,7 +1010,7 @@ abstract class InfiniaUser implements ActiveRecordInterface
      * objects.
      *
      * @param  boolean $deepCopy Whether to also copy all rows that refer (by fkey) to the current row.
-     * @return \InfiniaHome\DB\InfiniaUser Clone of current object.
+     * @return \InfiniaHome\DB\Sessions Clone of current object.
      * @throws PropelException
      */
     public function copy($deepCopy = false)
@@ -1487,94 +1023,53 @@ abstract class InfiniaUser implements ActiveRecordInterface
         return $copyObj;
     }
 
+
     /**
-     * Declares an association between this object and a ChildUserStatus object.
+     * Initializes a collection based on the name of a relation.
+     * Avoids crafting an 'init[$relationName]s' method name
+     * that wouldn't work when StandardEnglishPluralizer is used.
      *
-     * @param  ChildUserStatus $v
-     * @return $this|\InfiniaHome\DB\InfiniaUser The current object (for fluent API support)
+     * @param      string $relationName The name of the relation to initialize
+     * @return void
+     */
+    public function initRelation($relationName)
+    {
+    }
+
+    /**
+     * Gets a single ChildInfiniaUser object, which is related to this object by a one-to-one relationship.
+     *
+     * @param  ConnectionInterface $con optional connection object
+     * @return ChildInfiniaUser
      * @throws PropelException
      */
-    public function setuserStatus(ChildUserStatus $v = null)
+    public function getInfiniaUser(ConnectionInterface $con = null)
     {
-        if ($v === null) {
-            $this->setUserId(NULL);
-        } else {
-            $this->setUserId($v->getUserid());
+
+        if ($this->singleInfiniaUser === null && !$this->isNew()) {
+            $this->singleInfiniaUser = ChildInfiniaUserQuery::create()->findPk($this->getPrimaryKey(), $con);
         }
 
-        $this->auserStatus = $v;
+        return $this->singleInfiniaUser;
+    }
 
-        // Add binding for other direction of this 1:1 relationship.
-        if ($v !== null) {
-            $v->setInfiniaUser($this);
+    /**
+     * Sets a single ChildInfiniaUser object as related to this object by a one-to-one relationship.
+     *
+     * @param  ChildInfiniaUser $v ChildInfiniaUser
+     * @return $this|\InfiniaHome\DB\Sessions The current object (for fluent API support)
+     * @throws PropelException
+     */
+    public function setInfiniaUser(ChildInfiniaUser $v = null)
+    {
+        $this->singleInfiniaUser = $v;
+
+        // Make sure that that the passed-in ChildInfiniaUser isn't already associated with this object
+        if ($v !== null && $v->getuserSession(null, false) === null) {
+            $v->setuserSession($this);
         }
-
 
         return $this;
-    }
-
-
-    /**
-     * Get the associated ChildUserStatus object
-     *
-     * @param  ConnectionInterface $con Optional Connection object.
-     * @return ChildUserStatus The associated ChildUserStatus object.
-     * @throws PropelException
-     */
-    public function getuserStatus(ConnectionInterface $con = null)
-    {
-        if ($this->auserStatus === null && ($this->user_id != 0)) {
-            $this->auserStatus = ChildUserStatusQuery::create()->findPk($this->user_id, $con);
-            // Because this foreign key represents a one-to-one relationship, we will create a bi-directional association.
-            $this->auserStatus->setInfiniaUser($this);
-        }
-
-        return $this->auserStatus;
-    }
-
-    /**
-     * Declares an association between this object and a ChildSessions object.
-     *
-     * @param  ChildSessions $v
-     * @return $this|\InfiniaHome\DB\InfiniaUser The current object (for fluent API support)
-     * @throws PropelException
-     */
-    public function setuserSession(ChildSessions $v = null)
-    {
-        if ($v === null) {
-            $this->setUserId(NULL);
-        } else {
-            $this->setUserId($v->getUserid());
-        }
-
-        $this->auserSession = $v;
-
-        // Add binding for other direction of this 1:1 relationship.
-        if ($v !== null) {
-            $v->setInfiniaUser($this);
-        }
-
-
-        return $this;
-    }
-
-
-    /**
-     * Get the associated ChildSessions object
-     *
-     * @param  ConnectionInterface $con Optional Connection object.
-     * @return ChildSessions The associated ChildSessions object.
-     * @throws PropelException
-     */
-    public function getuserSession(ConnectionInterface $con = null)
-    {
-        if ($this->auserSession === null && ($this->user_id != 0)) {
-            $this->auserSession = ChildSessionsQuery::create()->findPk($this->user_id, $con);
-            // Because this foreign key represents a one-to-one relationship, we will create a bi-directional association.
-            $this->auserSession->setInfiniaUser($this);
-        }
-
-        return $this->auserSession;
     }
 
     /**
@@ -1584,23 +1079,10 @@ abstract class InfiniaUser implements ActiveRecordInterface
      */
     public function clear()
     {
-        if (null !== $this->auserStatus) {
-            $this->auserStatus->removeInfiniaUser($this);
-        }
-        if (null !== $this->auserSession) {
-            $this->auserSession->removeInfiniaUser($this);
-        }
-        $this->user_id = null;
-        $this->user_name = null;
-        $this->user_realname = null;
-        $this->user_code = null;
-        $this->user_email = null;
-        $this->user_password = null;
-        $this->user_isverified = null;
-        $this->user_rank = null;
+        $this->userid = null;
+        $this->session_token = null;
         $this->alreadyInSave = false;
         $this->clearAllReferences();
-        $this->applyDefaultValues();
         $this->resetModified();
         $this->setNew(true);
         $this->setDeleted(false);
@@ -1617,10 +1099,12 @@ abstract class InfiniaUser implements ActiveRecordInterface
     public function clearAllReferences($deep = false)
     {
         if ($deep) {
+            if ($this->singleInfiniaUser) {
+                $this->singleInfiniaUser->clearAllReferences($deep);
+            }
         } // if ($deep)
 
-        $this->auserStatus = null;
-        $this->auserSession = null;
+        $this->singleInfiniaUser = null;
     }
 
     /**
@@ -1630,7 +1114,7 @@ abstract class InfiniaUser implements ActiveRecordInterface
      */
     public function __toString()
     {
-        return (string) $this->exportTo(InfiniaUserTableMap::DEFAULT_STRING_FORMAT);
+        return (string) $this->exportTo(SessionsTableMap::DEFAULT_STRING_FORMAT);
     }
 
     /**

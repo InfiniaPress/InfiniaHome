@@ -71,33 +71,11 @@ abstract class UserStatus implements ActiveRecordInterface
     protected $userid;
 
     /**
-     * The value for the username field.
-     *
-     * @var        string
-     */
-    protected $username;
-
-    /**
      * The value for the status field.
      *
      * @var        int
      */
     protected $status;
-
-    /**
-     * The value for the mutedtime field.
-     *
-     * @var        DateTime
-     */
-    protected $mutedtime;
-
-    /**
-     * The value for the muted_forever field.
-     *
-     * Note: this column has a database default value of: false
-     * @var        boolean
-     */
-    protected $muted_forever;
 
     /**
      * The value for the bannedtime field.
@@ -135,7 +113,6 @@ abstract class UserStatus implements ActiveRecordInterface
      */
     public function applyDefaultValues()
     {
-        $this->muted_forever = false;
         $this->banned_forever = false;
     }
 
@@ -377,16 +354,6 @@ abstract class UserStatus implements ActiveRecordInterface
     }
 
     /**
-     * Get the [username] column value.
-     *
-     * @return string
-     */
-    public function getUsername()
-    {
-        return $this->username;
-    }
-
-    /**
      * Get the [status] column value.
      *
      * @return string
@@ -403,46 +370,6 @@ abstract class UserStatus implements ActiveRecordInterface
         }
 
         return $valueSet[$this->status];
-    }
-
-    /**
-     * Get the [optionally formatted] temporal [mutedtime] column value.
-     *
-     *
-     * @param      string $format The date/time format string (either date()-style or strftime()-style).
-     *                            If format is NULL, then the raw DateTime object will be returned.
-     *
-     * @return string|DateTime Formatted date/time value as string or DateTime object (if format is NULL), NULL if column is NULL, and 0 if column value is 0000-00-00 00:00:00
-     *
-     * @throws PropelException - if unable to parse/validate the date/time value.
-     */
-    public function getMutedtime($format = NULL)
-    {
-        if ($format === null) {
-            return $this->mutedtime;
-        } else {
-            return $this->mutedtime instanceof \DateTimeInterface ? $this->mutedtime->format($format) : null;
-        }
-    }
-
-    /**
-     * Get the [muted_forever] column value.
-     *
-     * @return boolean
-     */
-    public function getMutedForever()
-    {
-        return $this->muted_forever;
-    }
-
-    /**
-     * Get the [muted_forever] column value.
-     *
-     * @return boolean
-     */
-    public function isMutedForever()
-    {
-        return $this->getMutedForever();
     }
 
     /**
@@ -506,26 +433,6 @@ abstract class UserStatus implements ActiveRecordInterface
     } // setUserid()
 
     /**
-     * Set the value of [username] column.
-     *
-     * @param string $v new value
-     * @return $this|\InfiniaHome\DB\UserStatus The current object (for fluent API support)
-     */
-    public function setUsername($v)
-    {
-        if ($v !== null) {
-            $v = (string) $v;
-        }
-
-        if ($this->username !== $v) {
-            $this->username = $v;
-            $this->modifiedColumns[UserStatusTableMap::COL_USERNAME] = true;
-        }
-
-        return $this;
-    } // setUsername()
-
-    /**
      * Set the value of [status] column.
      *
      * @param  string $v new value
@@ -549,54 +456,6 @@ abstract class UserStatus implements ActiveRecordInterface
 
         return $this;
     } // setStatus()
-
-    /**
-     * Sets the value of [mutedtime] column to a normalized version of the date/time value specified.
-     *
-     * @param  mixed $v string, integer (timestamp), or \DateTimeInterface value.
-     *               Empty strings are treated as NULL.
-     * @return $this|\InfiniaHome\DB\UserStatus The current object (for fluent API support)
-     */
-    public function setMutedtime($v)
-    {
-        $dt = PropelDateTime::newInstance($v, null, 'DateTime');
-        if ($this->mutedtime !== null || $dt !== null) {
-            if ($this->mutedtime === null || $dt === null || $dt->format("Y-m-d H:i:s.u") !== $this->mutedtime->format("Y-m-d H:i:s.u")) {
-                $this->mutedtime = $dt === null ? null : clone $dt;
-                $this->modifiedColumns[UserStatusTableMap::COL_MUTEDTIME] = true;
-            }
-        } // if either are not null
-
-        return $this;
-    } // setMutedtime()
-
-    /**
-     * Sets the value of the [muted_forever] column.
-     * Non-boolean arguments are converted using the following rules:
-     *   * 1, '1', 'true',  'on',  and 'yes' are converted to boolean true
-     *   * 0, '0', 'false', 'off', and 'no'  are converted to boolean false
-     * Check on string values is case insensitive (so 'FaLsE' is seen as 'false').
-     *
-     * @param  boolean|integer|string $v The new value
-     * @return $this|\InfiniaHome\DB\UserStatus The current object (for fluent API support)
-     */
-    public function setMutedForever($v)
-    {
-        if ($v !== null) {
-            if (is_string($v)) {
-                $v = in_array(strtolower($v), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
-            } else {
-                $v = (boolean) $v;
-            }
-        }
-
-        if ($this->muted_forever !== $v) {
-            $this->muted_forever = $v;
-            $this->modifiedColumns[UserStatusTableMap::COL_MUTED_FOREVER] = true;
-        }
-
-        return $this;
-    } // setMutedForever()
 
     /**
      * Sets the value of [bannedtime] column to a normalized version of the date/time value specified.
@@ -656,10 +515,6 @@ abstract class UserStatus implements ActiveRecordInterface
      */
     public function hasOnlyDefaultValues()
     {
-            if ($this->muted_forever !== false) {
-                return false;
-            }
-
             if ($this->banned_forever !== false) {
                 return false;
             }
@@ -693,28 +548,16 @@ abstract class UserStatus implements ActiveRecordInterface
             $col = $row[TableMap::TYPE_NUM == $indexType ? 0 + $startcol : UserStatusTableMap::translateFieldName('Userid', TableMap::TYPE_PHPNAME, $indexType)];
             $this->userid = (null !== $col) ? (int) $col : null;
 
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 1 + $startcol : UserStatusTableMap::translateFieldName('Username', TableMap::TYPE_PHPNAME, $indexType)];
-            $this->username = (null !== $col) ? (string) $col : null;
-
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 2 + $startcol : UserStatusTableMap::translateFieldName('Status', TableMap::TYPE_PHPNAME, $indexType)];
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 1 + $startcol : UserStatusTableMap::translateFieldName('Status', TableMap::TYPE_PHPNAME, $indexType)];
             $this->status = (null !== $col) ? (int) $col : null;
 
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 3 + $startcol : UserStatusTableMap::translateFieldName('Mutedtime', TableMap::TYPE_PHPNAME, $indexType)];
-            if ($col === '0000-00-00 00:00:00') {
-                $col = null;
-            }
-            $this->mutedtime = (null !== $col) ? PropelDateTime::newInstance($col, null, 'DateTime') : null;
-
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 4 + $startcol : UserStatusTableMap::translateFieldName('MutedForever', TableMap::TYPE_PHPNAME, $indexType)];
-            $this->muted_forever = (null !== $col) ? (boolean) $col : null;
-
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 5 + $startcol : UserStatusTableMap::translateFieldName('Bannedtime', TableMap::TYPE_PHPNAME, $indexType)];
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 2 + $startcol : UserStatusTableMap::translateFieldName('Bannedtime', TableMap::TYPE_PHPNAME, $indexType)];
             if ($col === '0000-00-00 00:00:00') {
                 $col = null;
             }
             $this->bannedtime = (null !== $col) ? PropelDateTime::newInstance($col, null, 'DateTime') : null;
 
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 6 + $startcol : UserStatusTableMap::translateFieldName('BannedForever', TableMap::TYPE_PHPNAME, $indexType)];
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 3 + $startcol : UserStatusTableMap::translateFieldName('BannedForever', TableMap::TYPE_PHPNAME, $indexType)];
             $this->banned_forever = (null !== $col) ? (boolean) $col : null;
             $this->resetModified();
 
@@ -724,7 +567,7 @@ abstract class UserStatus implements ActiveRecordInterface
                 $this->ensureConsistency();
             }
 
-            return $startcol + 7; // 7 = UserStatusTableMap::NUM_HYDRATE_COLUMNS.
+            return $startcol + 4; // 4 = UserStatusTableMap::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
             throw new PropelException(sprintf('Error populating %s object', '\\InfiniaHome\\DB\\UserStatus'), 0, $e);
@@ -936,17 +779,8 @@ abstract class UserStatus implements ActiveRecordInterface
         if ($this->isColumnModified(UserStatusTableMap::COL_USERID)) {
             $modifiedColumns[':p' . $index++]  = 'userid';
         }
-        if ($this->isColumnModified(UserStatusTableMap::COL_USERNAME)) {
-            $modifiedColumns[':p' . $index++]  = 'username';
-        }
         if ($this->isColumnModified(UserStatusTableMap::COL_STATUS)) {
             $modifiedColumns[':p' . $index++]  = 'status';
-        }
-        if ($this->isColumnModified(UserStatusTableMap::COL_MUTEDTIME)) {
-            $modifiedColumns[':p' . $index++]  = 'mutedtime';
-        }
-        if ($this->isColumnModified(UserStatusTableMap::COL_MUTED_FOREVER)) {
-            $modifiedColumns[':p' . $index++]  = 'muted_forever';
         }
         if ($this->isColumnModified(UserStatusTableMap::COL_BANNEDTIME)) {
             $modifiedColumns[':p' . $index++]  = 'bannedtime';
@@ -968,17 +802,8 @@ abstract class UserStatus implements ActiveRecordInterface
                     case 'userid':
                         $stmt->bindValue($identifier, $this->userid, PDO::PARAM_INT);
                         break;
-                    case 'username':
-                        $stmt->bindValue($identifier, $this->username, PDO::PARAM_STR);
-                        break;
                     case 'status':
                         $stmt->bindValue($identifier, $this->status, PDO::PARAM_INT);
-                        break;
-                    case 'mutedtime':
-                        $stmt->bindValue($identifier, $this->mutedtime ? $this->mutedtime->format("Y-m-d H:i:s.u") : null, PDO::PARAM_STR);
-                        break;
-                    case 'muted_forever':
-                        $stmt->bindValue($identifier, (int) $this->muted_forever, PDO::PARAM_INT);
                         break;
                     case 'bannedtime':
                         $stmt->bindValue($identifier, $this->bannedtime ? $this->bannedtime->format("Y-m-d H:i:s.u") : null, PDO::PARAM_STR);
@@ -1052,21 +877,12 @@ abstract class UserStatus implements ActiveRecordInterface
                 return $this->getUserid();
                 break;
             case 1:
-                return $this->getUsername();
-                break;
-            case 2:
                 return $this->getStatus();
                 break;
-            case 3:
-                return $this->getMutedtime();
-                break;
-            case 4:
-                return $this->getMutedForever();
-                break;
-            case 5:
+            case 2:
                 return $this->getBannedtime();
                 break;
-            case 6:
+            case 3:
                 return $this->getBannedForever();
                 break;
             default:
@@ -1100,19 +916,12 @@ abstract class UserStatus implements ActiveRecordInterface
         $keys = UserStatusTableMap::getFieldNames($keyType);
         $result = array(
             $keys[0] => $this->getUserid(),
-            $keys[1] => $this->getUsername(),
-            $keys[2] => $this->getStatus(),
-            $keys[3] => $this->getMutedtime(),
-            $keys[4] => $this->getMutedForever(),
-            $keys[5] => $this->getBannedtime(),
-            $keys[6] => $this->getBannedForever(),
+            $keys[1] => $this->getStatus(),
+            $keys[2] => $this->getBannedtime(),
+            $keys[3] => $this->getBannedForever(),
         );
-        if ($result[$keys[3]] instanceof \DateTimeInterface) {
-            $result[$keys[3]] = $result[$keys[3]]->format('c');
-        }
-
-        if ($result[$keys[5]] instanceof \DateTimeInterface) {
-            $result[$keys[5]] = $result[$keys[5]]->format('c');
+        if ($result[$keys[2]] instanceof \DateTimeInterface) {
+            $result[$keys[2]] = $result[$keys[2]]->format('c');
         }
 
         $virtualColumns = $this->virtualColumns;
@@ -1174,25 +983,16 @@ abstract class UserStatus implements ActiveRecordInterface
                 $this->setUserid($value);
                 break;
             case 1:
-                $this->setUsername($value);
-                break;
-            case 2:
                 $valueSet = UserStatusTableMap::getValueSet(UserStatusTableMap::COL_STATUS);
                 if (isset($valueSet[$value])) {
                     $value = $valueSet[$value];
                 }
                 $this->setStatus($value);
                 break;
-            case 3:
-                $this->setMutedtime($value);
-                break;
-            case 4:
-                $this->setMutedForever($value);
-                break;
-            case 5:
+            case 2:
                 $this->setBannedtime($value);
                 break;
-            case 6:
+            case 3:
                 $this->setBannedForever($value);
                 break;
         } // switch()
@@ -1225,22 +1025,13 @@ abstract class UserStatus implements ActiveRecordInterface
             $this->setUserid($arr[$keys[0]]);
         }
         if (array_key_exists($keys[1], $arr)) {
-            $this->setUsername($arr[$keys[1]]);
+            $this->setStatus($arr[$keys[1]]);
         }
         if (array_key_exists($keys[2], $arr)) {
-            $this->setStatus($arr[$keys[2]]);
+            $this->setBannedtime($arr[$keys[2]]);
         }
         if (array_key_exists($keys[3], $arr)) {
-            $this->setMutedtime($arr[$keys[3]]);
-        }
-        if (array_key_exists($keys[4], $arr)) {
-            $this->setMutedForever($arr[$keys[4]]);
-        }
-        if (array_key_exists($keys[5], $arr)) {
-            $this->setBannedtime($arr[$keys[5]]);
-        }
-        if (array_key_exists($keys[6], $arr)) {
-            $this->setBannedForever($arr[$keys[6]]);
+            $this->setBannedForever($arr[$keys[3]]);
         }
     }
 
@@ -1286,17 +1077,8 @@ abstract class UserStatus implements ActiveRecordInterface
         if ($this->isColumnModified(UserStatusTableMap::COL_USERID)) {
             $criteria->add(UserStatusTableMap::COL_USERID, $this->userid);
         }
-        if ($this->isColumnModified(UserStatusTableMap::COL_USERNAME)) {
-            $criteria->add(UserStatusTableMap::COL_USERNAME, $this->username);
-        }
         if ($this->isColumnModified(UserStatusTableMap::COL_STATUS)) {
             $criteria->add(UserStatusTableMap::COL_STATUS, $this->status);
-        }
-        if ($this->isColumnModified(UserStatusTableMap::COL_MUTEDTIME)) {
-            $criteria->add(UserStatusTableMap::COL_MUTEDTIME, $this->mutedtime);
-        }
-        if ($this->isColumnModified(UserStatusTableMap::COL_MUTED_FOREVER)) {
-            $criteria->add(UserStatusTableMap::COL_MUTED_FOREVER, $this->muted_forever);
         }
         if ($this->isColumnModified(UserStatusTableMap::COL_BANNEDTIME)) {
             $criteria->add(UserStatusTableMap::COL_BANNEDTIME, $this->bannedtime);
@@ -1390,10 +1172,7 @@ abstract class UserStatus implements ActiveRecordInterface
      */
     public function copyInto($copyObj, $deepCopy = false, $makeNew = true)
     {
-        $copyObj->setUsername($this->getUsername());
         $copyObj->setStatus($this->getStatus());
-        $copyObj->setMutedtime($this->getMutedtime());
-        $copyObj->setMutedForever($this->getMutedForever());
         $copyObj->setBannedtime($this->getBannedtime());
         $copyObj->setBannedForever($this->getBannedForever());
 
@@ -1494,10 +1273,7 @@ abstract class UserStatus implements ActiveRecordInterface
     public function clear()
     {
         $this->userid = null;
-        $this->username = null;
         $this->status = null;
-        $this->mutedtime = null;
-        $this->muted_forever = null;
         $this->bannedtime = null;
         $this->banned_forever = null;
         $this->alreadyInSave = false;
