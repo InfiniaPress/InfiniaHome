@@ -145,6 +145,7 @@ INF;
      * @param $username_email string Username or email
      * @param $password string Unhashed password
      * @param $hashkey string Hash key for hashing (Secret key for each application)
+     * @param $origin string Origin of the user
      */
     public function login_user($username_email, $password, $hashkey, $origin) {
         try {
@@ -169,7 +170,15 @@ INF;
                         if ($lel[0] = "infinia.press") {
                             //TODO: REMOVE HARDCODING AND USE A CONFIG FILE FOR GOD'S SAKE
                             $this->redirect("https://infinia.press/infinia");
+
+                            // Destroy Existing sessions
+                            session_start();
+                            session_destroy();
+
+                            session_name("InfiniaPress");
+                            session_start();
                             $this->isLoggedIn = true;
+                            $_SESSION["isLoggedIn"] = true;
                         } else {
                             $getParams = Array(
                                 'username' => $user->getUserName(),
@@ -304,7 +313,10 @@ INF;
 
     public function isLoggedIn() {
         // SessionsQuery::create()->findOneByUserid($this->user_id)
-        return $this->isLoggedIn;
+        if(SessionsQuery::create()->findOneByUserid($this->user_id) || $this->isLoggedIn || $_SESSION["isLoggedIn"]) {
+            return true;
+        }
+        return false;
     }
 
 
