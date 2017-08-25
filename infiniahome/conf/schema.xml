@@ -97,5 +97,10 @@
         <column name="session_token" type="longvarchar" />
     </table>
 
+    <table name="configuration">
+        <column name="key" type="longvarchar" primaryKey="true" />
+        <column name="value" type="longvarchar" />
+    </table>
+
 
 </database>

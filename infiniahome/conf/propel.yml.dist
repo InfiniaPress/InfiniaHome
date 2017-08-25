@@ -8,11 +8,16 @@
 
 propel:
     paths:
+
         # The directory where Propel expects to find your `schema.xml` file.
-        schemaDir: C:\Users\Robert\Documents\GitHub\InfiniaHome-Laravel
+        schemaDir: ./schema.xml
 
         # The directory where Propel should output generated object model classes.
-        phpDir: C:\Users\Robert\Documents\GitHub\InfiniaHome-Laravel\infiniahome\models\propelgen
+        phpDir: ../models/propelgen
+
+        outputDir: ../propel_gen/
+
+        composerDir: ../../composer.json
 
 #   database:
 #       connections:

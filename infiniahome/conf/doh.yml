@@ -1,0 +1,58 @@
+site:
+  site_name: "User Installed Infinia"
+  email_msgs:
+    register:
+      html_msg: "
+      ------
+      ### IMPORTANT NOTE ###
+
+      If you receive this message, IT MEANS THE SITE ADMIN IS LAZY
+      AND DIDN'T CONFIGURE THE SITE!!! REPORT THIS TO THE SITE ADMIN, OR CLICK THE BUTTON BELOW
+      TO DELETE HIS/HER INSTALLATION OF INFINIAHOME!!!
+
+      <button id=\"delete_install\">Delete his install! DOH!!</button>
+
+      ### END NOTE ###
+      Forget Lorem Ipsum, DOH is the best lipsum!
+      DOH DOH DOH DOH DOH DOH DOH DOH DOH DOH
+
+      ----------
+      Since this message is ran through a template parser:
+      Usable variables:
+      {#user_name}: The username of the user
+      {#user_id}: The user ID in the database
+      {#user_code}: The user registration code
+      {#user_fullname}: The user's fullname
+      {#user_email}: The user's email
+      "
+      alt_msg: "
+      ------
+            ### IMPORTANT NOTE ###
+
+            If you receive this message, IT MEANS THE SITE ADMIN IS LAZY
+            AND DIDN'T CONFIGURE THE SITE!!! REPORT THIS TO THE SITE ADMIN, OR CLICK THE BUTTON BELOW
+            TO DELETE HIS/HER INSTALLATION OF INFINIAHOME!!!
+
+            <button id=\"delete_install\">Delete his install! DOH!!</button>
+
+            ### END NOTE ###
+            Forget Lorem Ipsum, DOH is the best lipsum!
+            DOH DOH DOH DOH DOH DOH DOH DOH DOH DOH
+
+            ----------
+            Since this message is ran through a template parser:
+            Usable variables:
+            {#user_name}: The username of the user
+            {#user_id}: The user ID in the database
+            {#user_code}: The user registration code
+            {#user_fullname}: The user's fullname
+            {#user_email}: The user's email
+      "
+
+smtp:
+  server: "doh.infinia.doh"
+  port: 25
+  username: "doh"
+  password: "doh1234"
+  security: "tls" # Either TLS, SSL or None
+

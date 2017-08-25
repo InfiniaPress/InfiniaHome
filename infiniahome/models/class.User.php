@@ -13,14 +13,16 @@ use InfiniaHome\DB\InfiniaUserQuery;
 use InfiniaHome\DB\Sessions;
 use InfiniaHome\DB\SessionsQuery;
 use InfiniaHome\DB\UserStatus;
-
-
 use InfiniaHome\DB\UserStatusQuery;
+
+use InfiniaHome\MiscFunctions\TemplateFromString;
+
 use Propel\Runtime\Exception\PropelException;
 
 
 use PHPMailer;
-
+use Symfony\Component\Yaml\Exception\ParseException;
+use Symfony\Component\Yaml\Yaml;
 
 
 class User {
@@ -37,6 +39,9 @@ class User {
 
     private $email_regex;
     private $url_regex;
+
+    private $isLoggedIn;
+    private $conf;
 
     /**
      * User constructor
@@ -56,7 +61,14 @@ class User {
 
 INF;
         $this->url_regex = '/^(?:https?:\/\/)?(?:[^@\/\n]+@)?(?:www\.)?([^:\/\n]+)/';
+        $this->isLoggedIn = false;
 
+        try {
+            $this->conf = Yaml::parse(file_get_contents("../conf/doh.yml"));
+        } catch (ParseException $pe) {
+            printf("DOHH! Something went wrong trying to parse the configuration file! 
+            The error was: %s", $pe->getMessage());
+        }
     }
 
     /**
@@ -153,6 +165,7 @@ INF;
                         if ($lel[0] = "infinia.press") {
                             //TODO: REMOVE HARDCODING AND USE A CONFIG FILE FOR GOD'S SAKE
                             $this->redirect("https://infinia.press/infinia");
+                            $this->isLoggedIn = true;
                         } else {
                             $getParams = Array(
                                 'username' => $user->getUserName(),
@@ -185,6 +198,99 @@ INF;
         }
     }
 
+
+
+    public function logout() {
+        $this->isLoggedIn = false;
+
+        $usr = SessionsQuery::create()->findOneByUserid($this->user_id);
+        $usr->delete();
+
+        return true;
+    }
+
+    public function send_smtp_email($subject, $from, $msg, $altmsg) {
+        $m = new PHPMailer();
+
+        $m->isSMTP();
+        $m->SMTPDebug = 'false';
+
+        if (strcasecmp($this->conf["smtp"]["security"],"None")) {
+            $m->SMTPAuth = false;
+        } else if (strcasecmp($this->conf["smtp"]["security"], "TLS")
+            || strcasecmp($this->conf["smtp"]["security"], "SSL")) {
+            $m->SMTPAuth = true;
+            $m->SMTPSecure = $this->conf["smtp"]["security"];
+        } else {
+            echo "Your email sending configuration is incorrect, please fix it.";
+            exit(1);
+        }
+
+        $m->Host = $this->conf["smtp"]["server"];
+        $m->Port = $this->conf["smtp"]["port"];
+        $m->Username = $this->conf["smtp"]["username"];
+        $m->Password = $this->conf["smtp"]["password"];
+
+        $m->addAddress($this->user_email);
+
+        $m->setFrom($from, "No Reply :: InfiniaPress Instance <".$this->conf["site"]["site_name"].">");
+        $m->addReplyTo($from, "No Reply :: InfiniaPress Instance <".$this->conf["site"]["site_name"].">");
+
+        $mainmsg = new TemplateFromString($msg);
+
+        $mainmsg->set("user_name",$this->user_name);
+        $mainmsg->set("user_id", $this->user_id);
+        $mainmsg->set("user_code", $this->user_code);
+        $mainmsg->set("user_fullname", $this->user_fullname);
+        $mainmsg->set("user_email", $this->user_email);
+
+        $altmsg = new TemplateFromString($altmsg);
+
+        $altmsg->set("user_name", $this->user_name);
+        $altmsg->set("user_id", $this->user_id);
+        $altmsg->set("user_code", $this->user_code);
+        $altmsg->set("user_fullname", $this->user_fullname);
+        $altmsg->set("user_email", $this->user_email);
+
+        $m->Subject = $subject;
+        $m->Body = $mainmsg->output();
+        $m->AltBody = $altmsg->output();
+
+        $m->send();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUserCode()
+    {
+        return $this->user_code;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUserEmail()
+    {
+        return $this->user_email;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUserName()
+    {
+        return $this->user_name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUserFullname()
+    {
+        return $this->user_fullname;
+    }
+
     /**
      * @return int
      */
@@ -193,11 +299,10 @@ INF;
     }
 
     public function isLoggedIn() {
-        if (SessionsQuery::create()->findOneByUserid($this->user_id)) {
-            return true;
-        } else {
-            return false;
-        }
+        // SessionsQuery::create()->findOneByUserid($this->user_id)
+        return $this->isLoggedIn;
     }
+
+
 
 }
