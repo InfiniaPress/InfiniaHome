@@ -18,6 +18,7 @@ use InfiniaHome\DB\Sessions;
 use InfiniaHome\DB\SessionsQuery;
 use InfiniaHome\DB\UserStatus;
 use InfiniaHome\DB\UserStatusQuery;
+use InfiniaHome\DB\ConfigurationQuery;
 
 use InfiniaHome\MiscFunctions\TemplateFromString;
 
@@ -144,8 +145,9 @@ INF;
     /**
      * @param $username_email string Username or email
      * @param $password string Unhashed password
-     * @param $hashkey string Hash key for hashing (Secret key for each application)
+     * @param $hashkey string Hash key for hashing the password (Randomized)
      * @param $origin string Origin of the user
+     * @return boolean
      */
     public function login_user($username_email, $password, $hashkey, $origin) {
         try {
@@ -167,9 +169,9 @@ INF;
                         $this->orm_db->setuserSession($usr_sess);
                         $lel = Array();
                         preg_match($this->url_regex, $origin, $lel);
-                        if ($lel[0] = "infinia.press") {
+                        if ($lel[0] = ConfigurationQuery::create()->findOneByKey("infiniahome_base_url")) {
                             //TODO: REMOVE HARDCODING AND USE A CONFIG FILE FOR GOD'S SAKE
-                            $this->redirect("https://infinia.press/infinia");
+                            $this->redirect($lel[0]."/infinia");
 
                             // Destroy Existing sessions
                             session_start();
@@ -179,6 +181,7 @@ INF;
                             session_start();
                             $this->isLoggedIn = true;
                             $_SESSION["isLoggedIn"] = true;
+                            return true;
                         } else {
                             $getParams = Array(
                                 'username' => $user->getUserName(),
@@ -187,28 +190,36 @@ INF;
                                 'signature' => $hsh
                             );
                             $this->redirect($lel[0]."?".http_build_query($getParams));
+                            return true;
                         }
                     } else if ($uss->getStatus() == "Unregistered") {
                         exit("You have not verified your email. Please verify your email and try again! DOH!!!");
                     } else if ($uss->getStatus() == "Banned"){
 
                         if($uss->getBannedForever()) {
-                            exit("You are banned from this service forever! 
-                        Please take you and your trolly ways somewhere else.");
+                            echo "You are banned from this service forever! 
+                        Please take you and your trolly ways somewhere else.";
+                            return false;
                         } else if (!$uss->getBannedForever()) {
-                            exit("You are banned from this service for: " . $uss->getBannedtime() .
+                            echo("You are banned from this service for: " . $uss->getBannedtime() .
                                ". Behave yourself better and maybe you'll get unbanned sooner.
                             Unless your name is Mun Hin, that is.");
+                            return false;
                         }
 
                     }
                 } else {
-                    exit("The password you entered is incorrect! DOH!!!");
+                    echo("The password you entered is incorrect! DOH!!!");
+                    return false;
+
                 }
             }
         } catch (PropelException $pe) {
-
+            echo "There was an error trying to connect to the signup handlers. ";
+            return false;
         }
+
+        return false;
     }
 
 

@@ -35,7 +35,8 @@
     "require": {
         "phpmailer/phpmailer": "^5.2",
         "propel/propel": "~2.0@dev",
-        "phroute/phroute": "^2.1"
+        "phroute/phroute": "^2.1",
+        "twig/twig": "^2.0"
     },
 
     "autoload": {

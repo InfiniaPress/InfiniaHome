@@ -24,19 +24,24 @@
 
     <h1>Sign up for Infinia Press</h1>
     <br>
-    <div class="input-field col s12">
-        <input id="username" type="text" class="validate">
-        <label for="username">Your username:</label>
-    </div>
-    <div class="input-field col s12">
-        <input id="password" type="text" class="validate">
-        <label for="password">Your password:</label>
-    </div>
-    <div class="input-field col s12">
-        <input id="email" type="text" class="validate">
-        <label for="email">Your email:</label>
-    </div>
-    <a class="waves-effect waves-light btn">Sign up!</a>
+    <!-- TODO: template engine -->
+    <form id="signup" method="post" action="/sso/login">
+        <div class="input-field col s12">
+            <input id="username" type="text" class="validate">
+            <label for="username">Your username:</label>
+        </div>
+        <div class="input-field col s12">
+            <input id="password" type="text" class="validate">
+            <label for="password">Your password:</label>
+        </div>
+        <div class="input-field col s12">
+            <input id="email" type="text" class="validate">
+            <label for="email">Your email:</label>
+        </div>
+
+        <button type="submit" class="waves-effect waves-light btn">Sign up!</button>
+    </form>
+
 
 </body>
 </html>

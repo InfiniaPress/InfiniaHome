@@ -19,12 +19,12 @@ propel:
 
         composerDir: ../../composer.json
 
-#   database:
-#       connections:
-#           default:
-#               adapter: mysql
-#               dsn: mysql:host=localhost;port=3306;dbname=infiniahome
-#               user: infinia
-#               password:
-#               settings:
-#                   charset: utf8
+    database:
+        connections:
+            default:
+                adapter: mysql
+                dsn: mysql:host=localhost;port=3306;dbname=infiniahome
+                user: infinia
+                password:
+                settings:
+                    charset: utf8

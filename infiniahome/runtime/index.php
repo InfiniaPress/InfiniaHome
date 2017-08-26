@@ -11,14 +11,24 @@ require_once "../routes/main.php";
 
 use Phroute\Phroute\Dispatcher;
 
+
+
+
 $httpMtd = $_SERVER["REQUEST_METHOD"];
 $uri = $_SERVER["REQUEST_URI"];
 
 
 $dispatcher = new Dispatcher($route->getData());
 
-$response = $dispatcher->dispatch($_SERVER["REQUEST_METHOD"], parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH));
+try {
+    $response = $dispatcher->dispatch($_SERVER["REQUEST_METHOD"], parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH));
+    echo $response;
+} catch (\Phroute\Phroute\Exception\HttpRouteNotFoundException $httpRouteNotFoundException) {
+    echo "There seems to be an error in this InfiniaPress installation. Kindly contact the administrators of this site.";
+}
 
-echo $response;
+
+
+
 
 
