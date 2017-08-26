@@ -34,12 +34,15 @@
 
     "require": {
         "phpmailer/phpmailer": "^5.2",
-        "propel/propel": "~2.0@dev"
+        "propel/propel": "~2.0@dev",
+        "phroute/phroute": "^2.1"
     },
 
     "autoload": {
         "psr-4": {
-            "InfiniaHome\\User\\": "infiniahome/models"
+            "InfiniaHome\\User\\": "infiniahome/models",
+            "InfiniaHome\\MiscFunctions\\": "infiniahome/models",
+            "InfiniaHome\\DB\\": "infiniahome/models/propelgen"
         }
     }
 }

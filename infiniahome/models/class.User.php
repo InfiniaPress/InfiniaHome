@@ -6,7 +6,11 @@
  * Time: 2:30 PM
  */
 
+
+
 namespace InfiniaHome\User;
+
+require "../../vendor/autoload.php";
 
 use InfiniaHome\DB\InfiniaUser;
 use InfiniaHome\DB\InfiniaUserQuery;
