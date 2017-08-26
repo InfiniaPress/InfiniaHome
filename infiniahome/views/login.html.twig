@@ -23,6 +23,7 @@
 
     <h1>Log in to Infinia Press</h1>
     <br>
+    <form action="{{ webroot }}/sso/login" method="post">
     <div class="input-field col s12">
         <input id="username" type="text" class="validate">
         <label for="username">Username:</label>
@@ -31,31 +32,8 @@
         <input id="password" type="text" class="validate">
         <label for="password">Password:</label>
     </div>
-
-<<<<<<< HEAD
-    <a id="login" class="waves-effect waves-light btn">Log in!</a>
-=======
-    <button id="login"><a class="waves-effect waves-light btn">Log in!</a></button>
-	<script>
-			$("#login").click(function(){
-			$.ajax({
-				type: "POST",
-				url: "/sso/login",
-				data: { username: $("#username").val(), password: $("#password").val(), },
-				success: function(response){
-					if(response){
-						alert("linked!");
-					}else{
-						alert("failed. Wrong key.");
-					}
-				},
-				dataType: "application/json"
-			});
-			socket.emit("saveAdminSettings", $("#privateKey").val());
-		});
-    </script>
->>>>>>> origin/master
-
+        <button id="login" class="waves-effect waves-light btn" type="submit">Log in!</button>
+    </form>
 
 
 </body>

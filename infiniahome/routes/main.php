@@ -14,7 +14,14 @@ use InfiniaHome\User\User;
 use Phroute\Phroute\RouteCollector;
 use InfiniaHome\DB\ConfigurationQuery;
 
+use Twig_Loader_Filesystem;
+use Twig_Environment;
+
 $route = new RouteCollector();
+$loader = new Twig_Loader_Filesystem('../views');
+$twig = new Twig_Environment($loader, array(
+    'cache' => '../twig_cache'
+));
 
 session_start();
 
@@ -26,13 +33,17 @@ $indexroute = Array(
     "index.pp",
     "index.hm",
     "index.php",
-    "index.html",
+    "index.html.twig",
 );
 
 
 foreach ($indexroute as $loute) {
     $route->any($loute, function() {
-        readfile("../views/index.html");
+        global $twig;
+
+        $twig->render("index.html.twig", array(
+           'webroot' => ConfigurationQuery::create()->findOneByKey("infinia_webroot")
+        ));
     });
 }
 
@@ -42,16 +53,24 @@ foreach ($indexroute as $loute) {
 //TODO: Move these to seperate files
 
 $route->get("sso/login", function() {
+    global $twig;
     if (isset($_SESSION["isLoggedIn"]) && $_SESSION["isLoggedIn"]) {
         header("Location: " . $_GET["origin"]);
     } else {
-        readfile("../views/login.html");
+        $twig->render("login.html.twig", array(
+            'webroot' => ConfigurationQuery::create()->findOneByKey("infinia_webroot")
+        ));
+
     }
 
 });
 
 $route->get("sso/signup", function (){
-    readfile("../views/signUp.html");
+    global $twig;
+    $twig->render("signUp.html.twig", array(
+        'webroot' => ConfigurationQuery::create()->findOneByKey("infinia_webroot")
+    ));
+
 });
 
 $route->post("sso/login", function() {
