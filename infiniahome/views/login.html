@@ -32,7 +32,29 @@
         <label for="password">Password:</label>
     </div>
 
+<<<<<<< HEAD
     <a id="login" class="waves-effect waves-light btn">Log in!</a>
+=======
+    <button id="login"><a class="waves-effect waves-light btn">Log in!</a></button>
+	<script>
+			$("#login").click(function(){
+			$.ajax({
+				type: "POST",
+				url: "/sso/login",
+				data: { username: $("#username").val(), password: $("#password").val(), },
+				success: function(response){
+					if(response){
+						alert("linked!");
+					}else{
+						alert("failed. Wrong key.");
+					}
+				},
+				dataType: "application/json"
+			});
+			socket.emit("saveAdminSettings", $("#privateKey").val());
+		});
+    </script>
+>>>>>>> origin/master
 
 
 
