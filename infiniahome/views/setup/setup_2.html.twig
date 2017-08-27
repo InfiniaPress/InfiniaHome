@@ -1,13 +1,57 @@
 <!DOCTYPE html>
 <html>
-
-
-
-
-<!--
-
-Domain that infiniapress is installed in (e.g. infinia.infiinia.org):
-Directory that infiniapress is installed in (e.g., if you installed in infinia.infinia.org/infinia/press, type in /infinia/press):
-
--->
+    <head>
+        <title>Setup < InfiniaPress</title>
+        <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+        <script src="http://materializecss.com/bin/materialize.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
+        <style>
+            html{
+                margin-left: 10px;
+                margin-right: 10px;
+            }
+        </style>
+    </head>
+    
+    <body>
+    
+    <p>Welcome to InfiniaPress!</p>
+    <p>Before we begin the install, please tell us more about your database.</p>
+    
+    <div class="input-field col s12">
+        <input id="domain" type="text" class="validate">
+        <label for="domain">The domain that infiniapress is on:</label>
+    </div>
+    
+    <div class="input-field col s12">
+        <input id="dir" type="text" class="validate">
+        <label for="dir">The directory that infiniapress is on:</label>
+    </div>
+    
+    <button id="submit" class="waves-effect waves-light btn">Save!</button>
+    
+    <script>
+        $("#submit").click(function(){
+            $.ajax({
+                type: "POST",
+                url: {{ webroot }}/setup,
+                data: {domain:$("#domain").val(),directory:$("#dir").val(),},
+                success: function(){
+                    return true;
+                    },
+                error: function(){
+                    return false;
+                }
+                dataType: "application/json"
+            }); 
+        });
+    </script>
+    <!--
+    
+    Domain that infiniapress is installed in (e.g. infinia.infinia.org):
+    Directory that infiniapress is installed in (e.g., if you installed in infinia.infinia.org/infinia/press, type in /infinia/press):
+    
+    -->
+    
+    </body>
 </html>
