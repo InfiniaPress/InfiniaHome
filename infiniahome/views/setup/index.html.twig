@@ -2,12 +2,61 @@
 <html>
 <head>
     <title>Setup < InfiniaPress</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+  	<script src="http://materializecss.com/bin/materialize.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
+    <style>
+        html{
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+    </style>
 </head>
 
 <body>
 
 <p>Welcome to InfiniaPress!</p>
 <p>Before we begin the install, please tell us more about your database.</p>
+
+<div class="input-field col s12">
+    <input id="host" type="text" class="validate">
+    <label for="host">Your database host:</label>
+</div>
+<div class="input-field col s12">
+    <input id="port" type="text" class="validate">
+    <label for="port">Your port:</label>
+</div>
+<div class="input-field col s12">
+    <input id="name" type="text" class="validate">
+    <label for="name">The name of your Database:</label>
+</div>
+<div class="input-field col s12">
+    <input id="username" type="text" class="validate">
+    <label for="username">Your username for your Database:</label>
+</div>
+<div class="input-field col s12">
+    <input id="password" type="text" class="validate">
+    <label for="password">The password for your Database:</label>
+</div>
+
+<button id="submit" class="waves-effect waves-light btn">Save!</button>
+
+<script>
+    $("#submit").click(function(){
+        $.ajax({
+            type: "POST",
+            url: {{ webroot }}/setup,
+            data: {host:$("#host").val(),port:$("#port").val(),name:$("#name").val(),username:$("#username").val(),password:$("#password").val(),},
+            success: function(){
+                return true;
+                },
+            error: function(){
+                return false;
+            }
+            dataType: "application/json"
+        }); 
+    });
+</script>
 
 <!--
 
