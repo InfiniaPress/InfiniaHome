@@ -146,10 +146,9 @@ INF;
      * @param $username_email string Username or email
      * @param $password string Unhashed password
      * @param $hashkey string Hash key for hashing the password (Randomized)
-     * @param $origin string Origin of the user
      * @return boolean
      */
-    public function login_user($username_email, $password, $hashkey, $origin) {
+    public function login_user($username_email, $password, $hashkey) {
         try {
             $user = InfiniaUserQuery::create()
                 ->filterByUserName($username_email)
@@ -163,25 +162,21 @@ INF;
                     $uss = UserStatusQuery::create()->findOneByUserid($uid);
                     if ($uss->getStatus() == "Registered") {
                         $usr_sess = new Sessions();
-                        $cmbn = $this->orm_db->getUserRealname().$this->orm_db->getUserName();
+                        $cmbn = $this->orm_db->getUserName().$this->orm_db->getUserRealname().$this->orm_db->getUserEmail();
                         $hsh = hash_hmac("sha256", $cmbn, $hashkey);
                         $usr_sess->setSessionToken($hsh);
                         $this->orm_db->setuserSession($usr_sess);
-                        $lel = Array();
-                        preg_match($this->url_regex, $origin, $lel);
-                        if ($lel[0] = ConfigurationQuery::create()->findOneByKey("infiniahome_base_url")) {
+                        $this->isLoggedIn = true;
 
-                            $this->redirect($lel[0]."/infinia");
+                        session_start();
+                        session_destroy();
+                        session_start();
 
-                            // Destroy Existing sessions
-                            session_start();
-                            session_destroy();
+                        $_SESSION["isLoggedIn"] = true;
 
-                            session_name("InfiniaPress");
-                            session_start();
-                            $this->isLoggedIn = true;
-                            $_SESSION["isLoggedIn"] = true;
-                            return true;
+                        return True;
+
+                        /**
                         } else {
                             $getParams = Array(
                                 'username' => $user->getUserName(),
@@ -192,8 +187,11 @@ INF;
                             $this->redirect($lel[0]."?".http_build_query($getParams));
                             return true;
                         }
+                         */
+
                     } else if ($uss->getStatus() == "Unregistered") {
-                        exit("You have not verified your email. Please verify your email and try again! DOH!!!");
+                        echo "You have not verified your email. Please verify your email and try again! DOH!!!";
+                        return false;
                     } else if ($uss->getStatus() == "Banned"){
 
                         if($uss->getBannedForever()) {
@@ -219,7 +217,7 @@ INF;
             return false;
         }
 
-        return false;
+
     }
 
 
