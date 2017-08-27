@@ -7,7 +7,7 @@
  */
 require "../../vendor/autoload.php";
 
-require_once "../routes/main.php";
+require_once "../routes/main.routes.php";
 
 use Phroute\Phroute\Dispatcher;
 

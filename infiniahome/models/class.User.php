@@ -170,7 +170,7 @@ INF;
                         $lel = Array();
                         preg_match($this->url_regex, $origin, $lel);
                         if ($lel[0] = ConfigurationQuery::create()->findOneByKey("infiniahome_base_url")) {
-                            //TODO: REMOVE HARDCODING AND USE A CONFIG FILE FOR GOD'S SAKE
+
                             $this->redirect($lel[0]."/infinia");
 
                             // Destroy Existing sessions
