@@ -66,10 +66,10 @@ keys that will be generated.</p>
                 url: '{{ webroot }}/setup',
                 data: {name:$("#name").val(),url:$("#url").val(),type:appType},
                 success: function(pubKey,privKey){
-                    alert("Public key: " + pubKey + " Public key: " + privKey);
+                    alert("Public key: " + pubKey + " Private key: " + privKey);
                 },
                 error: function(err){
-                    alert("An error occured: " + err);
+                    alert("An error occured: " + err.responseText);
                 },
                 dataType: "application/json",
             });

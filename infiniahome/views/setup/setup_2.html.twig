@@ -34,13 +34,15 @@
         $("#submit").click(function(){
             $.ajax({
                 type: "POST",
-                url: '{{ webroot }}/setup',
+                url: '{{ webroot }}/setup/setup-2',
                 data: {domain:$("#domain").val(),directory:$("#dir").val(),},
-                success: function(){
-                    return true;
-                    },
-                error: function(){
-                    return false;
+                success: function(result){
+                    if(result == "true"){
+                        window.location('{{ webroot }}/setup/setup_3.html.twig');
+                    }
+                },
+                error: function(err){
+                    alert(err.responseText);
                 }
                 dataType: "application/json"
             }); 
