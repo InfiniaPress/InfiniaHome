@@ -34,7 +34,7 @@
         $("#submit").click(function(){
             $.ajax({
                 type: "POST",
-                url: {{ webroot }}/setup,
+                url: '{{ webroot }}/setup',
                 data: {domain:$("#domain").val(),directory:$("#dir").val(),},
                 success: function(){
                     return true;

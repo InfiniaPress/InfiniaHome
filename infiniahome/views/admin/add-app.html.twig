@@ -1,27 +1,29 @@
 <!DOCTYPE html>
-<html>
 
+<html>
 <head>
-    <title>Setup < InfiniaPress</title>
+    <title>Admin Page</title>
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
-    <script src="http://materializecss.com/bin/materialize.js"></script>
+  	<script src="http://materializecss.com/bin/materialize.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
+    <script src="https://cdn.rawgit.com/peachananr/onepage-scroll/master/jquery.onepage-scroll.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.rawgit.com/peachananr/onepage-scroll/master/onepage-scroll.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    
     <style>
         html{
-            margin-left: 10px;
-            margin-right: 10px;
             text-align: center;
+            padding-left: 60px;
+            padding-right: 60px;
         }
     </style>
 </head>
 
 <body>
-<h1>Install applications</h1>
-<p>InfiniaPress is not very useful without applications. If you already have any applications set up and running, please
-open up yourapplicationpage.com/application/admin/link-infiniahome and be prepared to enter the public and private
-keys that will be generated.</p>
 
-<div class="input-field col s12">
+    <h1>Admin Page</h1>
+    <br>
+ <div class="input-field col s12">
     <input id="name" type="text" class="validate">
     <label for="name">Application Name:</label>
 </div>
@@ -77,25 +79,6 @@ keys that will be generated.</p>
     });
 </script>
  
-
-<!--
-Application Name:
-Application Type (Dropdown: Passenger Pigeon/Hansom/Cicada):
-Application installation url:
-Generate!
-
-Returns [Public key]
-Returns [Private key]
-
-{ Now: Go to [Application Name] and enter the public and private keys generated, and click save. }
-
-[Save]
-Detecting link... (Link not detected/Successfully saves and moves on to setup_4)
--->
-
-<!--
- User can click to add more applications (Use javascript to generate these)
--->
 
 </body>
 </html>
