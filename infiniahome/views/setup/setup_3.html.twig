@@ -65,8 +65,9 @@ keys that will be generated.</p>
                 type: "POST",
                 url: '{{ webroot }}/setup',
                 data: {name:$("#name").val(),url:$("#url").val(),type:appType},
-                success: function(pubKey,privKey){
-                    alert("Public key: " + pubKey + " Private key: " + privKey);
+                success: function(result){
+                    var keys = JSON.parse(result);
+                    alert("Public key: " + result.public_key + " Private key: " + result.private_key);
                 },
                 error: function(err){
                     alert("An error occured: " + err.responseText);
