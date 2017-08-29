@@ -24,12 +24,7 @@ $dispatcher = new Dispatcher($route->getData());
 try {
     $response = $dispatcher->dispatch($_SERVER["REQUEST_METHOD"], parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH));
     echo $response;
-} catch (HttpRouteNotFoundException $httpRouteNotFoundException) {
-    echo "There seems to be an error in this InfiniaPress installation. Kindly contact the administrators of this site.";
+} catch (HttpRouteNotFoundException $hRNfE) {
+    echo "This is a very helpful error message: An unknown error occured\n";
+    echo "Contact the developers at support.infinia.press";
 }
-
-
-
-
-
-
