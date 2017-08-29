@@ -63,7 +63,9 @@ $route->post("sso/signup", function() {
 
         if ($u->register_user($_POST["username"], $_POST["password"], $_POST["email"], $_POST["fullname"], hash_hmac("sha256", uniqid(rand()), random_bytes(69)))) {
             //TODO: REMOVE HARDCODING FOR FKS SAKE
-            $u->send_smtp_email("Subject", "From", "Message", "Altmessage");
+            $u->send_smtp_email("Verify email :: InfiniaPress @ ".
+                ConfigurationQuery::create()->findOneByKey("infinia_domain")
+                , ConfigurationQuery::create()->findOneByKey("from_email"), "Message", "Altmessage");
         } else {
             echo "This is a very helpful and descriptive error message: An unknown error occured.";
         }

@@ -162,7 +162,8 @@ INF;
                     $uss = UserStatusQuery::create()->findOneByUserid($uid);
                     if ($uss->getStatus() == "Registered") {
                         $usr_sess = new Sessions();
-                        $cmbn = $this->orm_db->getUserName().$this->orm_db->getUserRealname().$this->orm_db->getUserEmail();
+                        $cmbn = $this->orm_db->getUserName().$this->orm_db->getUserRealname().
+                            $this->orm_db->getUserEmail();
                         $hsh = hash_hmac("sha256", $cmbn, $hashkey);
                         $usr_sess->setSessionToken($hsh);
                         $this->orm_db->setuserSession($usr_sess);
@@ -217,7 +218,7 @@ INF;
             return false;
         }
 
-
+        return false;
     }
 
 

@@ -4,6 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
+    "hash": "c40ae94c46a0f32119f3067817b3653a",
     "content-hash": "e7f80eb509eb3139854927f10b28caf5",
     "packages": [
         {
@@ -81,7 +82,7 @@
                 }
             ],
             "description": "PHPMailer is a full-featured email creation and transfer class for PHP",
-            "time": "2017-07-26T21:00:20+00:00"
+            "time": "2017-07-26 21:00:20"
         },
         {
             "name": "phroute/phroute",
@@ -125,7 +126,7 @@
                 "router",
                 "routing"
             ],
-            "time": "2015-07-22T20:46:43+00:00"
+            "time": "2015-07-22 20:46:43"
         },
         {
             "name": "propel/propel",
@@ -133,12 +134,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/propelorm/Propel2.git",
-                "reference": "9c3458a118ff0a23d4f36c4b3f09356b1acdd569"
+                "reference": "d24a474f6523384f7a2262c85020e7a07cb1dee0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/propelorm/Propel2/zipball/9c3458a118ff0a23d4f36c4b3f09356b1acdd569",
-                "reference": "9c3458a118ff0a23d4f36c4b3f09356b1acdd569",
+                "url": "https://api.github.com/repos/propelorm/Propel2/zipball/d24a474f6523384f7a2262c85020e7a07cb1dee0",
+                "reference": "d24a474f6523384f7a2262c85020e7a07cb1dee0",
                 "shasum": ""
             },
             "require": {
@@ -190,7 +191,7 @@
                 "orm",
                 "persistence"
             ],
-            "time": "2017-08-14 12:57:09"
+            "time": "2017-08-25 15:57:46"
         },
         {
             "name": "psr/log",
@@ -237,7 +238,7 @@
                 "psr",
                 "psr-3"
             ],
-            "time": "2016-10-10T12:19:37+00:00"
+            "time": "2016-10-10 12:19:37"
         },
         {
             "name": "symfony/config",
@@ -299,7 +300,7 @@
             ],
             "description": "Symfony Config Component",
             "homepage": "https://symfony.com",
-            "time": "2017-07-19T07:37:29+00:00"
+            "time": "2017-07-19 07:37:29"
         },
         {
             "name": "symfony/console",
@@ -368,7 +369,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2017-07-29T21:27:59+00:00"
+            "time": "2017-07-29 21:27:59"
         },
         {
             "name": "symfony/debug",
@@ -424,7 +425,7 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
-            "time": "2017-07-28T15:27:31+00:00"
+            "time": "2017-07-28 15:27:31"
         },
         {
             "name": "symfony/filesystem",
@@ -473,7 +474,7 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2017-07-11T07:17:58+00:00"
+            "time": "2017-07-11 07:17:58"
         },
         {
             "name": "symfony/finder",
@@ -522,7 +523,7 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "time": "2017-06-01T21:01:25+00:00"
+            "time": "2017-06-01 21:01:25"
         },
         {
             "name": "symfony/polyfill-mbstring",
@@ -581,7 +582,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2017-06-14T15:44:48+00:00"
+            "time": "2017-06-14 15:44:48"
         },
         {
             "name": "symfony/translation",
@@ -646,7 +647,7 @@
             ],
             "description": "Symfony Translation Component",
             "homepage": "https://symfony.com",
-            "time": "2017-06-24T16:45:30+00:00"
+            "time": "2017-06-24 16:45:30"
         },
         {
             "name": "symfony/validator",
@@ -725,7 +726,7 @@
             ],
             "description": "Symfony Validator Component",
             "homepage": "https://symfony.com",
-            "time": "2017-07-26T06:42:48+00:00"
+            "time": "2017-07-26 06:42:48"
         },
         {
             "name": "symfony/yaml",
@@ -780,7 +781,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2017-07-23T12:43:26+00:00"
+            "time": "2017-07-23 12:43:26"
         },
         {
             "name": "twig/twig",
@@ -846,7 +847,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2017-06-07T18:47:58+00:00"
+            "time": "2017-06-07 18:47:58"
         }
     ],
     "packages-dev": [],
