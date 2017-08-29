@@ -45,7 +45,7 @@
     $("#submit").click(function(){
         $.ajax({
             type: "POST",
-            url: {{ webroot }}/setup,
+            url: '{{ webroot }}/setup',
             data: {host:$("#host").val(),port:$("#port").val(),name:$("#name").val(),username:$("#username").val(),password:$("#password").val(),},
             success: function(){
                 return true;
