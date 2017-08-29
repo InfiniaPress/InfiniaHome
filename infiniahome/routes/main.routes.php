@@ -25,7 +25,7 @@ $twig = new Twig_Environment($loader, array(
 ));
 
 $webroot_config = Array (
-    'webroot' => ConfigurationQuery::create()->findOneByKey("infinia_webroot")
+    'webroot' => ConfigurationQuery::create()->findOneByKey("infinia_webroot")->getValue()
 );
 
 session_start();

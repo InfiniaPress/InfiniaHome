@@ -145,10 +145,9 @@ INF;
     /**
      * @param $username_email string Username or email
      * @param $password string Unhashed password
-     * @param $hashkey string Hash key for hashing the password (Randomized)
      * @return boolean
      */
-    public function login_user($username_email, $password, $hashkey) {
+    public function login_user($username_email, $password) {
         try {
             $user = InfiniaUserQuery::create()
                 ->filterByUserName($username_email)
@@ -164,7 +163,8 @@ INF;
                         $usr_sess = new Sessions();
                         $cmbn = $this->orm_db->getUserName().$this->orm_db->getUserRealname().
                             $this->orm_db->getUserEmail();
-                        $hsh = hash_hmac("sha256", $cmbn, $hashkey);
+                        $hsh = hash_hmac("sha256", $cmbn, ConfigurationQuery::create()->
+                        findOneByKey("pw_hashkey")->getValue());
                         $usr_sess->setSessionToken($hsh);
                         $this->orm_db->setuserSession($usr_sess);
                         $this->isLoggedIn = true;
@@ -175,20 +175,14 @@ INF;
 
                         $_SESSION["isLoggedIn"] = true;
 
-                        return True;
+                        ;
+                        $this->user_email = $user->getUserEmail();
+                        $this->user_id = $uss;
+                        $this->user_code = $user->getUserCode();
+                        $this->user_fullname = $user->getUserRealname();
+                        $this->user_name = $user->getUserName();
 
-                        /**
-                        } else {
-                            $getParams = Array(
-                                'username' => $user->getUserName(),
-                                'realName' => $user->getUserRealname(),
-                                'email' => $user->getUserEmail(),
-                                'signature' => $hsh
-                            );
-                            $this->redirect($lel[0]."?".http_build_query($getParams));
-                            return true;
-                        }
-                         */
+                        return True;
 
                     } else if ($uss->getStatus() == "Unregistered") {
                         echo "You have not verified your email. Please verify your email and try again! DOH!!!";
@@ -225,7 +219,7 @@ INF;
 
     public function logout() {
         $this->isLoggedIn = false;
-
+        $_SESSION["isLoggedIn"] = false;
         $usr = SessionsQuery::create()->findOneByUserid($this->user_id);
         $usr->delete();
 
@@ -259,25 +253,9 @@ INF;
         $m->setFrom($from, "No Reply :: InfiniaPress Instance <".$this->conf["site"]["site_name"].">");
         $m->addReplyTo($from, "No Reply :: InfiniaPress Instance <".$this->conf["site"]["site_name"].">");
 
-        $mainmsg = new TemplateFromString($msg);
-
-        $mainmsg->set("user_name",$this->user_name);
-        $mainmsg->set("user_id", $this->user_id);
-        $mainmsg->set("user_code", $this->user_code);
-        $mainmsg->set("user_fullname", $this->user_fullname);
-        $mainmsg->set("user_email", $this->user_email);
-
-        $altmsg = new TemplateFromString($altmsg);
-
-        $altmsg->set("user_name", $this->user_name);
-        $altmsg->set("user_id", $this->user_id);
-        $altmsg->set("user_code", $this->user_code);
-        $altmsg->set("user_fullname", $this->user_fullname);
-        $altmsg->set("user_email", $this->user_email);
-
         $m->Subject = $subject;
-        $m->Body = $mainmsg->output();
-        $m->AltBody = $altmsg->output();
+        $m->Body = $msg;
+        $m->AltBody = $altmsg;
 
         $m->send();
     }

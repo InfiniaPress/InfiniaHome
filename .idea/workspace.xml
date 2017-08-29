@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d3fb66f2-fc98-4463-8091-98471fc8fc6e" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/infiniahome/views/email_templates/verify_email.alt.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/infiniahome/models/class.User.php" afterPath="$PROJECT_DIR$/infiniahome/models/class.User.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/infiniahome/routes/auth.routes.php" afterPath="$PROJECT_DIR$/infiniahome/routes/auth.routes.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/infiniahome/routes/main.routes.php" afterPath="$PROJECT_DIR$/infiniahome/routes/main.routes.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/infiniahome/views/email_templates/verify_email.html.twig" afterPath="$PROJECT_DIR$/infiniahome/views/email_templates/verify_email.html.twig" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -38,21 +43,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="composer.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/composer.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="663">
-              <caret line="39" column="6" lean-forward="false" selection-start-line="39" selection-start-column="6" selection-end-line="39" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="class.User.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/infiniahome/models/class.User.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3553">
-              <caret line="229" column="21" lean-forward="false" selection-start-line="229" selection-start-column="21" selection-end-line="229" selection-end-column="21" />
+            <state relative-caret-position="17">
+              <caret line="146" column="48" lean-forward="false" selection-start-line="146" selection-start-column="48" selection-end-line="146" selection-end-column="48" />
               <folding>
                 <element signature="e#160#191#0#PHP" expanded="true" />
               </folding>
@@ -60,11 +55,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="auth.routes.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="auth.routes.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/infiniahome/routes/auth.routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1020">
-              <caret line="67" column="85" lean-forward="false" selection-start-line="67" selection-start-column="85" selection-end-line="67" selection-end-column="85" />
+            <state relative-caret-position="513">
+              <caret line="68" column="52" lean-forward="true" selection-start-line="68" selection-start-column="52" selection-end-line="68" selection-end-column="52" />
               <folding>
                 <element signature="e#6#90#0#PHP" expanded="true" />
                 <element signature="e#131#157#0#PHP" expanded="true" />
@@ -73,11 +68,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="verify_email.html.twig" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/infiniahome/views/email_templates/verify_email.html.twig">
+      <file leaf-file-name="schema.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/infiniahome/conf/schema.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+            <state relative-caret-position="63">
+              <caret line="75" column="0" lean-forward="true" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -86,7 +81,7 @@
       <file leaf-file-name="setup.routes.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/infiniahome/routes/setup.routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1989">
+            <state relative-caret-position="394">
               <caret line="124" column="0" lean-forward="false" selection-start-line="124" selection-start-column="0" selection-end-line="124" selection-end-column="0" />
               <folding>
                 <element signature="e#129#162#0#PHP" expanded="true" />
@@ -95,30 +90,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="setup_5.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/infiniahome/views/setup/setup_5.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="setup_4.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/infiniahome/views/setup/setup_4.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="11" lean-forward="false" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="11" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="admin.routes.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/infiniahome/routes/admin.routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
+            <state relative-caret-position="442">
               <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
               <folding>
                 <element signature="e#6#90#0#PHP" expanded="true" />
@@ -130,8 +105,8 @@
       <file leaf-file-name="main.routes.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/infiniahome/routes/main.routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="816">
-              <caret line="58" column="0" lean-forward="false" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+            <state relative-caret-position="34">
+              <caret line="27" column="90" lean-forward="false" selection-start-line="27" selection-start-column="90" selection-end-line="27" selection-end-column="90" />
               <folding>
                 <element signature="e#162#197#0#PHP" expanded="true" />
               </folding>
@@ -143,7 +118,7 @@
         <entry file="file://$PROJECT_DIR$/infiniahome/runtime/index.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="476">
-              <caret line="29" column="1" lean-forward="true" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
+              <caret line="29" column="1" lean-forward="false" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
               <folding>
                 <element signature="e#172#203#0#PHP" expanded="true" />
               </folding>
@@ -207,13 +182,14 @@
         <option value="$PROJECT_DIR$/TODO.md" />
         <option value="$PROJECT_DIR$/infiniahome/runtime/index.php" />
         <option value="$PROJECT_DIR$/composer.json" />
-        <option value="$PROJECT_DIR$/infiniahome/routes/main.routes.php" />
         <option value="$PROJECT_DIR$/infiniahome/routes/admin.routes.php" />
         <option value="$PROJECT_DIR$/infiniahome/views/setup/setup_4.html.twig" />
-        <option value="$PROJECT_DIR$/infiniahome/models/class.User.php" />
         <option value="$PROJECT_DIR$/infiniahome/routes/setup.routes.php" />
-        <option value="$PROJECT_DIR$/infiniahome/routes/auth.routes.php" />
         <option value="$PROJECT_DIR$/infiniahome/views/email_templates/verify_email.html.twig" />
+        <option value="$PROJECT_DIR$/infiniahome/views/email_templates/verify_email.alt.twig" />
+        <option value="$PROJECT_DIR$/infiniahome/models/class.User.php" />
+        <option value="$PROJECT_DIR$/infiniahome/routes/main.routes.php" />
+        <option value="$PROJECT_DIR$/infiniahome/routes/auth.routes.php" />
       </list>
     </option>
   </component>
@@ -283,6 +259,24 @@
               <item name="InfiniaHome-Laravel" type="b2602c69:ProjectViewProjectNode" />
               <item name="InfiniaHome-Laravel" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="infiniahome" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="conf" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="InfiniaHome-Laravel" type="b2602c69:ProjectViewProjectNode" />
+              <item name="InfiniaHome-Laravel" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="infiniahome" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="models" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="InfiniaHome-Laravel" type="b2602c69:ProjectViewProjectNode" />
+              <item name="InfiniaHome-Laravel" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="infiniahome" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="routes" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="InfiniaHome-Laravel" type="b2602c69:ProjectViewProjectNode" />
+              <item name="InfiniaHome-Laravel" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="infiniahome" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
@@ -291,6 +285,20 @@
               <item name="infiniahome" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="admin" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="InfiniaHome-Laravel" type="b2602c69:ProjectViewProjectNode" />
+              <item name="InfiniaHome-Laravel" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="infiniahome" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="email_templates" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="InfiniaHome-Laravel" type="b2602c69:ProjectViewProjectNode" />
+              <item name="InfiniaHome-Laravel" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="infiniahome" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="setup" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
@@ -438,7 +446,7 @@
       <workItem from="1503805878373" duration="899000" />
       <workItem from="1503823632183" duration="907000" />
       <workItem from="1503827821109" duration="6694000" />
-      <workItem from="1504008721581" duration="8000" />
+      <workItem from="1504008721581" duration="1984000" />
     </task>
     <task id="LOCAL-00001" summary="MOAR changes">
       <created>1503994433291</created>
@@ -461,14 +469,22 @@
       <option name="project" value="LOCAL" />
       <updated>1504003468572</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Even more changes">
+      <created>1504008788607</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1504008788607</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="87030000" />
+    <option name="totallyTimeSpent" value="89006000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1366" height="732" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24242425" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -510,6 +526,9 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3997833" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
@@ -517,7 +536,8 @@
     <MESSAGE value="MOAR changes" />
     <MESSAGE value="Moar and moar changes" />
     <MESSAGE value="Loads of changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Loads of changes" />
+    <MESSAGE value="Even more changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Even more changes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -526,7 +546,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/infiniahome/models/propel-gen/InfiniaHome/DB/User.php" />
     <entry file="file://$PROJECT_DIR$/infiniahome/models/propel-gen/InfiniaHome/DB/InfiniaUserQuery.php" />
     <entry file="file://$PROJECT_DIR$/composer.lock">
       <provider selected="true" editor-type-id="text-editor">
@@ -645,13 +664,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/infiniahome/conf/schema.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="74" column="0" lean-forward="true" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/TODO.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -701,30 +713,26 @@
     <entry file="file://$PROJECT_DIR$/infiniahome/runtime/index.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
-          <caret line="29" column="1" lean-forward="true" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
+          <caret line="29" column="1" lean-forward="false" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
           <folding>
             <element signature="e#172#203#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/infiniahome/routes/main.routes.php">
+    <entry file="file://$PROJECT_DIR$/infiniahome/views/email_templates/verify_email.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="816">
-          <caret line="58" column="0" lean-forward="false" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
-          <folding>
-            <element signature="e#162#197#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="119">
+          <caret line="7" column="19" lean-forward="true" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/infiniahome/routes/admin.routes.php">
+    <entry file="file://$PROJECT_DIR$/infiniahome/views/email_templates/verify_email.alt.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-          <folding>
-            <element signature="e#6#90#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="221">
+          <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -744,19 +752,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/infiniahome/models/class.User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3553">
-          <caret line="229" column="21" lean-forward="false" selection-start-line="229" selection-start-column="21" selection-end-line="229" selection-end-column="21" />
-          <folding>
-            <element signature="e#160#191#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/infiniahome/routes/setup.routes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1989">
+        <state relative-caret-position="394">
           <caret line="124" column="0" lean-forward="false" selection-start-line="124" selection-start-column="0" selection-end-line="124" selection-end-column="0" />
           <folding>
             <element signature="e#129#162#0#PHP" expanded="true" />
@@ -764,22 +762,52 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/infiniahome/routes/auth.routes.php">
+    <entry file="file://$PROJECT_DIR$/infiniahome/conf/schema.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1020">
-          <caret line="67" column="85" lean-forward="false" selection-start-line="67" selection-start-column="85" selection-end-line="67" selection-end-column="85" />
+        <state relative-caret-position="63">
+          <caret line="75" column="0" lean-forward="true" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/infiniahome/models/class.User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="146" column="48" lean-forward="false" selection-start-line="146" selection-start-column="48" selection-end-line="146" selection-end-column="48" />
           <folding>
-            <element signature="e#6#90#0#PHP" expanded="true" />
-            <element signature="e#131#157#0#PHP" expanded="true" />
+            <element signature="e#160#191#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/infiniahome/views/email_templates/verify_email.html.twig">
+    <entry file="file://$PROJECT_DIR$/infiniahome/routes/admin.routes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="442">
+          <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding>
+            <element signature="e#6#90#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/infiniahome/routes/main.routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="27" column="90" lean-forward="false" selection-start-line="27" selection-start-column="90" selection-end-line="27" selection-end-column="90" />
+          <folding>
+            <element signature="e#162#197#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/infiniahome/routes/auth.routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="513">
+          <caret line="68" column="52" lean-forward="true" selection-start-line="68" selection-start-column="52" selection-end-line="68" selection-end-column="52" />
+          <folding>
+            <element signature="e#6#90#0#PHP" expanded="true" />
+            <element signature="e#131#157#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
