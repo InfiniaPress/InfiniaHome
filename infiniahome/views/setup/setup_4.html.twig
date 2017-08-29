@@ -1,9 +1,68 @@
 <!DOCTYPE html>
 <html>
 
-<head></head>
-<body>
+<head>
+    <title>Setup < InfiniaPress</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <script src="http://materializecss.com/bin/materialize.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
+    <style>
+        html{
+            margin-left: 10px;
+            margin-right: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
 
+<body>
+<h1>Email setup</h1>
+<p>InfiniaPress is not very useful without email support. Let's begin with some information about your SMPT host.</p>
+
+<div class="input-field col s12">
+    <input id="server" type="text" class="validate">
+    <label for="server">Your SMPT server:</label>
+</div>
+
+<div class="input-field col s12">
+    <input id="port" type="text" class="validate">
+    <label for="port">Your SMPT port:</label>
+</div>
+
+<div class="input-field col s12">
+    <input id="username" type="text" class="validate">
+    <label for="username">Your SMPT username:</label>
+</div>
+
+<div class="input-field col s12">
+    <input id="password" type="text" class="validate">
+    <label for="password">Your SMPT password:</label>
+</div>
+
+<br><br>
+
+<button id="submit" class="waves-effect waves-light btn">Save!</button>
+
+<script>
+    $("#submit").click(function(){
+        $.ajax({
+            type: "POST",
+            url: '{{ webroot }}/setup/setup-4',
+            data: {server:$("#server").val(),port:$("#port").val(),username:$("#username").val(),password:$("#password").val()},
+            success: function(result){
+                if(result == "true"){
+                    window.location('{{ webroot }}/setup/setup_5.html.twig');
+                }
+            },
+            error: function(err){
+                alert("An error occured: " + err.responseText);
+            },
+            dataType: "application/json",
+        });
+    });
+</script>
+
+</body>
 <!--
 Input form
 
@@ -14,5 +73,4 @@ SMTP password:
 
 FROM email:
 -->
-</body>
 </html>

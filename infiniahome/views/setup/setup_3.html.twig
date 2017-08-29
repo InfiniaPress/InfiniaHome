@@ -63,11 +63,12 @@ keys that will be generated.</p>
         }else{
             $.ajax({
                 type: "POST",
-                url: '{{ webroot }}/setup',
+                url: '{{ webroot }}/setup/setup-3',
                 data: {name:$("#name").val(),url:$("#url").val(),type:appType},
                 success: function(result){
                     var keys = JSON.parse(result);
                     alert("Public key: " + result.public_key + " Private key: " + result.private_key);
+                    window.location('{{ webroot }}/setup/setup_4.html.twig');
                 },
                 error: function(err){
                     alert("An error occured: " + err.responseText);
