@@ -14,6 +14,7 @@ require "../../vendor/autoload.php";
 use Phroute\Phroute\RouteCollector;
 use InfiniaHome\DB\ConfigurationQuery;
 
+
 use Twig_Loader_Filesystem;
 use Twig_Environment;
 
@@ -22,6 +23,10 @@ $loader = new Twig_Loader_Filesystem('../views');
 $twig = new Twig_Environment($loader, array(
     'cache' => '../twig_cache'
 ));
+
+$webroot_config = Array (
+    'webroot' => ConfigurationQuery::create()->findOneByKey("infinia_webroot")
+);
 
 session_start();
 
@@ -33,17 +38,16 @@ $indexroute = Array(
     "index.pp",
     "index.hm",
     "index.php",
-    "index.html.twig",
+    "index.html",
 );
 
 
 foreach ($indexroute as $loute) {
     $route->any($loute, function() {
         global $twig;
+        global $webroot_config;
 
-        $twig->render("index.html.twig", array(
-           'webroot' => ConfigurationQuery::create()->findOneByKey("infinia_webroot")
-        ));
+        $twig->render("index.html.twig", $webroot_config);
     });
 }
 

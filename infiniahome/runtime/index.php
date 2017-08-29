@@ -10,6 +10,7 @@ require "../../vendor/autoload.php";
 require_once "../routes/main.routes.php";
 
 use Phroute\Phroute\Dispatcher;
+use Phroute\Phroute\Exception\HttpRouteNotFoundException;
 
 
 
@@ -23,7 +24,7 @@ $dispatcher = new Dispatcher($route->getData());
 try {
     $response = $dispatcher->dispatch($_SERVER["REQUEST_METHOD"], parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH));
     echo $response;
-} catch (\Phroute\Phroute\Exception\HttpRouteNotFoundException $httpRouteNotFoundException) {
+} catch (HttpRouteNotFoundException $httpRouteNotFoundException) {
     echo "There seems to be an error in this InfiniaPress installation. Kindly contact the administrators of this site.";
 }
 
