@@ -39,28 +39,50 @@
     <label for="password">The password for your Database:</label>
 </div>
 
+<a class='dropdown-button btn' href='#' data-activates='dropdown1' id="appType">Application type</a>
+
+<ul id='dropdown1' class='dropdown-content'>
+  <li><a id="mysql">MySQL</a></li>
+  <li><a id="postgresql">PostgreSQL</a></li>
+</ul>
+
 <button id="submit" class="waves-effect waves-light btn">Save!</button>
 
 <script>
+	var dbType;
+    $("#mysql").on("click",function(){
+        dbType = "mysql";
+        $("#appType").text(dbType);
+    });
+    $("#postgresql").on("click",function(){
+        dbType = "pgsql";
+        $("#appType").text(dbType);
+    });
     $("#submit").click(function(){
+		if(!dbType){
+			alert("Choose your database type!");
+		}else{
         $.ajax({
             type: "POST",
-            url: '{{ webroot }}/setup',
-            data: {host:$("#host").val(),port:$("#port").val(),name:$("#name").val(),username:$("#username").val(),password:$("#password").val(),},
-            success: function(){
-                return true;
-                },
-            error: function(){
-                return false;
+            url: '{{ webroot }}/setup/setup-1',
+            data: {dbtype:dbType,host:$("#host").val(),port:$("#port").val(),name:$("#name").val(),username:$("#username").val(),password:$("#password").val(),},
+            success: function(result){
+                if(result == "true"){
+					window.location('{{ webroot }}/setup/setup-2');
+				}
+            },
+            error: function(err){
+                alert(err.responseText);
             }
             dataType: "application/json"
-        }); 
+        });
+		}
     });
 </script>
 
 <!--
 
-Type of DB: (Dropdown) MySQL, PostgreSQL, MSSQL, Oracle Database, SQLite (Not recommended for production environments)
+Type of DB: (Dropdown) MySQL, PostgreSQL (Not recommended for production environments)
 Database host:
 Database port:
 Database name:
