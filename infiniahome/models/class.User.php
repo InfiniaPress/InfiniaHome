@@ -175,7 +175,6 @@ INF;
 
                         $_SESSION["isLoggedIn"] = true;
 
-                        ;
                         $this->user_email = $user->getUserEmail();
                         $this->user_id = $uss;
                         $this->user_code = $user->getUserCode();

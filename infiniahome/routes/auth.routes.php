@@ -93,12 +93,10 @@ $route->get("sso/verify", function () {
        $usr = InfiniaUserQuery::create()->findOneByUserCode($_GET["code"]);
 
        $usts = new UserStatus();
+       $usts->setStatus("Registered");
 
-       $usts->setStatus("Unregistered");
-       $usts->save();
        $usr->setuserStatus($usts);
        $usr->save();
    }
 });
 
-//TODO: sso/confirm

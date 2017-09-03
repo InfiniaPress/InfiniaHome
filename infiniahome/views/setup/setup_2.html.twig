@@ -16,7 +16,7 @@
     <body>
     
     <p>Welcome to InfiniaPress!</p>
-    <p>Before we begin the install, please tell us more about your database.</p>
+    <p>You will now need to configure a few options</p>
     
     <div class="input-field col s12">
         <input id="domain" type="text" class="validate">
@@ -34,26 +34,21 @@
         $("#submit").click(function(){
             $.ajax({
                 type: "POST",
-                url: '{{ webroot }}/setup/setup-2',
-                data: {domain:$("#domain").val(),directory:$("#dir").val(),},
+                url: '{{ webroot }}/admin/add-app',
+                data: {domain:$("#domain").val(),directory:$("#dir").val()},
                 success: function(result){
-                    if(result == "true"){
+                    if(result === "true"){
                         window.location('{{ webroot }}/setup/setup_3.html.twig');
                     }
                 },
                 error: function(err){
                     alert(err.responseText);
-                }
+                },
                 dataType: "application/json"
             }); 
         });
     </script>
-    <!--
-    
-    Domain that infiniapress is installed in (e.g. infinia.infinia.org):
-    Directory that infiniapress is installed in (e.g., if you installed in infinia.infinia.org/infinia/press, type in /infinia/press):
-    
-    -->
+
     
     </body>
 </html>

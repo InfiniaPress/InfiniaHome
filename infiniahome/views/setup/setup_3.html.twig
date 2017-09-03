@@ -63,7 +63,7 @@ keys that will be generated.</p>
         }else{
             $.ajax({
                 type: "POST",
-                url: '{{ webroot }}/setup',
+                url: '{{ webroot }}/setup-3',
                 data: {name:$("#name").val(),url:$("#url").val(),type:appType},
                 success: function(result){
                     var keys = JSON.parse(result);
@@ -72,7 +72,7 @@ keys that will be generated.</p>
                 error: function(err){
                     alert("An error occured: " + err.responseText);
                 },
-                dataType: "application/json",
+                dataType: "application/json"
             });
         }
     });
