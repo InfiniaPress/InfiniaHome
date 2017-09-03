@@ -9,6 +9,7 @@
         html{
             margin-left: 10px;
             margin-right: 10px;
+			text-align: center;
         }
     </style>
 </head>
@@ -64,7 +65,7 @@
 		}else{
         $.ajax({
             type: "POST",
-            url: '{{ webroot }}/setup/setup-1',
+            url: '{{ webroot }}/setup/setup-0',
             data: {dbtype:dbType,host:$("#host").val(),port:$("#port").val(),name:$("#name").val(),username:$("#username").val(),password:$("#password").val(),},
             success: function(result){
                 if(result == "true"){
