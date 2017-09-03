@@ -33,7 +33,7 @@ for ($i = 0; $i <= 4; $i++) {
 }
 
 
-$route->post("/setup/setup-1", function () {
+$route->post("/setup/setup-0", function () {
     if (isset($_POST, $_POST["dbtype"], $_POST["host"], $_POST["port"],
         $_POST["name"], $_POST["username"], $_POST["password"])) {
         try {
@@ -66,6 +66,17 @@ $route->post("/setup/setup-1", function () {
         echo "What kind of DOH is this, nothing was entered?";
     }
 
+});
+
+$route->post("/setup/setup-1", function () {
+    if (isset($_POST, $_POST["username"], $_POST["name"], $_POST["password"], $_POST["email"])) {
+        try {
+            $cfg = new Configuration();
+            $c->setKey("admin_username");
+        } catch (PropelException $pe) {
+
+        }
+    }
 });
 
 $route->post("/setup/setup-2", function () {

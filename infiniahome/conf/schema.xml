@@ -102,5 +102,8 @@
         <column name="value" type="longvarchar" />
     </table>
 
+    <table name="admins" phpName="Admin">
+        <column name="adminid" required="true" type="integer" primaryKey="true" autoIncrement="true" />
+    </table>
 
 </database>
