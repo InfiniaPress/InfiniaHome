@@ -49,7 +49,7 @@
 		}else{
         $.ajax({
             type: "POST",
-            url: '{{ webroot }}/setup/setup-1',
+            url: '{{ webroot }}/setup/setup-2',
             data: {name:$("#name").val(),username:$("#username").val(),password:$("#password").val(),email:$("#email").val()},
             success: function(result){
                 if(result == "true"){
