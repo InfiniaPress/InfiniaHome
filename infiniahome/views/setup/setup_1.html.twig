@@ -1,10 +1,82 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Configure Admin user < InfiniaPress</title>
+    <title>Configure Admin User < InfiniaPress</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+  	<script src="http://materializecss.com/bin/materialize.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
+    <style>
+        html{
+            margin-left: 10px;
+            margin-right: 10px;
+            text-align: center;
+        }
+    </style>
 </head>
+
 <body>
+
+<p>Welcome to InfiniaPress!</p>
+<p>Configure an admin user here to begin!</p>
+
+<div class="input-field col s12">
+    <input id="username" type="text" class="validate">
+    <label for="username">Admin username:</label>
+</div>
+<div class="input-field col s12">
+    <input id="name" type="text" class="validate">
+    <label for="name">Admin real name:</label>
+</div>
+<div class="input-field col s12">
+    <input id="password" type="text" class="validate">
+    <label for="password">Admin password:</label>
+</div>
+<div class="input-field col s12">
+    <input id="confPass" type="text" class="validate">
+    <label for="confPass">Confirm password:</label>
+</div>
+<div class="input-field col s12">
+    <input id="email" type="text" class="validate">
+    <label for="email">Admin email:</label>
+</div>
+
+<button id="submit" class="waves-effect waves-light btn">Create admin!</button>
+
+<script>
+    $("#submit").click(function(){
+		if($("#password").val() !== $("#confPass").val()){
+			alert("Your passwords don't match!");
+		}else{
+        $.ajax({
+            type: "POST",
+            url: '{{ webroot }}/setup/setup-2',
+            data: {name:$("#name").val(),username:$("#username").val(),password:$("#password").val(),email:$("#email").val()},
+            success: function(result){
+                if(result == "true"){
+					window.location('{{ webroot }}/setup/setup-2');
+				}
+            },
+            error: function(err){
+                alert(err.responseText);
+            }
+            dataType: "application/json"
+        });
+		}
+    });
+</script>
+
+<!--
+
+Type of DB: (Dropdown) MySQL, PostgreSQL (Not recommended for production environments)
+Database host:
+Database port:
+Database name:
+Database username:
+Database password:
+
+Save button (Returns either True (Connection worked) or False (Connection failed)
+-->
+
 
 </body>
 </html>
