@@ -43,7 +43,7 @@
         "psr-4": {
             "InfiniaHome\\User\\": "infiniahome/models",
             "InfiniaHome\\MiscFunctions\\": "infiniahome/models/miscfunctions",
-            "InfiniaHome\\DB\\": "infiniahome/models/propelgen"
+            "InfiniaHome\\DB\\": "infiniahome/models/propelgen/InfiniaHome/DB/"
         }
     }
 }

@@ -104,6 +104,10 @@
 
     <table name="admins" phpName="Admin">
         <column name="adminid" required="true" type="integer" primaryKey="true" autoIncrement="true" />
+        <column name="realname" required="true" type="varchar" length="255" />
+        <column name="username" required="true" type="varchar" length="255" />
+        <column name="password" required="true" type="varchar" length="255" />
+        <column name="email" required="true" type="varchar" length="255" />
     </table>
 
 </database>

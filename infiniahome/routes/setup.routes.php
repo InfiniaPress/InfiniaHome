@@ -132,7 +132,34 @@ $route->post("/setup/setup-3", function () {
 });
 
 $route->post("/setup/setup-4", function () {
-    if (isset($_POST)) {
+    if (isset($_POST, $_POST["server"], $_POST["port"], $_POST["username"], $_POST["password"])) {
+        try {
+            $c = new Configuration();
+            $c->setKey("smtp_server")
+                ->setValue($_POST["server"])
+                ->save();
 
+            $c1 = new Configuration();
+            $c1->setKey("smtp_port")
+                ->setValue($_POST["port"])
+                ->save();
+
+            $c2 = new Configuration();
+            $c2->setKey("smtp_username")
+                ->setValue($_POST["username"])
+                ->save();
+
+            $c3 = new Configuration();
+            $c3->setKey("smtp_password")
+                ->setValue($_POST["password"])
+                ->save();
+            http_response_code(200);
+            echo json_encode(array("response" => "ok", "message" => "Sucessfully saved SMTP details into the database"));
+
+        } catch (PropelException $pe) {
+            http_response_code(500);
+            echo json_encode(array("response" => "err", "message" => "Could not contact the configuration database!"));
+
+        }
     }
 });
