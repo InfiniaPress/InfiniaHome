@@ -8,11 +8,10 @@
 require "../../vendor/autoload.php";
 
 require_once "../routes/main.routes.php";
+require_once "../generated-conf/config.php";
 
 use Phroute\Phroute\Dispatcher;
 use Phroute\Phroute\Exception\HttpRouteNotFoundException;
-
-
 
 
 $httpMtd = $_SERVER["REQUEST_METHOD"];

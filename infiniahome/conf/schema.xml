@@ -98,7 +98,7 @@
     </table>
 
     <table name="configuration">
-        <column name="key" type="longvarchar" primaryKey="true" />
+        <column name="key" type="varchar" size="255" primaryKey="true" />
         <column name="value" type="longvarchar" />
     </table>
 
