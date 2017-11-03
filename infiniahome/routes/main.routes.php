@@ -8,7 +8,7 @@
 
 namespace InfiniaHome\Route;
 
-require "../../vendor/autoload.php";
+require __FILE__"";
 
 
 use Phroute\Phroute\RouteCollector;

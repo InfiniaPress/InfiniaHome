@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/InfiniaHome-Laravel.iml" filepath="$PROJECT_DIR$/.idea/InfiniaHome-Laravel.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/InfiniaHome.iml" filepath="$PROJECT_DIR$/.idea/InfiniaHome.iml" />
     </modules>
   </component>
 </project>
