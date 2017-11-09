@@ -9,7 +9,6 @@
 require "../../vendor/autoload.php";
 
 use InfiniaHome\DB\Configuration;
-use InfiniaHome\DB\ConfigurationQuery;
 use Propel\Runtime\Exception\PropelException;
 
 
@@ -38,7 +37,7 @@ $route->post("/setup/setup-0", function () {
         $_POST["name"], $_POST["username"], $_POST["password"])) {
         try {
             if ($_POST["dbtype"] == "pgsql") {
-                $pdo = new PDO($_POST["dbtype"].
+                new PDO($_POST["dbtype"].
                     ":host=".$_POST["host"].
                     ";port=".$_POST["port"].
                     ";dbname=".$_POST["name"].
@@ -47,7 +46,7 @@ $route->post("/setup/setup-0", function () {
                 );
 
             } else if ($_POST["dbtype" == "mysql"]) {
-                $pdo = new PDO($_POST["dbtype"].
+                new PDO($_POST["dbtype"].
                     ":host=".$_POST["host"].
                     ";port=".$_POST["port"].
                     ";dbname=".$_POST["name"], $_POST["username"], $_POST["password"]);
@@ -72,7 +71,7 @@ $route->post("/setup/setup-1", function () {
     if (isset($_POST, $_POST["username"], $_POST["name"], $_POST["password"], $_POST["email"])) {
         try {
             $cfg = new Configuration();
-            $c->setKey("admin_username");
+            $cfg->setKey("admin_username");
         } catch (PropelException $pe) {
 
         }

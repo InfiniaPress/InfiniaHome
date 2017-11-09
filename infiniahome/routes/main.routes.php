@@ -8,7 +8,8 @@
 
 namespace InfiniaHome\Route;
 
-require __FILE__"";
+
+require ROOT."/../vendor/autoload.php";
 
 
 use Phroute\Phroute\RouteCollector;
@@ -19,7 +20,7 @@ use Twig_Loader_Filesystem;
 use Twig_Environment;
 
 $route = new RouteCollector();
-$loader = new Twig_Loader_Filesystem('../views');
+$loader = new Twig_Loader_Filesystem('views');
 $twig = new Twig_Environment($loader, array(
     'cache' => '../twig_cache'
 ));

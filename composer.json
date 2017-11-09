@@ -36,7 +36,7 @@
         "phpmailer/phpmailer": "^5.2",
         "propel/propel": "~2.0@dev",
         "phroute/phroute": "^2.1",
-        "twig/twig": "^2.0",
+        "twig/twig": "^2.0"
     },
 
     "autoload": {
@@ -45,5 +45,7 @@
             "InfiniaHome\\MiscFunctions\\": "infiniahome/models/miscfunctions",
             "InfiniaHome\\DB\\": "infiniahome/models/propelgen/InfiniaHome/DB/"
         }
+
+
     }
 }

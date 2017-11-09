@@ -11,10 +11,8 @@ require "../../vendor/autoload.php";
 
 use InfiniaHome\User\User;
 
-use InfiniaHome\DB\InfiniaUser;
 use InfiniaHome\DB\InfiniaUserQuery;
 use InfiniaHome\DB\UserStatus;
-use InfiniaHome\DB\UserStatusQuery;
 use InfiniaHome\DB\ConfigurationQuery;
 use InfiniaHome\DB\InfiniaLinkedAppQuery;
 
