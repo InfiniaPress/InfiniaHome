@@ -8,4 +8,4 @@ composer.phar
 # composer.lock
 
 propel.yml
-.scannerwork
+.scannerwork/
