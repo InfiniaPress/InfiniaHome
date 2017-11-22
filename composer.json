@@ -1,51 +1,45 @@
 {
-    "name": "infiniapress/infiniahome",
-
-    "description":  "InfiniaHome Frontend and authentication for InfiniaPress Apps",
-
-    "type": "project",
-
-    "homepage": "http://oss.infinia.press/infiniahome",
-
-    "license": "MIT",
-
-    "authors": [
-        {
-            "name": "Robert Xiu",
-            "email": "xiurobert@gmail.com",
-            "homepage": "http://derpz.infinia.press",
-            "role": "Developer"
-        },
-        {
-            "name": "Keane Wong",
-            "email": "keanewong@gmail.com",
-            "homepage": "http://hundotte.infinia.press",
-            "role": "Developer"
-        }
-    ],
-
-    "support": {
-        "email": "support@infinia.press",
-        "irc": "irc://irc.infinia.press/infiniahome",
-        "forum": "https://forums.infinia.press",
-        "source": "https://github.com/InfiniaPress/InfiniaHome"
+  "name": "infiniapress/infiniahome",
+  "description": "InfiniaHome Frontend and authentication for InfiniaPress Apps",
+  "type": "project",
+  "homepage": "http://oss.infinia.press/infiniahome",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Robert Xiu",
+      "email": "xiurobert@gmail.com",
+      "homepage": "http://derpz.infinia.press",
+      "role": "Developer"
     },
-
-
-    "require": {
-        "phpmailer/phpmailer": "^5.2",
-        "propel/propel": "~2.0@dev",
-        "phroute/phroute": "^2.1",
-        "twig/twig": "^2.0"
-    },
-
-    "autoload": {
-        "psr-4": {
-            "InfiniaHome\\User\\": "infiniahome/models",
-            "InfiniaHome\\MiscFunctions\\": "infiniahome/models/miscfunctions",
-            "InfiniaHome\\DB\\": "infiniahome/models/propelgen/InfiniaHome/DB/"
-        }
-
-
+    {
+      "name": "Keane Wong",
+      "email": "keanewong@gmail.com",
+      "homepage": "http://hundotte.infinia.press",
+      "role": "Developer"
     }
+  ],
+  "support": {
+    "email": "support@infinia.press",
+    "irc": "irc://irc.infinia.press/infiniahome",
+    "forum": "https://forums.infinia.press",
+    "source": "https://github.com/InfiniaPress/InfiniaHome"
+  },
+  "require": {
+    "phpmailer/phpmailer": "^5.2",
+    "propel/propel": "~2.0@dev",
+    "phroute/phroute": "^2.1",
+    "twig/twig": "^2.0",
+    "doctrine/orm": "^2.5",
+    "symfony/yaml": "^3.3"
+  },
+  "autoload": {
+    "psr-4": {
+      "InfiniaHome\\User\\": "infiniahome/models",
+      "InfiniaHome\\MiscFunctions\\": "infiniahome/models/miscfunctions",
+      "InfiniaHome\\DB\\": "infiniahome/models/propelgen/InfiniaHome/DB"
+    },
+    "psr-0": {
+      "": "src/"
+    }
+  }
 }

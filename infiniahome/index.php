@@ -13,7 +13,7 @@ require_once "generated-conf/config.php";
 
 use Phroute\Phroute\Dispatcher;
 use Phroute\Phroute\Exception\HttpRouteNotFoundException;
-
+echo "Helpful error msg";
 
 $httpMtd = $_SERVER["REQUEST_METHOD"];
 $uri = $_SERVER["REQUEST_URI"];

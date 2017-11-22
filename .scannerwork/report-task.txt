@@ -1,6 +1,0 @@
-projectKey=unfiniahome
-serverUrl=https://dev.infinia.press/sonarqube
-serverVersion=6.5.0.27846
-dashboardUrl=https://dev.infinia.press/sonarqube/dashboard/index/unfiniahome
-ceTaskId=AV5DC3e2JtyR9KdzAKK8
-ceTaskUrl=https://dev.infinia.press/sonarqube/api/ce/task?id=AV5DC3e2JtyR9KdzAKK8
