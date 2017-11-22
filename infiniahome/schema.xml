@@ -20,7 +20,7 @@
 -->
 <database name="default" defaultIdMethod="native"
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:noNamespaceSchemaLocation="http://xsd.propelorm.org/1.6/database.xsd"
+          xsi:noNamespaceSchemaLocation=""
           namespace="InfiniaHome\DB\"
           tablePrefix="infinia"
 >
@@ -72,7 +72,6 @@
         <foreign-key foreignTable="sessions" phpName="userSession">
             <reference local="user_id" foreign="userid" />
         </foreign-key>
-
 
     </table>
 

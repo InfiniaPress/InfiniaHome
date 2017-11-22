@@ -96,5 +96,6 @@ $route->get("sso/verify", function () {
        $usr->setuserStatus($usts);
        $usr->save();
    }
+
 });
 

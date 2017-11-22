@@ -10,6 +10,7 @@ namespace InfiniaHome\Route;
 
 
 require ROOT."/../vendor/autoload.php";
+require ROOT."/generated-conf/config.php";
 
 
 use Phroute\Phroute\RouteCollector;

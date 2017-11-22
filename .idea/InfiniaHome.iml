@@ -101,5 +101,7 @@
         </SOURCES>
       </library>
     </orderEntry>
+    <orderEntry type="library" name="jquery-3.2.1" level="application" />
+    <orderEntry type="library" name="jquery.onepage-scroll" level="application" />
   </component>
 </module>
