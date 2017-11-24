@@ -17,7 +17,7 @@ foreach ($indexroute as $r) {
         global $twig;
         global $webroot_config;
 
-        $twig->render("setup/index.html.twig", $webroot_config);
+        return $twig->render("setup/index.html.twig", $webroot_config);
     });
 }
 
@@ -27,7 +27,7 @@ for ($i = 0; $i <= 4; $i++) {
         global $webroot_config;
         global $i;
 
-        $twig->render("setup/setup_$i.html.twig", $webroot_config);
+        return $twig->render("setup/setup_$i.html.twig", $webroot_config);
     });
 }
 
@@ -55,14 +55,14 @@ $route->post("/setup/setup-0", function () {
             }
 
             http_response_code(200);
-            echo "true";
+            return "true";
         } catch (PDOException $PDOException) {
             http_response_code(500);
-            echo "Failed to connect to the database";
+            return "Failed to connect to the database";
         }
     } else {
         http_response_code(500);
-        echo "What kind of DOH is this, nothing was entered?";
+        return "What kind of DOH is this, nothing was entered?";
     }
 
 });
@@ -92,10 +92,10 @@ $route->post("/setup/setup-2", function () {
             $c2->setValue($_POST["domain"]);
             $c->save();
             http_response_code(200);
-            echo "true";
+            return "true";
         } catch (PropelException $pe) {
             http_response_code(500);
-            echo "There is an error trying to connect to the database. Fix your configuration and try again";
+            return "There is an error trying to connect to the database. Fix your configuration and try again";
         }
 
 

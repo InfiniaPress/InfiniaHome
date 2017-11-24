@@ -21,9 +21,9 @@ use Twig_Loader_Filesystem;
 use Twig_Environment;
 
 $route = new RouteCollector();
-$loader = new Twig_Loader_Filesystem('views');
+$loader = new Twig_Loader_Filesystem(ROOT.'/views');
 $twig = new Twig_Environment($loader, array(
-    'cache' => '../twig_cache'
+    'cache' => ROOT.'../twig_cache'
 ));
 
 $webroot_config = Array (

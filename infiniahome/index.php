@@ -5,15 +5,16 @@
  * Date: 26/8/17
  * Time: 1:38 PM
  */
-require "../vendor/autoload.php";
 require "root.php";
+require ROOT."/../vendor/autoload.php";
 
-require_once "routes/main.routes.php";
-require_once "generated-conf/config.php";
+
+require_once ROOT."/routes/main.routes.php";
+require_once ROOT."/generated-conf/config.php";
 
 use Phroute\Phroute\Dispatcher;
 use Phroute\Phroute\Exception\HttpRouteNotFoundException;
-echo "Helpful error msg";
+
 
 $httpMtd = $_SERVER["REQUEST_METHOD"];
 $uri = $_SERVER["REQUEST_URI"];

@@ -10,14 +10,12 @@ propel:
     paths:
 
         # The directory where Propel expects to find your `schema.xml` file.
-        schemaDir: ./schema.xml
+        schemaDir: ../
 
         # The directory where Propel should output generated object model classes.
-        phpDir: ../models/propelgen
+        phpDir: ../models/propelgen/
 
-        outputDir: ../propel_gen/
-
-        composerDir: ../../composer.json
+        composerDir: ../../
 
     database:
         connections:
@@ -28,3 +26,11 @@ propel:
                 password:
                 settings:
                     charset: utf8
+    runtime:
+        defaultConnection: default
+        connections:
+            - default
+    generator:
+        defaultConnection: default
+        connections:
+            - default
