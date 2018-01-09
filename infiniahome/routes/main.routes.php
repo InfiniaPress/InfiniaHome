@@ -23,12 +23,12 @@ use Twig_Environment;
 $route = new RouteCollector();
 $loader = new Twig_Loader_Filesystem('views');
 $twig = new Twig_Environment($loader, array(
-    'cache' => '../twig_cache'
+    //'cache' => 'twig_cache'
 ));
 
-$webroot_config = Array (
-    'webroot' => ConfigurationQuery::create()->findOneByKey("infinia_webroot")->getValue()
-);
+//$webroot_config = Array (
+//    'webroot' => ConfigurationQuery::create()->findOneByKey("infinia_webroot")->getValue()
+//);
 
 session_start();
 
@@ -49,7 +49,7 @@ foreach ($indexroute as $loute) {
         global $twig;
         global $webroot_config;
 
-        $twig->render("index.html.twig", $webroot_config);
+        return $twig->render("index.html.twig", $webroot_config);
     });
 }
 

@@ -7,7 +7,7 @@
  */
 
 
-require "../../vendor/autoload.php";
+require ROOT."/../vendor/autoload.php";
 
 use InfiniaHome\User\User;
 
@@ -22,7 +22,7 @@ $route->get("sso/login", function() {
     if (isset($_SESSION["isLoggedIn"]) && $_SESSION["isLoggedIn"]) {
         header("Location: " . $_GET["origin"]);
     } else {
-        $twig->render("login.html.twig", $webroot_config);
+        return $twig->render("login.html.twig", $webroot_config);
 
     }
 
@@ -31,7 +31,7 @@ $route->get("sso/login", function() {
 $route->get("sso/signup", function (){
     global $twig;
     global $webroot_config;
-    $twig->render("signUp.html.twig", $webroot_config);
+    return $twig->render("signUp.html.twig", $webroot_config);
 
 });
 

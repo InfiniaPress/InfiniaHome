@@ -7,7 +7,7 @@
  */
 
 
-require '../../vendor/autoload.php';
+require ROOT.'/../vendor/autoload.php';
 
 use InfiniaHome\DB\ConfigurationQuery;
 
@@ -19,7 +19,7 @@ foreach ($indexroute as $dh) {
         global $twig;
         global $webroot_config;
 
-        $twig->render("admin/index.html.twig", $webroot_config);
+        return $twig->render("admin/index.html.twig", $webroot_config);
     });
 
 }

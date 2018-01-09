@@ -16,8 +16,24 @@
 
 <body>
 
-<p>Welcome to InfiniaPress!</p>
-<p>Before we begin the install, please tell us more about your database.</p>
+<h4>Welcome to InfiniaPress!</h4>
+<h5>Before we begin the install, please tell us more about your server and database.</h5>
+
+<p>We have magically guessed your webroot! Please tell us if this is correct</p>
+
+<p>Webroot: <b id="webroot">{{ webroot }}</b></p>
+
+<!-- Buttons Yes/No -->
+
+<button id="yessir" class="waves-effect waves-light btn">Yes</button>
+<button id="nofookyou" class="waves-effect waves-light btn">No</button>
+
+<!-- If no: type us the correct webroot and make a save button, disable both buttons and update the webroot variable with jQuery -->
+
+<!-- If yes, disable both the buttons immediately -->
+
+
+<h4>Tell us about your database</h4>
 
 <div class="input-field col s12">
     <input id="host" type="text" class="validate">
@@ -40,12 +56,15 @@
     <label for="password">The password for your Database:</label>
 </div>
 
-<a class='dropdown-button btn' href='#' data-activates='dropdown1' id="appType">Application type</a>
+<a class='dropdown-button btn' href='#' data-activates='dropdown1' id="appType">Database type</a>
 
 <ul id='dropdown1' class='dropdown-content'>
   <li><a id="mysql">MySQL</a></li>
   <li><a id="postgresql">PostgreSQL</a></li>
 </ul>
+
+<br>
+<br>
 
 <button id="submit" class="waves-effect waves-light btn">Save!</button>
 
@@ -68,13 +87,13 @@
             url: '{{ webroot }}/setup/setup-0',
             data: {dbtype:dbType,host:$("#host").val(),port:$("#port").val(),name:$("#name").val(),username:$("#username").val(),password:$("#password").val(),},
             success: function(result){
-                if(result == "true"){
+                if(result === "true"){
 					window.location('{{ webroot }}/setup/setup-1');
 				}
             },
             error: function(err){
                 alert(err.responseText);
-            }
+            },
             dataType: "application/json"
         });
 		}

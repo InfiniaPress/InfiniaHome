@@ -6,7 +6,7 @@
  * Time: 6:02 PM
  */
 
-require "../../vendor/autoload.php";
+require ROOT."/../vendor/autoload.php";
 
 use InfiniaHome\DB\Configuration;
 use Propel\Runtime\Exception\PropelException;
@@ -15,9 +15,9 @@ use Propel\Runtime\Exception\PropelException;
 foreach ($indexroute as $r) {
     $route->get("/setup/$r", function () {
         global $twig;
-        global $webroot_config;
+        //global $webroot_config;
 
-        $twig->render("setup/index.html.twig", $webroot_config);
+        return $twig->render("setup/index.html.twig", array("webroot" => str_replace("index.php", "", $_SERVER["DOCUMENT_URI"])));
     });
 }
 
@@ -27,7 +27,7 @@ for ($i = 0; $i <= 4; $i++) {
         global $webroot_config;
         global $i;
 
-        $twig->render("setup/setup_$i.html.twig", $webroot_config);
+        return $twig->render("setup/setup_$i.html.twig", $webroot_config);
     });
 }
 

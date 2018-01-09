@@ -13,16 +13,11 @@ require_once "generated-conf/config.php";
 
 use Phroute\Phroute\Dispatcher;
 use Phroute\Phroute\Exception\HttpRouteNotFoundException;
-echo "Helpful error msg";
-
-$httpMtd = $_SERVER["REQUEST_METHOD"];
-$uri = $_SERVER["REQUEST_URI"];
-
 
 $dispatcher = new Dispatcher($route->getData());
 
 try {
-    $response = $dispatcher->dispatch($_SERVER["REQUEST_METHOD"], parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH));
+    $response = $dispatcher->dispatch($_SERVER["REQUEST_METHOD"], parse_url($_SERVER["QUERY_STRING"], PHP_URL_PATH));
     echo $response;
 } catch (HttpRouteNotFoundException $hRNfE) {
     echo "This is a very helpful error message: An unknown error occured\n";
