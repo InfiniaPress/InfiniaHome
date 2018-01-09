@@ -35,9 +35,6 @@
       "InfiniaHome\\User\\": "infiniahome/models",
       "InfiniaHome\\MiscFunctions\\": "infiniahome/models/miscfunctions",
       "InfiniaHome\\DB\\": "infiniahome/models/propelgen/InfiniaHome/DB"
-    },
-    "psr-0": {
-      "": "src/"
     }
   }
 }
