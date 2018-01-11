@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Setup < InfiniaPress</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+  	<script src="http://materializecss.com/bin/materialize.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
+    <style>
+        html{
+            margin-left: 10px;
+            margin-right: 10px;
+			text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+<h4>Welcome to InfiniaPress!</h4>
+<h5>Before we begin the install, please tell us more about your server</h5>
+
+<p>We have magically guessed your webroot and your domain that your installation
+    is running on! Please tell us if this is correct</p>
+
+<p>Webroot: <b id="webroot">{{ webroot }}</b></p>
+<p>Installation domain: <b id="install-domain"></b>{{ domain }}</p>
+
+<button id="yessir" class="waves-effect waves-light btn">Yes</button>
+<button id="nofookyou" class="waves-effect waves-light btn">No</button>
+
+
+<!-- TODO: NOW!!! -->
+<!-- Let them change both and make a save button -->
+
+<!-- If yes, disable both the buttons immediately -->
+
+<!-- pass the webroot AND install domain to the server ONLY if they selected no
+If they selected yes, move them on to setup-1. POST to index.php?/setup/setup-0 as POST "webroot" and "domain"-->
+
+
+<button id="submit" class="waves-effect waves-light btn">Save!</button>
+
+<!-- FIX THIS -->
+<script>
+
+
+    $("#submit").click(function(){
+		if(!dbType){
+			alert("Choose your database type!");
+		}else{
+        $.ajax({
+            type: "POST",
+            url: '{{ webroot }}/setup/setup-0',
+            data: {
+
+            },
+            success: function(result){
+                if(result === "true"){
+					window.location('{{ webroot }}/setup/setup-1');
+				}
+            },
+            error: function(err){
+                alert(err.responseText);
+            },
+            dataType: "application/json"
+        });
+		}
+    });
+</script>
+
+<!--
+
+Type of DB: (Dropdown) MySQL, PostgreSQL (Not recommended for production environments)
+Database host:
+Database port:
+Database name:
+Database username:
+Database password:
+
+Save button (Returns either True (Connection worked) or False (Connection failed)
+-->
+
+
+</body>
+</html>

@@ -30,11 +30,14 @@
     "phroute/phroute": "^2.1",
     "twig/twig": "^2.0"
   },
+  "require-dev": {
+    "composer/composer": "dev-master"
+  },
   "autoload": {
     "psr-4": {
-      "InfiniaHome\\User\\": "infiniahome/models",
-      "InfiniaHome\\MiscFunctions\\": "infiniahome/models/miscfunctions",
-      "InfiniaHome\\DB\\": "infiniahome/models/propelgen/InfiniaHome/DB"
+      "InfiniaHome\\User\\": "models",
+      "InfiniaHome\\MiscFunctions\\": "models/miscfunctions",
+      "InfiniaHome\\DB\\": "models/propelgen/InfiniaHome/DB"
     }
   }
 }

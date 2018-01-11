@@ -7,7 +7,7 @@
  */
 
 
-require ROOT."/../vendor/autoload.php";
+require ROOT . "/../vendor/autoload.php";
 
 use InfiniaHome\User\User;
 

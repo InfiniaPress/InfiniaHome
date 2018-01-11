@@ -6,7 +6,7 @@
  * Time: 6:02 PM
  */
 
-require ROOT."/../vendor/autoload.php";
+require ROOT . "/../vendor/autoload.php";
 
 use InfiniaHome\DB\Configuration;
 use Propel\Runtime\Exception\PropelException;
@@ -32,7 +32,10 @@ for ($i = 0; $i <= 4; $i++) {
 }
 
 
+
 $route->post("/setup/setup-0", function () {
+
+    // Do a test on the database, and see if it works
     if (isset($_POST, $_POST["dbtype"], $_POST["host"], $_POST["port"],
         $_POST["name"], $_POST["username"], $_POST["password"])) {
         try {
@@ -56,6 +59,33 @@ $route->post("/setup/setup-0", function () {
 
             http_response_code(200);
             echo "true";
+
+
+            $dbCfg = fopen("../conf/propel.yml", "w" );
+
+
+            $cfg = <<<'EOF'
+propel:
+    paths:
+        schemaDir: {#schemaDir}
+        phpDir: {#propelModelDir}
+    database:
+        connections:
+            default:
+                adapter: {#dbType}
+                dsn: {#dbType}:host={#dbHost};port={#dbPort};dbname={#dbName}
+                user: infinia
+                password: infinia
+                settings:
+                    charset: utf8
+    runtime:
+      defaultConnection: default
+      connections:
+        - default
+
+EOF;
+
+
         } catch (PDOException $PDOException) {
             http_response_code(500);
             echo "Failed to connect to the database";
@@ -64,6 +94,8 @@ $route->post("/setup/setup-0", function () {
         http_response_code(500);
         echo "What kind of DOH is this, nothing was entered?";
     }
+
+
 
 });
 

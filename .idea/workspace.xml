@@ -1,15 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d3fb66f2-fc98-4463-8091-98471fc8fc6e" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/infiniahome/twig_cache/.INIT" afterPath="" />
+    <list default="true" id="d3fb66f2-fc98-4463-8091-98471fc8fc6e" name="Default" comment="keane needs to do work">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/infiniahome/views/setup/setup_2.html.twig" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/infiniahome/conf/propel.yml.dist" afterPath="$PROJECT_DIR$/conf/propel.yml.dist" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/infiniahome/generated-conf/config.php" afterPath="$PROJECT_DIR$/generated-conf/config.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/infiniahome/generated-sql/default.sql" afterPath="$PROJECT_DIR$/generated-sql/default.sql" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/infiniahome/generated-sql/sqldb.map" afterPath="$PROJECT_DIR$/generated-sql/sqldb.map" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/infiniahome/index.php" afterPath="$PROJECT_DIR$/index.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/infiniahome/models/class.User.php" afterPath="$PROJECT_DIR$/models/class.User.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/infiniahome/models/miscfunctions/class.TemplateFromFile.php" afterPath="$PROJECT_DIR$/models/miscfunctions/class.TemplateFromFile.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/infiniahome/models/miscfunctions/class.TemplateFromString.php" afterPath="$PROJECT_DIR$/models/miscfunctions/class.TemplateFromString.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/infiniahome/models/propelgen/InfiniaHome/DB/Admin.php" afterPath="$PROJECT_DIR$/models/propelgen/InfiniaHome/DB/Admin.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/infiniahome/models/propelgen/InfiniaHome/DB/AdminQuery.php" afterPath="$PROJECT_DIR$/models/propelgen/InfiniaHome/DB/AdminQuery.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/infiniahome/models/propelgen/InfiniaHome/DB/Base/Admin.php" afterPath="$PROJECT_DIR$/models/propelgen/InfiniaHome/DB/Base/Admin.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/infiniahome/models/propelgen/InfiniaHome/DB/Base/AdminQuery.php" afterPath="$PROJECT_DIR$/models/propelgen/InfiniaHome/DB/Base/AdminQuery.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/infiniahome/models/propelgen/InfiniaHome/DB/Base/Configuration.php" afterPath="$PROJECT_DIR$/models/propelgen/InfiniaHome/DB/Base/Configuration.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/infiniahome/models/propelgen/InfiniaHome/DB/Base/ConfigurationQuery.php" afterPath="$PROJECT_DIR$/models/propelgen/InfiniaHome/DB/Base/ConfigurationQuery.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/infiniahome/models/propelgen/InfiniaHome/DB/Base/InfiniaLinkedApp.php" afterPath="$PROJECT_DIR$/models/propelgen/InfiniaHome/DB/Base/InfiniaLinkedApp.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/infiniahome/models/propelgen/InfiniaHome/DB/Base/InfiniaLinkedAppQuery.php" afterPath="$PROJECT_DIR$/models/propelgen/InfiniaHome/DB/Base/InfiniaLinkedAppQuery.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/infiniahome/models/propelgen/InfiniaHome/DB/Base/InfiniaUser.php" afterPath="$PROJECT_DIR$/models/propelgen/InfiniaHome/DB/Base/InfiniaUser.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/infiniahome/models/propelgen/InfiniaHome/DB/Base/InfiniaUserQuery.php" afterPath="$PROJECT_DIR$/models/propelgen/InfiniaHome/DB/Base/InfiniaUserQuery.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/infiniahome/models/propelgen/InfiniaHome/DB/Base/Sessions.php" afterPath="$PROJECT_DIR$/models/propelgen/InfiniaHome/DB/Base/Sessions.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/infiniahome/models/propelgen/InfiniaHome/DB/Base/SessionsQuery.php" afterPath="$PROJECT_DIR$/models/propelgen/InfiniaHome/DB/Base/SessionsQuery.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/infiniahome/models/propelgen/InfiniaHome/DB/Base/UserStatus.php" afterPath="$PROJECT_DIR$/models/propelgen/InfiniaHome/DB/Base/UserStatus.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/infiniahome/models/propelgen/InfiniaHome/DB/Base/UserStatusQuery.php" afterPath="$PROJECT_DIR$/models/propelgen/InfiniaHome/DB/Base/UserStatusQuery.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/infiniahome/models/propelgen/InfiniaHome/DB/Configuration.php" afterPath="$PROJECT_DIR$/models/propelgen/InfiniaHome/DB/Configuration.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/infiniahome/models/propelgen/InfiniaHome/DB/ConfigurationQuery.php" afterPath="$PROJECT_DIR$/models/propelgen/InfiniaHome/DB/ConfigurationQuery.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/infiniahome/models/propelgen/InfiniaHome/DB/InfiniaLinkedApp.php" afterPath="$PROJECT_DIR$/models/propelgen/InfiniaHome/DB/InfiniaLinkedApp.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/infiniahome/models/propelgen/InfiniaHome/DB/InfiniaLinkedAppQuery.php" afterPath="$PROJECT_DIR$/models/propelgen/InfiniaHome/DB/InfiniaLinkedAppQuery.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/infiniahome/models/propelgen/InfiniaHome/DB/InfiniaUser.php" afterPath="$PROJECT_DIR$/models/propelgen/InfiniaHome/DB/InfiniaUser.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/infiniahome/models/propelgen/InfiniaHome/DB/InfiniaUserQuery.php" afterPath="$PROJECT_DIR$/models/propelgen/InfiniaHome/DB/InfiniaUserQuery.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/infiniahome/models/propelgen/InfiniaHome/DB/Map/AdminTableMap.php" afterPath="$PROJECT_DIR$/models/propelgen/InfiniaHome/DB/Map/AdminTableMap.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/infiniahome/models/propelgen/InfiniaHome/DB/Map/ConfigurationTableMap.php" afterPath="$PROJECT_DIR$/models/propelgen/InfiniaHome/DB/Map/ConfigurationTableMap.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/infiniahome/models/propelgen/InfiniaHome/DB/Map/InfiniaLinkedAppTableMap.php" afterPath="$PROJECT_DIR$/models/propelgen/InfiniaHome/DB/Map/InfiniaLinkedAppTableMap.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/infiniahome/models/propelgen/InfiniaHome/DB/Map/InfiniaUserTableMap.php" afterPath="$PROJECT_DIR$/models/propelgen/InfiniaHome/DB/Map/InfiniaUserTableMap.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/infiniahome/models/propelgen/InfiniaHome/DB/Map/SessionsTableMap.php" afterPath="$PROJECT_DIR$/models/propelgen/InfiniaHome/DB/Map/SessionsTableMap.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/infiniahome/models/propelgen/InfiniaHome/DB/Map/UserStatusTableMap.php" afterPath="$PROJECT_DIR$/models/propelgen/InfiniaHome/DB/Map/UserStatusTableMap.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/infiniahome/models/propelgen/InfiniaHome/DB/Sessions.php" afterPath="$PROJECT_DIR$/models/propelgen/InfiniaHome/DB/Sessions.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/infiniahome/models/propelgen/InfiniaHome/DB/SessionsQuery.php" afterPath="$PROJECT_DIR$/models/propelgen/InfiniaHome/DB/SessionsQuery.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/infiniahome/models/propelgen/InfiniaHome/DB/UserStatus.php" afterPath="$PROJECT_DIR$/models/propelgen/InfiniaHome/DB/UserStatus.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/infiniahome/models/propelgen/InfiniaHome/DB/UserStatusQuery.php" afterPath="$PROJECT_DIR$/models/propelgen/InfiniaHome/DB/UserStatusQuery.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/infiniahome/propel.cmd" afterPath="$PROJECT_DIR$/propel.cmd" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/infiniahome/root.php" afterPath="$PROJECT_DIR$/root.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/infiniahome/routes/admin.routes.php" afterPath="$PROJECT_DIR$/routes/admin.routes.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/infiniahome/routes/auth.routes.php" afterPath="$PROJECT_DIR$/routes/auth.routes.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/infiniahome/routes/main.routes.php" afterPath="$PROJECT_DIR$/routes/main.routes.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/infiniahome/routes/setup.routes.php" afterPath="$PROJECT_DIR$/routes/setup.routes.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/infiniahome/schema.xml" afterPath="$PROJECT_DIR$/schema.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/infiniahome/views/403.html.twig" afterPath="$PROJECT_DIR$/views/403.html.twig" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/infiniahome/views/404.html.twig" afterPath="$PROJECT_DIR$/views/404.html.twig" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/infiniahome/views/500.html.twig" afterPath="$PROJECT_DIR$/views/500.html.twig" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/infiniahome/views/admin/add-app.html.twig" afterPath="$PROJECT_DIR$/views/admin/add-app.html.twig" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/infiniahome/views/admin/admin.html.twig" afterPath="$PROJECT_DIR$/views/admin/admin.html.twig" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/infiniahome/views/admin/index.html.twig" afterPath="$PROJECT_DIR$/views/admin/index.html.twig" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/infiniahome/views/assets/InfiniaLogoNew.png" afterPath="$PROJECT_DIR$/views/assets/InfiniaLogoNew.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/infiniahome/views/email_templates/verify_email.alt.twig" afterPath="$PROJECT_DIR$/views/email_templates/verify_email.alt.twig" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/infiniahome/views/email_templates/verify_email.html.twig" afterPath="$PROJECT_DIR$/views/email_templates/verify_email.html.twig" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/infiniahome/views/index.html.twig" afterPath="$PROJECT_DIR$/views/index.html.twig" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/infiniahome/views/login.html.twig" afterPath="$PROJECT_DIR$/views/login.html.twig" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/infiniahome/views/setup/index.html.twig" afterPath="$PROJECT_DIR$/views/setup/index.html.twig" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/infiniahome/views/setup/setup_1.html.twig" afterPath="$PROJECT_DIR$/views/setup/setup_1.html.twig" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/infiniahome/views/setup/setup_3.html.twig" afterPath="$PROJECT_DIR$/views/setup/setup_2.html.twig" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/infiniahome/views/setup/setup_4.html.twig" afterPath="$PROJECT_DIR$/views/setup/setup_3.html.twig" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/infiniahome/views/setup/setup_5.html.twig" afterPath="$PROJECT_DIR$/views/setup/setup_4.html.twig" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/infiniahome/views/signUp.html.twig" afterPath="$PROJECT_DIR$/views/signUp.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/InfiniaHome.iml" afterPath="$PROJECT_DIR$/.idea/InfiniaHome.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/php.xml" afterPath="$PROJECT_DIR$/.idea/php.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/infiniahome/index.php" afterPath="$PROJECT_DIR$/infiniahome/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/infiniahome/routes/admin.routes.php" afterPath="$PROJECT_DIR$/infiniahome/routes/admin.routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/infiniahome/routes/auth.routes.php" afterPath="$PROJECT_DIR$/infiniahome/routes/auth.routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/infiniahome/routes/main.routes.php" afterPath="$PROJECT_DIR$/infiniahome/routes/main.routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/infiniahome/routes/setup.routes.php" afterPath="$PROJECT_DIR$/infiniahome/routes/setup.routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/infiniahome/views/setup/index.html.twig" afterPath="$PROJECT_DIR$/infiniahome/views/setup/index.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.json" afterPath="$PROJECT_DIR$/composer.json" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -45,42 +106,61 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="main.routes.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/infiniahome/routes/main.routes.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
-              <caret line="25" column="6" lean-forward="false" selection-start-line="25" selection-start-column="6" selection-end-line="25" selection-end-column="6" />
-              <folding>
-                <element signature="e#209#244#0#PHP" expanded="true" />
-              </folding>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="595">
+                <caret line="35" column="51" lean-forward="false" selection-start-line="35" selection-start-column="51" selection-end-line="35" selection-end-column="51" />
+                <folding />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="setup.routes.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/infiniahome/routes/setup.routes.php">
+      <file leaf-file-name="composer.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/composer.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="19" column="126" lean-forward="false" selection-start-line="19" selection-start-column="126" selection-end-line="19" selection-end-column="126" />
-              <folding>
-                <element signature="e#132#165#0#PHP" expanded="true" />
-              </folding>
+            <state relative-caret-position="680">
+              <caret line="40" column="5" lean-forward="true" selection-start-line="40" selection-start-column="5" selection-end-line="40" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="setup_1.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/setup/setup_1.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="816">
+              <caret line="60" column="14" lean-forward="false" selection-start-line="60" selection-start-column="14" selection-end-line="60" selection-end-column="14" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="setup_2.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/setup/setup_2.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="629">
+              <caret line="70" column="64" lean-forward="false" selection-start-line="70" selection-start-column="64" selection-end-line="70" selection-end-column="64" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/infiniahome/views/setup/index.html.twig">
+        <entry file="file://$PROJECT_DIR$/views/setup/index.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="89" column="29" lean-forward="false" selection-start-line="89" selection-start-column="29" selection-end-line="89" selection-end-column="29" />
+            <state relative-caret-position="345">
+              <caret line="42" column="17" lean-forward="true" selection-start-line="42" selection-start-column="17" selection-end-line="42" selection-end-column="17" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="admin.routes.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/infiniahome/routes/admin.routes.php">
+        <entry file="file://$PROJECT_DIR$/routes/admin.routes.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="272">
               <caret line="21" column="15" lean-forward="false" selection-start-line="21" selection-start-column="15" selection-end-line="21" selection-end-column="15" />
@@ -89,36 +169,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="auth.routes.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/infiniahome/routes/auth.routes.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-386">
-              <caret line="33" column="11" lean-forward="false" selection-start-line="33" selection-start-column="11" selection-end-line="33" selection-end-column="11" />
-              <folding>
-                <element signature="e#6#90#0#PHP" expanded="true" />
-                <element signature="e#134#160#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="schema.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/infiniahome/schema.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="483">
-              <caret line="56" column="102" lean-forward="false" selection-start-line="56" selection-start-column="102" selection-end-line="56" selection-end-column="102" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/infiniahome/index.php">
+        <entry file="file://$PROJECT_DIR$/index.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="238">
-              <caret line="14" column="57" lean-forward="false" selection-start-line="14" selection-start-column="57" selection-end-line="14" selection-end-column="57" />
+              <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
               <folding>
-                <element signature="e#228#259#0#PHP" expanded="true" />
+                <marker date="1515505838329" expanded="true" signature="473:513" ph="..." />
               </folding>
             </state>
           </provider>
@@ -141,6 +198,7 @@
       <find>;</find>
       <find>SMPT</find>
       <find>setConnectionManager</find>
+      <find>nowdoc</find>
     </findStrings>
     <replaceStrings>
       <replace>SMTP</replace>
@@ -152,13 +210,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/propel.yml.dist" />
-        <option value="$PROJECT_DIR$/infiniahome/models/propel-gen/InfiniaHome/DB/InfiniaUser.php" />
-        <option value="$PROJECT_DIR$/propel.yml" />
-        <option value="$PROJECT_DIR$/schema.xml" />
-        <option value="$PROJECT_DIR$/infiniahome/models/class.TemplateFromString.php" />
-        <option value="$PROJECT_DIR$/infiniahome/models/TemplateFromFile.php" />
-        <option value="$PROJECT_DIR$/infiniahome/conf/doh.yml" />
         <option value="$PROJECT_DIR$/infiniahome/webphp/sso/login.php" />
         <option value="$PROJECT_DIR$/infiniahome/controllers/indexCtl.php" />
         <option value="$PROJECT_DIR$/infiniahome/routes/indexCtl.php" />
@@ -172,7 +223,6 @@
         <option value="$PROJECT_DIR$/infiniahome/views/email_templates/verify_email.html.twig" />
         <option value="$PROJECT_DIR$/infiniahome/views/email_templates/verify_email.alt.twig" />
         <option value="$PROJECT_DIR$/infiniahome/views/setup/setup_1.html.twig" />
-        <option value="$PROJECT_DIR$/infiniahome/views/setup/setup_2.html.twig" />
         <option value="$PROJECT_DIR$/infiniahome/models/class.User.php" />
         <option value="$PROJECT_DIR$/infiniahome/views/setup/setup_3.html.twig" />
         <option value="$PROJECT_DIR$/infiniahome/views/setup/setup_4.html.twig" />
@@ -195,14 +245,22 @@
         <option value="$PROJECT_DIR$/infiniahome/propel.yml" />
         <option value="$PROJECT_DIR$/infiniahome/conf/propel.yml" />
         <option value="$PROJECT_DIR$/infiniahome/generated-sql/default.sql" />
-        <option value="$PROJECT_DIR$/composer.json" />
         <option value="$PROJECT_DIR$/infiniahome/schema.xml" />
         <option value="$PROJECT_DIR$/infiniahome/index.php" />
         <option value="$PROJECT_DIR$/infiniahome/routes/admin.routes.php" />
         <option value="$PROJECT_DIR$/infiniahome/routes/auth.routes.php" />
-        <option value="$PROJECT_DIR$/infiniahome/routes/setup.routes.php" />
         <option value="$PROJECT_DIR$/infiniahome/routes/main.routes.php" />
+        <option value="$PROJECT_DIR$/infiniahome/views/setup/setup_2.html.twig" />
         <option value="$PROJECT_DIR$/infiniahome/views/setup/index.html.twig" />
+        <option value="$PROJECT_DIR$/infiniahome/conf/dbconfig.php.twig" />
+        <option value="$PROJECT_DIR$/infiniahome/routes/setup.routes.php" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/composer.json" />
+        <option value="$PROJECT_DIR$/views/setup/phpinfo.php" />
+        <option value="$PROJECT_DIR$/views/setup/setup_3.html.twig" />
+        <option value="$PROJECT_DIR$/views/setup/setup_4.html.twig" />
+        <option value="$PROJECT_DIR$/views/setup/setup_1.html.twig" />
+        <option value="$PROJECT_DIR$/views/setup/index.html.twig" />
       </list>
     </option>
   </component>
@@ -234,17 +292,17 @@
       <path value="$PROJECT_DIR$/vendor/symfony/validator" />
       <path value="$PROJECT_DIR$/vendor/phroute/phroute" />
       <path value="$PROJECT_DIR$/vendor/twig/twig" />
-      <path value="$PROJECT_DIR$/vendor/doctrine/lexer" />
-      <path value="$PROJECT_DIR$/vendor/doctrine/inflector" />
-      <path value="$PROJECT_DIR$/vendor/doctrine/annotations" />
-      <path value="$PROJECT_DIR$/vendor/doctrine/collections" />
-      <path value="$PROJECT_DIR$/vendor/doctrine/cache" />
-      <path value="$PROJECT_DIR$/vendor/doctrine/common" />
-      <path value="$PROJECT_DIR$/vendor/doctrine/instantiator" />
-      <path value="$PROJECT_DIR$/vendor/doctrine/dbal" />
-      <path value="$PROJECT_DIR$/vendor/doctrine/orm" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-mbstring" />
       <path value="$PROJECT_DIR$/vendor/propel/propel" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/lexer" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/orm" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/inflector" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/annotations" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/dbal" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/instantiator" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/collections" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/common" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/cache" />
     </include_path>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
@@ -282,44 +340,7 @@
             <path>
               <item name="InfiniaHome" type="b2602c69:ProjectViewProjectNode" />
               <item name="InfiniaHome" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="infiniahome" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="InfiniaHome" type="b2602c69:ProjectViewProjectNode" />
-              <item name="InfiniaHome" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="infiniahome" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="conf" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="InfiniaHome" type="b2602c69:ProjectViewProjectNode" />
-              <item name="InfiniaHome" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="infiniahome" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="generated-conf" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="InfiniaHome" type="b2602c69:ProjectViewProjectNode" />
-              <item name="InfiniaHome" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="infiniahome" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="generated-sql" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="InfiniaHome" type="b2602c69:ProjectViewProjectNode" />
-              <item name="InfiniaHome" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="infiniahome" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="routes" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="InfiniaHome" type="b2602c69:ProjectViewProjectNode" />
-              <item name="InfiniaHome" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="infiniahome" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="InfiniaHome" type="b2602c69:ProjectViewProjectNode" />
-              <item name="InfiniaHome" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="infiniahome" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="setup" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
@@ -330,26 +351,26 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.build" />
+    <property name="settings.editor.selected.configurable" value="web.server" />
     <property name="add_unversioned_files" value="true&#10;/home/xiurobert/PhpstormProjects/InfiniaHome-Laravel/vendor/composer/autoload_real.php" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Robert\Documents\GitHub\InfiniaHome" />
+      <recent name="C:\Users\Robert\Documents\GitHub\InfiniaHome\infiniahome\conf" />
+      <recent name="C:\Users\Robert\Documents\GitHub\InfiniaHome\src\Infinia" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="C:\Users\Robert\Documents\GitHub\InfiniaHome\infiniahome" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Robert\Documents\GitHub\InfiniaHome\infiniahome-doctrine" />
       <recent name="C:\Users\Robert\Documents\GitHub\InfiniaHome\infiniahome-doctrine\models" />
       <recent name="C:\Users\Robert\Documents\GitHub\InfiniaHome\infiniah" />
       <recent name="C:\Users\Robert\Documents\GitHub\InfiniaHome-Laravel\infiniahome\routes" />
       <recent name="C:\Users\Robert\Documents\GitHub\InfiniaHome-Laravel\infiniahome" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Robert\Documents\GitHub\InfiniaHome\infiniahome\conf" />
-      <recent name="C:\Users\Robert\Documents\GitHub\InfiniaHome\src\Infinia" />
-      <recent name="$PROJECT_DIR$" />
-      <recent name="C:\Users\Robert\Documents\GitHub\InfiniaHome\infiniahome" />
-      <recent name="C:\Users\Robert\Documents\GitHub\InfiniaHome-Laravel\infiniahome\runtime" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -365,7 +386,7 @@
     </option>
   </component>
   <component name="RunManager" selected="PHP Script.InfiniaUser.php">
-    <configuration name="InfiniaUser.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/infiniahome/models/propel-gen/InfiniaHome/DB/InfiniaUser.php" />
+    <configuration name="InfiniaUser.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/models/propel-gen/InfiniaHome/DB/InfiniaUser.php" />
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
       <node-interpreter>project</node-interpreter>
       <node-options />
@@ -495,7 +516,9 @@
       <workItem from="1510235046485" duration="999000" />
       <workItem from="1511359744150" duration="2097000" />
       <workItem from="1511362059245" duration="803000" />
-      <workItem from="1515495005344" duration="2121000" />
+      <workItem from="1515495005344" duration="2822000" />
+      <workItem from="1515588490397" duration="3057000" />
+      <workItem from="1515668331346" duration="6466000" />
     </task>
     <task id="LOCAL-00001" summary="MOAR changes">
       <created>1503994433291</created>
@@ -546,17 +569,24 @@
       <option name="project" value="LOCAL" />
       <updated>1511362809419</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="keane needs to do work">
+      <created>1515500889748</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1515500889749</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="130831000" />
+    <option name="totallyTimeSpent" value="141055000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12260128" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12473348" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="PHP-CGI Server" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.49621212" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32719395" sideWeight="0.5021322" order="7" side_tool="true" content_ui="tabs" />
@@ -613,7 +643,8 @@
     <MESSAGE value="So propel has been kicking me for about 10 years before I realised I forgot to require the configuration file in the main.routes.php&#10;&#10;&#10;Should I end myself? Yes" />
     <MESSAGE value="So propel has been kicking me for about 10 years before I realised I forgot to require the configuration file in the main.routes.php&#10;&#10;&#10;Should I end myself? Yes&#10;&#10;-- Fixed Uncaught PropelException: No connection &quot;default&quot; defined" />
     <MESSAGE value="So propel has been kicking me for about 10 years before I realised I forgot to require the configuration file in the main.routes.php.&#10;&#10;Should I end myself? Yes&#10;&#10;-- Fixed Uncaught PropelException: No connection &quot;default&quot; defined" />
-    <option name="LAST_COMMIT_MESSAGE" value="So propel has been kicking me for about 10 years before I realised I forgot to require the configuration file in the main.routes.php.&#10;&#10;Should I end myself? Yes&#10;&#10;-- Fixed Uncaught PropelException: No connection &quot;default&quot; defined" />
+    <MESSAGE value="keane needs to do work" />
+    <option name="LAST_COMMIT_MESSAGE" value="keane needs to do work" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -622,57 +653,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/infiniahome/views/setup/setup_3.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1190">
-          <caret line="70" column="63" lean-forward="false" selection-start-line="70" selection-start-column="63" selection-end-line="70" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/infiniahome/views/setup/setup_4.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1003">
-          <caret line="59" column="40" lean-forward="false" selection-start-line="59" selection-start-column="40" selection-end-line="59" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/infiniahome/views/setup/setup_5.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/propel/propel/bin/propel">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/propel/propel/bin/propel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/infiniahome/runtime/propel.yml" />
-    <entry file="file://$PROJECT_DIR$/vendor/propel/propel/src/Propel/Runtime/ServiceContainer/StandardServiceContainer.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="263" column="35" lean-forward="true" selection-start-line="263" selection-start-column="35" selection-end-line="263" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/propel/propel/src/Propel/Runtime/ServiceContainer/ServiceContainerInterface.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="353">
-          <caret line="155" column="7" lean-forward="true" selection-start-line="155" selection-start-column="7" selection-end-line="155" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/infiniahome/propel_gen/INIT" />
     <entry file="file://$PROJECT_DIR$/sonar-project.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -700,28 +680,21 @@
     <entry file="file://$PROJECT_DIR$/infiniahome-doctrine/views/admin/admin.html.twig" />
     <entry file="file://$PROJECT_DIR$/infiniahome-doctrine/index.php" />
     <entry file="file://$PROJECT_DIR$/infiniahome-doctrine/doctrine-cli/boobstrap.php" />
-    <entry file="file://$PROJECT_DIR$/infiniahome/conf/propel.yml.dist">
+    <entry file="file://$PROJECT_DIR$/conf/propel.yml.dist">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
           <caret line="26" column="29" lean-forward="true" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/infiniahome/root.php">
+    <entry file="file://$PROJECT_DIR$/root.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/infiniahome/twig_cache/.INIT">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/infiniahome/twig_cache/.INIT" />
     <entry file="file://$PROJECT_DIR$/vendor/propel/propel/src/Propel/Runtime/ActiveQuery/ModelCriteria.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-7">
@@ -729,20 +702,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/infiniahome/models/propelgen/InfiniaHome/DB/ConfigurationQuery.php">
+    <entry file="file://$PROJECT_DIR$/models/propelgen/InfiniaHome/DB/ConfigurationQuery.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/infiniahome/models/class.User.php">
+    <entry file="file://$PROJECT_DIR$/models/class.User.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="130" column="48" lean-forward="false" selection-start-line="130" selection-start-column="48" selection-end-line="130" selection-end-column="48" />
-          <folding>
-            <element signature="e#160#191#0#PHP" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -774,50 +744,62 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/infiniahome/conf/propel.yml" />
+    <entry file="file://$PROJECT_DIR$/conf/propel.yml" />
     <entry file="file://$PROJECT_DIR$/infiniahome/routes/propel.yml" />
     <entry file="file://$PROJECT_DIR$/src/Infinia/DBAL/EnumVisibilityType.php" />
     <entry file="file://$PROJECT_DIR$/cli-config.php" />
     <entry file="file://$PROJECT_DIR$/doctrine.cmd" />
     <entry file="file://$PROJECT_DIR$/src/bootstrap.php" />
-    <entry file="file://$PROJECT_DIR$/infiniahome/views/admin/add-app.html.twig">
+    <entry file="file://$PROJECT_DIR$/views/admin/add-app.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" column="63" lean-forward="false" selection-start-line="8" selection-start-column="63" selection-end-line="8" selection-end-column="63" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/infiniahome/propel.cmd">
+    <entry file="file://$PROJECT_DIR$/propel.cmd">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="23" lean-forward="false" selection-start-line="0" selection-start-column="23" selection-end-line="0" selection-end-column="23" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/infiniahome/generated-sql/default.sql">
+    <entry file="file://$PROJECT_DIR$/generated-sql/default.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1552">
           <caret line="104" column="2" lean-forward="false" selection-start-line="104" selection-start-column="2" selection-end-line="104" selection-end-column="2" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/infiniahome/conf/propel.yml">
+    <entry file="file://$PROJECT_DIR$/conf/Users.dcm.yml" />
+    <entry file="file://$PROJECT_DIR$/routes/auth.routes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+        <state relative-caret-position="391">
+          <caret line="33" column="11" lean-forward="false" selection-start-line="33" selection-start-column="11" selection-end-line="33" selection-end-column="11" />
+          <folding>
+            <element signature="e#6#90#0#PHP" expanded="false" />
+            <element signature="e#136#162#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/infiniahome/conf/dbconfig.php.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="8" lean-forward="false" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="8" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/composer.json">
+    <entry file="file://$PROJECT_DIR$/models/miscfunctions/class.TemplateFromString.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="30" column="23" lean-forward="false" selection-start-line="30" selection-start-column="23" selection-end-line="30" selection-end-column="23" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/conf/Users.dcm.yml" />
-    <entry file="file://$PROJECT_DIR$/infiniahome/generated-conf/config.php">
+    <entry file="file://$PROJECT_DIR$/generated-conf/config.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
           <caret line="25" column="22" lean-forward="false" selection-start-line="25" selection-start-column="22" selection-end-line="25" selection-end-column="22" />
@@ -825,26 +807,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/infiniahome/schema.xml">
+    <entry file="file://$PROJECT_DIR$/schema.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="56" column="102" lean-forward="false" selection-start-line="56" selection-start-column="102" selection-end-line="56" selection-end-column="102" />
+        <state relative-caret-position="22">
+          <caret line="65" column="114" lean-forward="false" selection-start-line="65" selection-start-column="114" selection-end-line="65" selection-end-column="114" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/infiniahome/routes/auth.routes.php">
+    <entry file="file://$PROJECT_DIR$/conf/propel.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-386">
-          <caret line="33" column="11" lean-forward="false" selection-start-line="33" selection-start-column="11" selection-end-line="33" selection-end-column="11" />
+        <state relative-caret-position="153">
+          <caret line="9" column="10" lean-forward="false" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/setup.routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1161">
+          <caret line="75" column="29" lean-forward="false" selection-start-line="75" selection-start-column="29" selection-end-line="75" selection-end-column="29" />
           <folding>
-            <element signature="e#6#90#0#PHP" expanded="true" />
-            <element signature="e#134#160#0#PHP" expanded="true" />
+            <marker date="1515671771292" expanded="true" signature="3455:3557" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/infiniahome/routes/admin.routes.php">
+    <entry file="file://$PROJECT_DIR$/routes/main.routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="29" column="9" lean-forward="false" selection-start-line="29" selection-start-column="9" selection-end-line="29" selection-end-column="9" />
+          <folding>
+            <element signature="e#213#248#0#PHP" expanded="true" />
+            <marker date="1515671771319" expanded="true" signature="930:986" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/admin.routes.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="21" column="15" lean-forward="false" selection-start-line="21" selection-start-column="15" selection-end-line="21" selection-end-column="15" />
@@ -852,40 +852,87 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/infiniahome/index.php">
+    <entry file="file://$PROJECT_DIR$/index.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
-          <caret line="14" column="57" lean-forward="false" selection-start-line="14" selection-start-column="57" selection-end-line="14" selection-end-column="57" />
+          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
           <folding>
-            <element signature="e#228#259#0#PHP" expanded="true" />
+            <marker date="1515505838329" expanded="true" signature="473:513" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/infiniahome/routes/main.routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="25" column="6" lean-forward="false" selection-start-line="25" selection-start-column="6" selection-end-line="25" selection-end-column="6" />
-          <folding>
-            <element signature="e#209#244#0#PHP" expanded="true" />
-          </folding>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="595">
+            <caret line="35" column="51" lean-forward="false" selection-start-line="35" selection-start-column="51" selection-end-line="35" selection-end-column="51" />
+            <folding />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/infiniahome/routes/setup.routes.php">
+    <entry file="file://$PROJECT_DIR$/views/setup/phpinfo.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="19" column="126" lean-forward="false" selection-start-line="19" selection-start-column="126" selection-end-line="19" selection-end-column="126" />
-          <folding>
-            <element signature="e#132#165#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="17">
+          <caret line="1" column="10" lean-forward="true" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="10" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/infiniahome/views/setup/index.html.twig">
+    <entry file="file://$PROJECT_DIR$/views/setup/setup_2.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="89" column="29" lean-forward="false" selection-start-line="89" selection-start-column="29" selection-end-line="89" selection-end-column="29" />
+        <state relative-caret-position="884">
+          <caret line="52" column="0" lean-forward="false" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/setup/setup_4.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/setup/setup_3.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="53" column="64" lean-forward="false" selection-start-line="53" selection-start-column="64" selection-end-line="53" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/setup/setup_2.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="629">
+          <caret line="70" column="64" lean-forward="false" selection-start-line="70" selection-start-column="64" selection-end-line="70" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/composer.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="680">
+          <caret line="40" column="5" lean-forward="true" selection-start-line="40" selection-start-column="5" selection-end-line="40" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/setup/setup_1.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="816">
+          <caret line="60" column="14" lean-forward="false" selection-start-line="60" selection-start-column="14" selection-end-line="60" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/setup/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="42" column="17" lean-forward="true" selection-start-line="42" selection-start-column="17" selection-end-line="42" selection-end-column="17" />
           <folding />
         </state>
       </provider>

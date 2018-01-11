@@ -68,7 +68,7 @@ keys that will be generated.</p>
                 success: function(result){
                     var keys = JSON.parse(result);
                     alert("Public key: " + result.public_key + " Private key: " + result.private_key);
-                    window.location('{{ webroot }}/setup/setup-4');
+                    window.location('{{ webroot }}/setup/setup-3');
                 },
                 error: function(err){
                     alert("An error occured: " + err.responseText);
